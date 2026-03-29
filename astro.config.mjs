@@ -4,20 +4,25 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://dacreator.dev',
   output: 'static',
+
   integrations: [
     react(),
     mdx(),
     sitemap(),
   ],
+
   vite: {
     plugins: [tailwindcss()],
     ssr: {
       noExternal: ['framer-motion'],
     },
   },
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'de'],
@@ -25,4 +30,6 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+
+  adapter: cloudflare(),
 });
