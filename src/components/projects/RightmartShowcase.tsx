@@ -50,15 +50,39 @@ const t = {
   },
 };
 
+const AdIcon = ({ name }: { name: string }) => {
+  const icons: Record<string, JSX.Element> = {
+    'Meta Ads': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.915 4.03c-1.968 0-3.402 1.042-4.36 2.879C1.513 8.391.768 10.547.768 12c0 1.476.57 2.59 1.726 2.59.596 0 1.211-.376 1.878-1.164l1.6-1.893c.903-1.073 1.834-2.543 2.794-4.407.418-.812.63-1.547.63-2.093 0-.65-.315-1.003-.875-1.003h-.606zm10.17 0c-1.2 0-2.328.632-3.381 1.867-1.054 1.235-2.088 2.98-3.096 5.235-.492 1.1-.742 2.08-.742 2.868 0 1.294.742 2.03 1.778 2.03.596 0 1.211-.376 1.878-1.164l1.6-1.893c.903-1.073 1.834-2.543 2.794-4.407.418-.812.63-1.547.63-2.093 0-.65-.315-1.003-.875-1.003h-.586zm4.482 2.97c-.875 0-1.607.315-2.197.946-.59.63-.884 1.417-.884 2.358 0 1.476.57 2.59 1.726 2.59.596 0 1.211-.376 1.878-1.164.315-.373.63-.788.946-1.245.316-.46.474-.893.474-1.296 0-.65-.315-1.003-.875-1.003h-.18c-.294 0-.588-.062-.888-.186z"/></svg>,
+    'Google Ads': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.593 0L.862 4.735l10.28 17.937 2.734-4.735zm7.644 10.472l-2.734 4.735L18.793 0H13.32z"/><circle cx="6.326" cy="19.265" r="4.735"/></svg>,
+    'Microsoft Ads': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h11.377v11.372H0zm12.623 0H24v11.372H12.623zM0 12.623h11.377V24H0zm12.623 0H24V24H12.623z"/></svg>,
+    'TikTok Ads': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>,
+    'Taboola': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
+    'Criteo': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 2a5 5 0 100 10 5 5 0 000-10z"/></svg>,
+    'RTB House': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h8v2H8v-2z"/></svg>,
+    'Tisoomi': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>,
+  };
+  return icons[name] || <span className="text-xs font-bold">{name[0]}</span>;
+};
+
+const ReportIcon = ({ name }: { name: string }) => {
+  const icons: Record<string, JSX.Element> = {
+    'Power BI': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2v20h4V2h-4zM4 10v12h4V10H4zm12-4v16h4V6h-4z"/></svg>,
+    'Looker Studio': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>,
+    'Google Analytics': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 10-16 0 8 8 0 0016 0zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>,
+    'GTM': <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>,
+  };
+  return icons[name] || <span className="text-xs font-bold">{name[0]}</span>;
+};
+
 const adPlatforms = [
-  { name: 'Meta Ads', icon: '󰈌', color: '#0081FB' },
-  { name: 'Google Ads', icon: '󰊭', color: '#4285F4' },
-  { name: 'Microsoft Ads', icon: '󰍲', color: '#00A4EF' },
-  { name: 'TikTok Ads', icon: '󰔁', color: '#EE1D52' },
-  { name: 'Taboola', icon: '󰖟', color: '#004B93' },
-  { name: 'Criteo', icon: '󰖟', color: '#F47A20' },
-  { name: 'RTB House', icon: '󰖟', color: '#00C389' },
-  { name: 'Tisoomi', icon: '󰖟', color: '#7B61FF' },
+  { name: 'Meta Ads', color: '#0081FB' },
+  { name: 'Google Ads', color: '#4285F4' },
+  { name: 'Microsoft Ads', color: '#00A4EF' },
+  { name: 'TikTok Ads', color: '#EE1D52' },
+  { name: 'Taboola', color: '#004B93' },
+  { name: 'Criteo', color: '#F47A20' },
+  { name: 'RTB House', color: '#00C389' },
+  { name: 'Tisoomi', color: '#7B61FF' },
 ];
 
 const socialPlatforms = [
@@ -187,10 +211,10 @@ export default function RightmartShowcase({ lang }: Props) {
               className="group p-3 bg-surface rounded-xl border border-border hover:border-accent/30 transition-all duration-300 text-center"
             >
               <div
-                className="w-8 h-8 mx-auto mb-2 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-                style={{ backgroundColor: p.color + '20', color: p.color }}
+                className="w-8 h-8 mx-auto mb-2 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: p.color + '15', color: p.color }}
               >
-                {p.name.split(' ')[0][0]}
+                <AdIcon name={p.name} />
               </div>
               <span className="text-xs text-text-muted group-hover:text-text-primary transition-colors">{p.name}</span>
             </div>
@@ -228,10 +252,10 @@ export default function RightmartShowcase({ lang }: Props) {
               className="group p-3 bg-surface rounded-xl border border-border hover:border-accent/30 transition-all duration-300 text-center"
             >
               <div
-                className="w-8 h-8 mx-auto mb-2 rounded-lg flex items-center justify-center font-bold text-xs"
-                style={{ backgroundColor: tool.color + '20', color: tool.color }}
+                className="w-8 h-8 mx-auto mb-2 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: tool.color + '15', color: tool.color }}
               >
-                {tool.name.split(' ')[0][0]}
+                <ReportIcon name={tool.name} />
               </div>
               <span className="text-xs text-text-muted group-hover:text-text-primary transition-colors">{tool.name}</span>
             </div>
