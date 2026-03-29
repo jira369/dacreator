@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import RightmartShowcase from '../../../components/projects/RightmartShowcase';
 import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
 
@@ -54,6 +55,10 @@ const { Content } = await render(project);
       <div class="prose prose-lg max-w-none project-content">
         <Content />
       </div>
+
+      {project.id.includes('rightmart') && (
+        <RightmartShowcase client:visible lang="vi" />
+      )}
     </div>
   </article>
 </BaseLayout>
