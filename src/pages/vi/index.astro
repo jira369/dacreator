@@ -9,10 +9,10 @@ import FeaturedProjects from '../../components/home/FeaturedProjects';
 import Contact from '../../components/home/Contact.astro';
 import { useTranslations } from '../../i18n/utils';
 
-const t = useTranslations('de');
+const t = useTranslations('vi');
 ---
 
-<BaseLayout title="Dac Vu — Teamleiter Social Media">
+<BaseLayout title="Dac Vu — Team Lead Social Media">
   <Hero
     client:load
     greeting={t('hero.greeting')}
@@ -21,7 +21,7 @@ const t = useTranslations('de');
     subtitle={t('hero.subtitle')}
     cta={t('hero.cta')}
     scrollText={t('hero.scroll')}
-    lang="de"
+    lang="vi"
   />
   <About />
   <Experience />
@@ -32,8 +32,8 @@ const t = useTranslations('de');
     heading={t('projects.heading')}
     viewAll={t('projects.viewAll')}
     viewProject={t('projects.viewProject')}
-    lang="de"
-    viewAllHref="/de/projects"
+    lang="vi"
+    viewAllHref="/vi/projects"
   />
   <Contact />
 </BaseLayout>
