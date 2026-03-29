@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@fontsource/caveat/700.css";
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
@@ -161,6 +162,29 @@ section + section {
 
 .prose img {
   border-radius: 0.75rem;
+}
+
+/* Hero title shimmer — sweeping golden highlight */
+.hero-title-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-text-muted) 0%,
+    var(--color-text-muted) 35%,
+    var(--color-accent) 50%,
+    var(--color-accent-light) 55%,
+    var(--color-text-muted) 65%,
+    var(--color-text-muted) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-sweep 4s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: 0% 0; }
 }
 
 /* Accent gradient text utility */

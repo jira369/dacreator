@@ -43,7 +43,12 @@ const lineReveal = {
 };
 
 export default function Hero({ greeting, name, title, subtitle, cta, scrollText, lang }: Props) {
-  const nameChars = name.split('');
+  // Split name into first name and last name for different styling
+  const nameParts = name.split(' ');
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(' ');
+  const firstNameChars = firstName.split('');
+  const lastNameChars = lastName.split('');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
@@ -52,21 +57,6 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
       <GradientOrb color="#7dd3c0" size={400} top="60%" left="-10%" delay={1} />
       <GradientOrb color="#c8a96e" size={300} top="70%" left="70%" delay={1.5} />
 
-      {/* Subtle horizontal lines for editorial feel */}
-      <motion.div
-        custom={2}
-        variants={lineReveal}
-        initial="hidden"
-        animate="visible"
-        className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent origin-left"
-      />
-      <motion.div
-        custom={2.3}
-        variants={lineReveal}
-        initial="hidden"
-        animate="visible"
-        className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent origin-right"
-      />
 
       <div className="relative z-10 max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
@@ -81,21 +71,19 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
             {greeting}
           </motion.p>
 
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-[-0.04em] leading-[0.9] mb-6" style={{ perspective: '600px' }}>
-            {nameChars.map((char, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={letterVariants}
-                initial="hidden"
-                animate="visible"
-                className="inline-block"
-                style={char === ' ' ? { width: '0.3em' } : undefined}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
-          </h1>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-6"
+          >
+            <img
+              src="/images/signature.png"
+              alt={name}
+              className="h-24 sm:h-32 lg:h-40 w-auto"
+              loading="eager"
+            />
+          </motion.div>
 
           {/* Accent line under name */}
           <motion.div
@@ -111,9 +99,9 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-xl sm:text-2xl text-text-muted font-light mb-4 tracking-tight"
+            className="text-xl sm:text-2xl font-light mb-4 tracking-tight relative overflow-hidden"
           >
-            {title}
+            <span className="hero-title-shimmer">{title}</span>
           </motion.p>
 
           <motion.p
