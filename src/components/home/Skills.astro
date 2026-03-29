@@ -1,0 +1,56 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const skillGroups = [
+  {
+    label: t('skills.marketing'),
+    skills: ['Growth Strategy', 'SEO & SEM', 'Content Marketing', 'Brand Positioning', 'Analytics', 'Social Media'],
+  },
+  {
+    label: t('skills.development'),
+    skills: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Python', 'PostgreSQL'],
+  },
+  {
+    label: t('skills.tools'),
+    skills: ['Figma', 'Google Analytics', 'Vite', 'Git', 'Cloudflare', 'Capacitor'],
+  },
+];
+---
+
+<section class="py-32 px-6" id="skills">
+  <div class="mx-auto max-w-6xl">
+    <span
+      data-animate
+      class="text-accent font-medium text-sm tracking-widest uppercase mb-4 block"
+    >
+      {t('skills.heading')}
+    </span>
+    <h2
+      data-animate
+      data-animate-delay="0.1"
+      class="text-4xl sm:text-5xl font-bold tracking-tight mb-16"
+    >
+      {lang === 'en' ? 'What I' : 'Was ich'} <span class="text-text-muted">{lang === 'en' ? 'work with.' : 'nutze.'}</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {skillGroups.map((group, gi) => (
+        <div data-animate data-animate-delay={String(0.2 + gi * 0.1)}>
+          <h3 class="text-sm font-medium text-accent-light tracking-widest uppercase mb-6 pb-3 border-b border-border">
+            {group.label}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {group.skills.map((skill) => (
+              <span class="px-3 py-1.5 text-sm text-text-muted bg-surface rounded-lg border border-border hover:border-accent/40 hover:text-text-primary transition-all duration-200 cursor-default">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,116 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { getLangFromUrl } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = 'Dac Vu — CMO & Digital Strategist based in Bremen, Germany.', image = '/images/og-default.jpg' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html lang={lang} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-background">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- GSAP ScrollTrigger global init -->
+    <script>
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      function initScrollAnimations() {
+        // Animate all elements with data-animate attribute
+        const elements = document.querySelectorAll('[data-animate]');
+        elements.forEach((el, i) => {
+          gsap.fromTo(
+            el,
+            {
+              opacity: 0,
+              y: 40,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+              delay: (el as HTMLElement).dataset.animateDelay
+                ? parseFloat((el as HTMLElement).dataset.animateDelay!)
+                : i * 0.05,
+            },
+          );
+        });
+
+        // Timeline line draw animation
+        const timelineLine = document.querySelector('[data-timeline-line]');
+        if (timelineLine) {
+          gsap.fromTo(
+            timelineLine,
+            { scaleY: 0 },
+            {
+              scaleY: 1,
+              duration: 1.5,
+              ease: 'power2.out',
+              transformOrigin: 'top center',
+              scrollTrigger: {
+                trigger: timelineLine,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+              },
+            },
+          );
+        }
+      }
+
+      // Run on initial load
+      initScrollAnimations();
+
+      // Re-run after Astro view transitions
+      document.addEventListener('astro:after-swap', () => {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        initScrollAnimations();
+      });
+    </script>
+  </body>
+</html>

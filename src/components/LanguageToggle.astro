@@ -1,0 +1,16 @@
+---
+import { getLangFromUrl, switchLocale } from '../i18n/utils';
+import { localeNames, type Locale } from '../i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const otherLang: Locale = lang === 'en' ? 'de' : 'en';
+const switchUrl = switchLocale(Astro.url, otherLang);
+---
+
+<a
+  href={switchUrl}
+  class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-border text-text-muted hover:text-text-primary hover:border-accent/50 transition-all duration-200"
+  aria-label={`Switch to ${localeNames[otherLang]}`}
+>
+  <span class="text-accent">{localeNames[otherLang]}</span>
+</a>

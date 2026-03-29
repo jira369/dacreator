@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogCard from '../../../components/blog/BlogCard.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../../i18n/utils';
+
+const t = useTranslations('en');
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.id.startsWith('en/') && !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={`Blog — Dac Vu`}>
+  <section class="pt-32 pb-20 px-6">
+    <div class="mx-auto max-w-4xl">
+      <span
+        data-animate
+        class="text-accent font-medium text-sm tracking-widest uppercase mb-4 block"
+      >
+        Blog
+      </span>
+      <h1
+        data-animate
+        data-animate-delay="0.1"
+        class="text-4xl sm:text-6xl font-bold tracking-tight mb-6"
+      >
+        Thoughts & <span class="text-text-muted">insights.</span>
+      </h1>
+      <p
+        data-animate
+        data-animate-delay="0.2"
+        class="text-text-muted text-lg max-w-2xl mb-16"
+      >
+        Writing about marketing, technology, and building digital products.
+      </p>
+
+      {posts.length > 0 ? (
+        <div class="grid gap-6">
+          {posts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              slug={post.id.replace('en/', '')}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      ) : (
+        <p data-animate class="text-text-muted text-center py-20">
+          Coming soon — stay tuned for new posts.
+        </p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

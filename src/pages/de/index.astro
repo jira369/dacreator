@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/home/Hero';
+import About from '../../components/home/About.astro';
+import Experience from '../../components/home/Experience.astro';
+import Skills from '../../components/home/Skills.astro';
+import FeaturedProjects from '../../components/home/FeaturedProjects';
+import Contact from '../../components/home/Contact.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('de');
+---
+
+<BaseLayout title="Dac Vu — CMO & Digital Stratege">
+  <Hero
+    client:load
+    greeting={t('hero.greeting')}
+    name={t('hero.name')}
+    title={t('hero.title')}
+    subtitle={t('hero.subtitle')}
+    cta={t('hero.cta')}
+    scrollText={t('hero.scroll')}
+    lang="de"
+  />
+  <About />
+  <Experience />
+  <Skills />
+  <FeaturedProjects
+    client:visible
+    heading={t('projects.heading')}
+    viewAll={t('projects.viewAll')}
+    viewProject={t('projects.viewProject')}
+    lang="de"
+    viewAllHref="/de/projects"
+  />
+  <Contact />
+</BaseLayout>
