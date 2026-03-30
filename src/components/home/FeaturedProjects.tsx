@@ -24,15 +24,15 @@ const projects: Record<string, Project[]> = {
         'A comprehensive German citizenship test preparation app. Full-stack web & mobile application with 300+ practice questions, progress tracking, and push notifications.',
       tags: ['React', 'TypeScript', 'Tailwind', 'Express', 'PostgreSQL', 'Capacitor'],
       href: '/en/projects/leben-in-deutschland',
-      color: '#6366f1',
+      color: '#c8a96e',
     },
     {
       title: 'rightmart',
       description:
-        'Digital marketing and growth strategy for a leading legal tech company. Driving user acquisition, brand positioning, and conversion optimization.',
-      tags: ['Marketing Strategy', 'SEO', 'Growth', 'Legal Tech'],
+        'Social media marketing leadership at one of Germany\'s leading legal tech companies. From performance marketing manager to team lead — managing paid social, native ads, CRO, and a team of 7.',
+      tags: ['Paid Social', 'Native Ads', 'CRO', 'Team Leadership', 'Legal Tech'],
       href: '/en/projects/rightmart',
-      color: '#22d3ee',
+      color: '#7dd3c0',
     },
     {
       title: 'InstaPy',
@@ -40,7 +40,7 @@ const projects: Record<string, Project[]> = {
         'Open-source Instagram automation tool built with Python. Automated interactions including likes, follows, and comments with smart targeting algorithms.',
       tags: ['Python', 'Automation', 'Open Source', 'APIs'],
       href: '/en/projects/instapy',
-      color: '#818cf8',
+      color: '#dfc28e',
     },
   ],
   de: [
@@ -50,15 +50,15 @@ const projects: Record<string, Project[]> = {
         'Eine umfassende App zur Vorbereitung auf den Einbürgerungstest. Full-Stack Web- & Mobile-Anwendung mit 300+ Übungsfragen, Fortschrittsverfolgung und Push-Benachrichtigungen.',
       tags: ['React', 'TypeScript', 'Tailwind', 'Express', 'PostgreSQL', 'Capacitor'],
       href: '/de/projects/leben-in-deutschland',
-      color: '#6366f1',
+      color: '#c8a96e',
     },
     {
       title: 'rightmart',
       description:
-        'Digitales Marketing und Wachstumsstrategie für ein führendes Legal-Tech-Unternehmen. Steuerung der Nutzerakquise, Markenpositionierung und Conversion-Optimierung.',
-      tags: ['Marketing Strategie', 'SEO', 'Growth', 'Legal Tech'],
+        'Social-Media-Marketing-Leitung bei einem der führenden deutschen Legal-Tech-Unternehmen. Vom Performance Marketing Manager zum Teamleiter — Paid Social, Native Ads, CRO und ein 7-köpfiges Team.',
+      tags: ['Paid Social', 'Native Ads', 'CRO', 'Teamleitung', 'Legal Tech'],
       href: '/de/projects/rightmart',
-      color: '#22d3ee',
+      color: '#7dd3c0',
     },
     {
       title: 'InstaPy',
@@ -66,7 +66,33 @@ const projects: Record<string, Project[]> = {
         'Open-Source Instagram-Automatisierungstool in Python. Automatisierte Interaktionen wie Likes, Follows und Kommentare mit smarten Targeting-Algorithmen.',
       tags: ['Python', 'Automatisierung', 'Open Source', 'APIs'],
       href: '/de/projects/instapy',
-      color: '#818cf8',
+      color: '#dfc28e',
+    },
+  ],
+  vi: [
+    {
+      title: 'Leben in Deutschland',
+      description:
+        'Ứng dụng ôn thi nhập quốc tịch Đức toàn diện. Ứng dụng web & di động full-stack với 300+ câu hỏi luyện tập, theo dõi tiến độ và thông báo đẩy.',
+      tags: ['React', 'TypeScript', 'Tailwind', 'Express', 'PostgreSQL', 'Capacitor'],
+      href: '/vi/projects/leben-in-deutschland',
+      color: '#c8a96e',
+    },
+    {
+      title: 'rightmart',
+      description:
+        'Lãnh đạo social media marketing tại một trong những công ty công nghệ pháp lý hàng đầu Đức. Từ Performance Marketing Manager đến Trưởng nhóm — quản lý paid social, native ads, CRO và đội ngũ 7 người.',
+      tags: ['Paid Social', 'Native Ads', 'CRO', 'Lãnh đạo nhóm', 'Legal Tech'],
+      href: '/vi/projects/rightmart',
+      color: '#7dd3c0',
+    },
+    {
+      title: 'InstaPy',
+      description:
+        'Công cụ tự động hóa Instagram mã nguồn mở được xây dựng bằng Python. Tự động hóa tương tác bao gồm like, follow và comment với thuật toán nhắm mục tiêu thông minh.',
+      tags: ['Python', 'Tự động hóa', 'Mã nguồn mở', 'APIs'],
+      href: '/vi/projects/instapy',
+      color: '#dfc28e',
     },
   ],
 };
@@ -97,21 +123,21 @@ export default function FeaturedProjects({ heading, viewAll, viewProject, lang, 
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between mb-16">
           <div>
-            <span className="text-accent font-medium text-sm tracking-widest uppercase mb-4 block">
+            <span className="text-accent font-medium text-xs tracking-[0.25em] uppercase mb-4 block">
               {heading}
             </span>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
-              {lang === 'en' ? 'Selected ' : 'Ausgewählte '}
-              <span className="text-text-muted">{lang === 'en' ? 'work.' : 'Arbeiten.'}</span>
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-[-0.03em]">
+              {{ en: 'Selected ', de: 'Ausgewählte ', vi: 'Các ' }[lang] || 'Selected '}
+              <span className="text-text-muted">{{ en: 'work.', de: 'Arbeiten.', vi: 'dự án.' }[lang] || 'work.'}</span>
             </h2>
           </div>
           <a
             href={viewAllHref}
-            className="hidden sm:inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-light transition-colors group"
+            className="hidden sm:inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors group"
           >
             {viewAll}
             <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -127,14 +153,21 @@ export default function FeaturedProjects({ heading, viewAll, viewProject, lang, 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid gap-6"
+          className="grid gap-4"
         >
           {projectList.map((project, i) => (
             <motion.a
               key={project.title}
               href={project.href}
               variants={item}
-              className="group relative p-8 bg-surface rounded-2xl border border-border hover:border-accent/30 transition-all duration-500 overflow-hidden"
+              className="group relative p-8 bg-surface rounded-xl border border-border hover:border-accent/20 transition-all duration-500 overflow-hidden"
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+                e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+              }}
             >
               {/* Hover glow */}
               <div
@@ -147,14 +180,14 @@ export default function FeaturedProjects({ heading, viewAll, viewProject, lang, 
               <div className="relative z-10 flex flex-col sm:flex-row sm:items-start gap-6">
                 {/* Project number */}
                 <span
-                  className="text-5xl font-black leading-none"
-                  style={{ color: `${project.color}30` }}
+                  className="text-5xl font-black leading-none opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                  style={{ color: project.color }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
 
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-accent-light transition-colors">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-accent-light transition-colors duration-300">
                     {project.title}
                   </h3>
                   <p className="text-text-muted text-sm leading-relaxed mb-4 max-w-2xl">
@@ -172,7 +205,7 @@ export default function FeaturedProjects({ heading, viewAll, viewProject, lang, 
                   </div>
                 </div>
 
-                <div className="self-center text-text-muted group-hover:text-accent-light group-hover:translate-x-1 transition-all shrink-0">
+                <div className="self-center text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 shrink-0">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -185,7 +218,7 @@ export default function FeaturedProjects({ heading, viewAll, viewProject, lang, 
         <div className="mt-8 sm:hidden text-center">
           <a
             href={viewAllHref}
-            className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-light transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors"
           >
             {viewAll}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -9,7 +9,7 @@ export function getLangFromUrl(url: URL): Locale {
 
 export function useTranslations(lang: Locale) {
   return function t(key: keyof (typeof ui)[typeof defaultLocale]): string {
-    return ui[lang][key] ?? ui[defaultLocale][key];
+    return (ui[lang] as Record<string, string>)?.[key] ?? ui[defaultLocale][key];
   };
 }
 

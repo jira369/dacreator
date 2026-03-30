@@ -7,15 +7,15 @@ const t = useTranslations(lang);
 const skillGroups = [
   {
     label: t('skills.marketing'),
-    skills: ['Growth Strategy', 'SEO & SEM', 'Content Marketing', 'Brand Positioning', 'Analytics', 'Social Media'],
+    skills: ['Performance Marketing', 'SEA / Google Ads', 'Social Media Marketing', 'Influencer Marketing', 'Content Marketing', 'Branding', 'CRO', 'Paid Social', 'Native Ads'],
   },
   {
-    label: t('skills.development'),
-    skills: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Python', 'PostgreSQL'],
+    label: t('skills.leadership'),
+    skills: { en: ['Team Leadership', 'Project Management', 'Product Management', 'Process Optimization', 'People Management', 'Strategic Planning'], de: ['Teamleitung', 'Projektmanagement', 'Produktmanagement', 'Prozessoptimierung', 'Personalführung', 'Strategische Planung'], vi: ['Lãnh đạo nhóm', 'Quản lý dự án', 'Quản lý sản phẩm', 'Tối ưu quy trình', 'Quản lý nhân sự', 'Hoạch định chiến lược'] }[lang] || ['Team Leadership', 'Project Management', 'Product Management', 'Process Optimization', 'People Management', 'Strategic Planning'],
   },
   {
     label: t('skills.tools'),
-    skills: ['Figma', 'Google Analytics', 'Vite', 'Git', 'Cloudflare', 'Capacitor'],
+    skills: ['WordPress', 'Adobe Illustrator', 'Figma', 'TikTok', 'Tracking & Analytics', 'Landing Pages', 'Grafikdesign', 'Google Analytics'],
   },
 ];
 ---
@@ -33,7 +33,7 @@ const skillGroups = [
       data-animate-delay="0.1"
       class="text-4xl sm:text-5xl font-bold tracking-tight mb-16"
     >
-      {lang === 'en' ? 'What I' : 'Was ich'} <span class="text-text-muted">{lang === 'en' ? 'work with.' : 'nutze.'}</span>
+      {{ en: 'What I', de: 'Was ich', vi: 'Công cụ tôi' }[lang]} <span class="text-text-muted">{{ en: 'work with.', de: 'nutze.', vi: 'sử dụng.' }[lang]}</span>
     </h2>
 
     <div class="grid md:grid-cols-3 gap-8">

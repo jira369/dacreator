@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/projects/ProjectCard';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../../i18n/utils';
+
+const t = useTranslations('vi');
+
+const projects = (await getCollection('projects'))
+  .filter((p) => p.id.startsWith('en/'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Dự án — Dac Vu">
+  <section class="pt-32 pb-20 px-6">
+    <div class="mx-auto max-w-4xl">
+      <span
+        data-animate
+        class="text-accent font-medium text-sm tracking-widest uppercase mb-4 block"
+      >
+        {t('projects.heading')}
+      </span>
+      <h1
+        data-animate
+        data-animate-delay="0.1"
+        class="text-4xl sm:text-6xl font-bold tracking-tight mb-6"
+      >
+        Những gì tôi <span class="text-text-muted">đã xây dựng.</span>
+      </h1>
+      <p
+        data-animate
+        data-animate-delay="0.2"
+        class="text-text-muted text-lg max-w-2xl mb-16"
+      >
+        Bộ sưu tập các dự án về marketing, công nghệ và phát triển sản phẩm.
+      </p>
+
+      <div class="grid gap-6">
+        {projects.map((project, i) => (
+          <ProjectCard
+            client:visible
+            title={project.data.title}
+            description={project.data.description}
+            tags={project.data.tags}
+            href={`/vi/projects/${project.id.replace('en/', '')}`}
+            viewProject={t('projects.viewProject')}
+            index={i}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -23,6 +23,18 @@ const roles = [
     period: t('experience.role3.period'),
     description: t('experience.role3.description'),
   },
+  {
+    title: t('experience.role4.title'),
+    company: t('experience.role4.company'),
+    period: t('experience.role4.period'),
+    description: t('experience.role4.description'),
+  },
+  {
+    title: t('experience.role5.title'),
+    company: t('experience.role5.company'),
+    period: t('experience.role5.period'),
+    description: t('experience.role5.description'),
+  },
 ];
 ---
 
@@ -39,7 +51,7 @@ const roles = [
       data-animate-delay="0.1"
       class="text-4xl sm:text-5xl font-bold tracking-tight mb-16"
     >
-      {lang === 'en' ? 'Where I\'ve' : 'Wo ich'} <span class="text-text-muted">{lang === 'en' ? 'worked.' : 'gearbeitet habe.'}</span>
+      {{ en: "Where I've", de: 'Wo ich', vi: 'Nơi tôi đã' }[lang]} <span class="text-text-muted">{{ en: 'worked.', de: 'gearbeitet habe.', vi: 'làm việc.' }[lang]}</span>
     </h2>
 
     <div class="relative">
@@ -53,13 +65,21 @@ const roles = [
         {roles.map((role, i) => (
           <div
             data-animate
-            data-animate-delay={String(0.2 + i * 0.15)}
+            data-animate-delay={String(0.2 + i * 0.1)}
             class="relative pl-8 md:pl-20"
           >
             {/* Dot */}
-            <div class="absolute left-0 md:left-8 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></div>
+            <div class:list={[
+              "absolute left-0 md:left-8 top-2 -translate-x-1/2 w-3 h-3 rounded-full ring-4 ring-background",
+              i === 0 ? "bg-accent scale-125" : "bg-accent"
+            ]}></div>
 
-            <div class="p-6 bg-surface rounded-2xl border border-border hover:border-accent/30 transition-colors duration-300">
+            <div class:list={[
+              "p-6 rounded-2xl border transition-colors duration-300",
+              i === 0
+                ? "bg-accent/5 border-accent/20 hover:border-accent/40"
+                : "bg-surface border-border hover:border-accent/30"
+            ]}>
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                 <div>
                   <h3 class="text-lg font-semibold">{role.title}</h3>

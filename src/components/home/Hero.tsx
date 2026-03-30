@@ -12,13 +12,14 @@ interface Props {
 }
 
 const letterVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 50, rotateX: -40 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
+    rotateX: 0,
     transition: {
-      delay: 0.5 + i * 0.04,
-      duration: 0.6,
+      delay: 0.5 + i * 0.035,
+      duration: 0.7,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -33,15 +34,29 @@ const fadeUp = {
   }),
 };
 
+const lineReveal = {
+  hidden: { scaleX: 0 },
+  visible: (delay: number) => ({
+    scaleX: 1,
+    transition: { delay, duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
 export default function Hero({ greeting, name, title, subtitle, cta, scrollText, lang }: Props) {
-  const nameChars = name.split('');
+  // Split name into first name and last name for different styling
+  const nameParts = name.split(' ');
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(' ');
+  const firstNameChars = firstName.split('');
+  const lastNameChars = lastName.split('');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
-      {/* Background orbs */}
-      <GradientOrb color="#6366f1" size={600} top="-10%" left="60%" delay={0.5} />
-      <GradientOrb color="#22d3ee" size={400} top="60%" left="-10%" delay={1} />
-      <GradientOrb color="#6366f1" size={300} top="70%" left="70%" delay={1.5} />
+      {/* Background orbs — warm gold tones */}
+      <GradientOrb color="#c8a96e" size={600} top="-10%" left="60%" delay={0.5} />
+      <GradientOrb color="#7dd3c0" size={400} top="60%" left="-10%" delay={1} />
+      <GradientOrb color="#c8a96e" size={300} top="70%" left="70%" delay={1.5} />
+
 
       <div className="relative z-10 max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
@@ -51,35 +66,42 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-accent-light font-medium mb-4 text-sm tracking-widest uppercase"
+            className="text-accent font-medium mb-4 text-xs tracking-[0.25em] uppercase"
           >
             {greeting}
           </motion.p>
 
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-none mb-6">
-            {nameChars.map((char, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={letterVariants}
-                initial="hidden"
-                animate="visible"
-                className="inline-block"
-                style={char === ' ' ? { width: '0.3em' } : undefined}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
-          </h1>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-6"
+          >
+            <img
+              src="/images/signature.png"
+              alt={name}
+              className="h-24 sm:h-32 lg:h-40 w-auto"
+              loading="eager"
+            />
+          </motion.div>
+
+          {/* Accent line under name */}
+          <motion.div
+            custom={1}
+            variants={lineReveal}
+            initial="hidden"
+            animate="visible"
+            className="w-16 h-0.5 bg-accent mb-6 origin-left"
+          />
 
           <motion.p
             custom={1.2}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-xl sm:text-2xl text-text-muted font-light mb-4"
+            className="text-xl sm:text-2xl font-light mb-4 tracking-tight relative overflow-hidden"
           >
-            {title}
+            <span className="hero-title-shimmer">{title}</span>
           </motion.p>
 
           <motion.p
@@ -87,7 +109,7 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-text-muted/70 max-w-md mb-8 leading-relaxed"
+            className="text-text-muted/60 max-w-md mb-8 leading-relaxed text-sm"
           >
             {subtitle}
           </motion.p>
@@ -97,15 +119,15 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="flex items-center gap-4"
+            className="flex items-center gap-5"
           >
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light text-white text-sm font-medium rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-accent/25"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light text-background text-sm font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-accent/20"
             >
               {cta}
               <svg
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -115,12 +137,12 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
               </svg>
             </a>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
               <a
                 href="https://github.com/jira369"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-text-muted hover:text-text-primary transition-colors"
+                className="p-2.5 text-text-muted hover:text-accent transition-colors duration-300 rounded-full hover:bg-surface"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -131,7 +153,7 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
                 href="https://linkedin.com/in/dacvu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-text-muted hover:text-text-primary transition-colors"
+                className="p-2.5 text-text-muted hover:text-accent transition-colors duration-300 rounded-full hover:bg-surface"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -144,29 +166,39 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
 
         {/* Portrait */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative hidden lg:flex justify-center"
         >
           <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
             className="relative"
           >
-            {/* Glow behind image */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-cyan/20 rounded-3xl blur-3xl scale-110" />
+            {/* Warm glow behind image */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/15 to-cyan/10 rounded-2xl blur-3xl scale-125" />
 
-            <div className="relative w-80 h-96 rounded-3xl overflow-hidden border border-border/50">
+            <div className="relative w-80 h-96 rounded-2xl overflow-hidden border border-border/60 shadow-2xl shadow-accent/5">
               <img
                 src="/images/dac-portrait.jpg"
                 alt="Dac Vu"
                 className="w-full h-full object-cover"
                 loading="eager"
               />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+              {/* Overlay gradient — warm fade */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-accent/5" />
             </div>
+
+            {/* Floating badge */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2, duration: 0.8 }}
+              className="absolute -bottom-4 -left-6 px-4 py-2 bg-surface border border-border rounded-lg text-xs text-text-muted shadow-xl backdrop-blur-sm"
+            >
+              <span className="text-accent font-semibold">Bremen, DE</span> &mdash; {lang === 'en' ? 'Available for work' : 'Verfügbar'}
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
@@ -178,13 +210,13 @@ export default function Hero({ greeting, name, title, subtitle, cta, scrollText,
         transition={{ delay: 2.5, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-text-muted/50 tracking-widest uppercase">
+        <span className="text-[10px] text-text-muted/40 tracking-[0.2em] uppercase">
           {scrollText}
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-5 h-8 rounded-full border border-text-muted/30 flex justify-center pt-1.5"
+          className="w-5 h-8 rounded-full border border-text-muted/20 flex justify-center pt-1.5"
         >
           <div className="w-1 h-2 bg-accent rounded-full" />
         </motion.div>

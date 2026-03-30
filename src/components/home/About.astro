@@ -21,8 +21,8 @@ const t = useTranslations(lang);
           data-animate-delay="0.1"
           class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight"
         >
-          {lang === 'en' ? 'Building digital' : 'Digitale Produkte'}<br />
-          <span class="text-text-muted">{lang === 'en' ? 'experiences that matter.' : 'die zählen.'}</span>
+          {t('about.title1')}<br />
+          <span class="text-text-muted">{t('about.title2')}</span>
         </h2>
       </div>
 
@@ -33,20 +33,20 @@ const t = useTranslations(lang);
 
         <div class="mt-8 grid grid-cols-2 gap-6">
           <div class="p-4 bg-surface rounded-xl border border-border">
-            <div class="text-3xl font-bold text-accent mb-1">5+</div>
-            <div class="text-sm text-text-muted">{lang === 'en' ? 'Years Experience' : 'Jahre Erfahrung'}</div>
+            <div class="text-3xl font-bold text-accent mb-1">8+</div>
+            <div class="text-sm text-text-muted">{{ en: 'Years Experience', de: 'Jahre Erfahrung', vi: 'Năm kinh nghiệm' }[lang]}</div>
           </div>
           <div class="p-4 bg-surface rounded-xl border border-border">
-            <div class="text-3xl font-bold text-accent mb-1">10+</div>
-            <div class="text-sm text-text-muted">{lang === 'en' ? 'Projects Delivered' : 'Projekte umgesetzt'}</div>
+            <div class="text-3xl font-bold text-accent mb-1">6+</div>
+            <div class="text-sm text-text-muted">{{ en: 'Companies', de: 'Unternehmen', vi: 'Công ty' }[lang]}</div>
           </div>
           <div class="p-4 bg-surface rounded-xl border border-border">
-            <div class="text-3xl font-bold text-accent mb-1">3</div>
-            <div class="text-sm text-text-muted">{lang === 'en' ? 'Companies Led' : 'Unternehmen geleitet'}</div>
+            <div class="text-3xl font-bold text-accent mb-1">7+</div>
+            <div class="text-sm text-text-muted">{{ en: 'Team Members Led', de: 'Teammitglieder geführt', vi: 'Thành viên đã lãnh đạo' }[lang]}</div>
           </div>
           <div class="p-4 bg-surface rounded-xl border border-border">
-            <div class="text-3xl font-bold text-accent mb-1">&infin;</div>
-            <div class="text-sm text-text-muted">{lang === 'en' ? 'Curiosity' : 'Neugier'}</div>
+            <div class="text-3xl font-bold text-accent mb-1">2</div>
+            <div class="text-sm text-text-muted">{{ en: 'Companies Founded', de: 'Unternehmen gegründet', vi: 'Công ty đã sáng lập' }[lang]}</div>
           </div>
         </div>
       </div>

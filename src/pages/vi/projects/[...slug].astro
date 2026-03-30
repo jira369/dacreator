@@ -7,9 +7,9 @@ import { render } from 'astro:content';
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects
-    .filter((p) => p.id.startsWith('de/'))
+    .filter((p) => p.id.startsWith('en/'))
     .map((project) => ({
-      params: { slug: project.id.replace('de/', '') },
+      params: { slug: project.id.replace('en/', '') },
       props: { project },
     }));
 }
@@ -22,13 +22,13 @@ const { Content } = await render(project);
   <article class="pt-32 pb-20 px-6">
     <div class="mx-auto max-w-3xl">
       <a
-        href="/de/projects"
+        href="/vi/projects"
         class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors mb-8"
       >
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
         </svg>
-        Zurück zu Projekte
+        Quay lại Dự án
       </a>
 
       <div class="p-6 sm:p-8 bg-surface rounded-2xl border border-border mb-8">
@@ -57,7 +57,7 @@ const { Content } = await render(project);
       </div>
 
       {project.id.includes('rightmart') && (
-        <RightmartShowcase client:visible lang="de" />
+        <RightmartShowcase client:visible lang="vi" />
       )}
     </div>
   </article>

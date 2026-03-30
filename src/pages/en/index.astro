@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/home/Hero';
 import About from '../../components/home/About.astro';
 import Experience from '../../components/home/Experience.astro';
+import Education from '../../components/home/Education.astro';
 import Skills from '../../components/home/Skills.astro';
 import FeaturedProjects from '../../components/home/FeaturedProjects';
 import Contact from '../../components/home/Contact.astro';
@@ -11,7 +12,7 @@ import { useTranslations } from '../../i18n/utils';
 const t = useTranslations('en');
 ---
 
-<BaseLayout title="Dac Vu — CMO & Digital Strategist">
+<BaseLayout title="Dac Vu — Head of Creative & Brand">
   <Hero
     client:load
     greeting={t('hero.greeting')}
@@ -24,6 +25,7 @@ const t = useTranslations('en');
   />
   <About />
   <Experience />
+  <Education />
   <Skills />
   <FeaturedProjects
     client:visible
