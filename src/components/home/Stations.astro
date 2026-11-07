@@ -5,7 +5,7 @@ import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-import Mark from '../Mark.astro';
+import { logoFor, monogram } from '../../data/logos';
 const items = [
   { s: 'rightmart', n: 'rightmart Group', k: 'rm' },
   { s: '42digital', n: '42DIGITAL GmbH', k: '42' },
@@ -23,7 +23,7 @@ const items = [
     {items.map((i) => (
       <li data-reveal>
         <a href={`/${lang}/projects/${i.s}`}>
-          <span class="mark"><Mark size={26} /></span>
+          <span class="mark">{logoFor(i.n) ? <img class="logo-img" src={logoFor(i.n)} alt={i.n} loading="lazy" /> : <span class="mono-mark">{monogram(i.n)}</span>}</span>
           <span class="top">{i.n}<span>{i.p}</span></span>
           <span class="role">{i.role}</span>
           <span class="desc">{i.desc}</span>

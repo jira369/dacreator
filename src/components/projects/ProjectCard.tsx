@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { logoFor } from '../../data/logos';
 
 interface Props {
   title: string;
@@ -20,7 +21,7 @@ export default function ProjectCard({ title, description, tags, href, viewProjec
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.8, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      className="group block p-7 sm:p-8 bg-surface rounded-2xl border border-border hover:border-accent/40 hover:bg-surface-hover transition-colors duration-300"
+      className="group has-logo block p-7 sm:p-8 bg-surface rounded-2xl border border-border hover:border-accent/40 hover:bg-surface-hover transition-colors duration-300"
     >
       <div className="flex items-baseline justify-between gap-4 mb-2">
         <h3 className="text-xl font-semibold tracking-tight group-hover:text-accent transition-colors">{title}</h3>
@@ -30,7 +31,8 @@ export default function ProjectCard({ title, description, tags, href, viewProjec
       <p className="text-text-muted text-base leading-relaxed mb-6">{description}</p>
       <div className="flex flex-wrap gap-2 mb-6">
         {tags.map((tag) => (
-          <span key={tag} className="px-2.5 py-1 text-[13px] text-text-primary bg-background rounded-md border border-border">
+          <span key={tag} className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[13px] text-text-primary bg-background rounded-md border border-border">
+            {logoFor(tag) && <img src={logoFor(tag)} alt="" className="tag-logo logo-img" loading="lazy" />}
             {tag}
           </span>
         ))}

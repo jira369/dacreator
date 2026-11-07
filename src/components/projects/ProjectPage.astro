@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RightmartShowcase from './RightmartShowcase';
+import { logoFor, monogram } from '../../data/logos';
 import { render } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
 import type { Locale } from '../../i18n/config';
@@ -15,6 +16,11 @@ const d = project.data;
   <article class="pt-32 sm:pt-40 pb-12 px-6">
     <div class="mx-auto max-w-5xl">
       <div data-reveal class="p-6 sm:p-8 bg-surface rounded-2xl border border-border mb-10">
+        {d.kind === 'employer' && (
+          <div class="has-logo h-10 mb-6 flex items-center">
+            {logoFor(d.title) ? <img src={logoFor(d.title)} alt={d.title} class="logo-img h-full w-auto max-w-[220px] object-contain" /> : <span class="mono-mark text-xl">{monogram(d.title)}</span>}
+          </div>
+        )}
         <div class="flex flex-wrap items-baseline justify-between gap-3 mb-3">
           <h1 class:list={["font-medium tracking-tight leading-[1.02]", d.title.length > 18 ? "text-[clamp(1.875rem,5.6vw,5.25rem)]" : "text-[clamp(2.75rem,6.4vw,6rem)]"]}>{d.title}</h1>
           {d.period && <span class="text-sm text-text-muted tabular-nums">{d.period}</span>}
@@ -23,7 +29,7 @@ const d = project.data;
         <p class="text-lg text-text-muted mb-6">{d.description}</p>
         <p class="text-sm text-text-muted mb-3">{t('projects.stack')}</p>
         <div class="flex flex-wrap gap-2 mb-6">
-          {d.tags.map((tag: string) => <span class="px-3 py-1 text-sm text-text-primary bg-background rounded-lg border border-border">{tag}</span>)}
+          {d.tags.map((tag: string) => <span class="has-logo inline-flex items-center gap-2 px-3 py-1 text-sm text-text-primary bg-background rounded-lg border border-border">{logoFor(tag) && <img src={logoFor(tag)} alt="" class="tag-logo logo-img" loading="lazy" />}{tag}</span>)}
         </div>
         <div class="flex flex-wrap items-center gap-3">
           {d.github && (

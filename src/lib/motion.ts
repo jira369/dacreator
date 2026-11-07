@@ -51,13 +51,10 @@ export function initMotion(): void {
       gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
 
-    // Footer-Marke baut sich beim Ankommen auf
-    const mark = document.querySelectorAll<HTMLElement>('[data-foot-mark] span');
-    if (mark.length) {
-      gsap.fromTo(mark, { scaleY: 0.35 }, {
-        scaleY: 1, duration: 1.2, ease: 'expo.out', stagger: 0.06,
-        scrollTrigger: { trigger: '[data-foot-mark]', start: 'top 92%', once: true },
-      });
+    // Footer: die Signatur schreibt sich von links nach rechts
+    const sig = document.querySelector<HTMLElement>('[data-foot-sig] .sig');
+    if (sig) {
+      gsap.fromTo(sig, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.8, ease: 'power2.inOut', scrollTrigger: { trigger: sig, start: 'top 90%', once: true } });
     }
 
     window.clearTimeout(fallback);

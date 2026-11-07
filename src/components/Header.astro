@@ -1,5 +1,4 @@
 ---
-import Mark from './Mark.astro';
 import { getLangFromUrl, useTranslations, getLocalizedPath, switchLocale } from '../i18n/utils';
 import { locales, localeNames } from '../i18n/config';
 
@@ -18,7 +17,7 @@ const others = locales.filter((l) => l !== lang);
 ---
 
 <header class="site-header" data-site-header>
-  <a class="brand" href={home}><Mark class="brand__mark" />Dac Vu</a>
+  <a class="brand" href={home} aria-label="Dac Vu"><span class="sig" aria-hidden="true"></span></a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-btn data-open={t('nav.close')} data-closed={t('nav.menu')}>{t('nav.menu')}</button>
   <nav id="site-nav" class="site-nav" aria-label="Navigation">
     {links.map((l) => <a href={l.href} aria-current={path.startsWith(l.href) && !l.href.includes('#') ? 'page' : undefined}>{l.label}</a>)}
