@@ -1,0 +1,30 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const steps = [1, 2, 3, 4].map((n) => [t(`case.s${n}t` as 'case.s1t'), t(`case.s${n}` as 'case.s1')]);
+---
+
+<section class="case on-red" id="case" aria-labelledby="case-title">
+  <h2 id="case-title" data-reveal>{t('case.h')}</h2>
+  <div>
+    <p class="case__figure" data-reveal>{t('case.fig')}<sup>{t('case.unit')}</sup></p>
+    <p class="case__cap" data-reveal>{t('case.cap')}</p>
+    <div class="case__steps" data-reveal>
+      {steps.map(([a, b]) => <div><b>{a}</b>{b}</div>)}
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <figure class="a" data-reveal data-drift>
+    <div><img src="/archive/automatic-ticker-apparatus-new-york-stock-exchange.jpg" width="1920" height="1508" alt={t('case.pic1')} loading="lazy" decoding="async" /></div>
+    <figcaption>{t('case.pic1')}</figcaption>
+  </figure>
+  <figure class="b" data-reveal data-drift>
+    <div><img src="/archive/wall-street-bubbles-always-the-same-keppler.jpg" width="1920" height="1296" alt={t('case.pic2')} loading="lazy" decoding="async" /></div>
+    <figcaption>{t('case.pic2')}</figcaption>
+  </figure>
+</div>

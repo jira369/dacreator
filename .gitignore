@@ -19,3 +19,7 @@ pnpm-debug.log*
 
 # astro
 .astro/
+
+# tooling
+.superpowers/
+.taste-skill/

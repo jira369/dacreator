@@ -1,38 +1,22 @@
 ---
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 import ContactForm from './ContactForm';
-
-const lang = getLangFromUrl(Astro.url);
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section class="py-32 px-6" id="contact">
-  <div class="mx-auto max-w-3xl text-center">
-    <span
-      data-animate
-      class="text-accent font-medium text-sm tracking-widest uppercase mb-4 block"
-    >
-      {t('nav.contact')}
-    </span>
-
-    <h2
-      data-animate
-      data-animate-delay="0.1"
-      class="text-4xl sm:text-6xl font-bold tracking-tight mb-6"
-    >
-      {t('contact.heading')}
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="contact__inner">
+    <h2 id="contact-title" class="contact__prompt" data-reveal>
+      <span>{t('contact.l1')}</span>{t('contact.l2')}
     </h2>
-
-    <p
-      data-animate
-      data-animate-delay="0.2"
-      class="text-text-muted text-lg leading-relaxed mb-2 max-w-xl mx-auto"
-    >
-      {t('contact.text')}
-    </p>
-
-    <div data-animate data-animate-delay="0.3">
-      <ContactForm client:visible lang={lang} />
-    </div>
+    <p style="margin-top:14px" data-reveal>{t('contact.text')}</p>
+    <div data-reveal><ContactForm client:visible lang={lang} /></div>
   </div>
+  <figure class="contact__pic" data-reveal data-drift>
+    <div><img src="/archive/workman-telephone-switchboard-shasta-dam.webp" width="1024" height="798" alt={t('contact.pic')} loading="lazy" decoding="async" /></div>
+    <figcaption>{t('contact.pic')}</figcaption>
+  </figure>
 </section>

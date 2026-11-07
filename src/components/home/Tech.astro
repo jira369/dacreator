@@ -1,0 +1,69 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const rows = [1, 2, 3, 4, 5].map((n) => ({
+  n: t(`tech.r${n}n` as 'tech.r1n'),
+  o: t(`tech.r${n}o` as 'tech.r1o'),
+  v: t(`tech.r${n}v` as 'tech.r1v'),
+}));
+---
+
+<section class="section wrap" id="tech" aria-labelledby="tech-title">
+  <h2 id="tech-title" data-reveal>{t('tech.h')}</h2>
+  <ul class="cmp">
+    <li class="cmp__row cmp__head" aria-hidden="true">
+      <span class="cmp__name"></span>
+      <span class="cmp__old">{t('tech.colOld')}</span>
+      <span class="cmp__new">{t('tech.colNew')}</span>
+    </li>
+    {rows.map((r) => (
+      <li class="cmp__row" data-reveal>
+        <span class="cmp__name">{r.n}</span>
+        <span class="cmp__old"><span class="sr">{t('tech.colOld')}: </span>{r.o}</span>
+        <span class="cmp__new"><span class="sr">{t('tech.colNew')}: </span>{r.v}</span>
+      </li>
+    ))}
+  </ul>
+
+  <form class="calc" data-calc data-lang={lang} onsubmit="return false" data-reveal>
+    <h3>{t('calc.h')}</h3>
+    <div class="calc__out" aria-live="polite">
+      <div><output data-out="cpl">40</output><span>{t('calc.cpl')}</span></div>
+      <div><output data-out="cps">400</output><span>{t('calc.cps')}</span></div>
+    </div>
+    <div class="calc__fields">
+      <label><input name="spend" type="number" inputmode="numeric" min="0" step="1" value="10000" /><span>{t('calc.spend')}</span></label>
+      <label><input name="leads" type="number" inputmode="numeric" min="0" step="1" value="250" /><span>{t('calc.leads')}</span></label>
+      <label><input name="mand" type="number" inputmode="numeric" min="0" step="1" value="25" /><span>{t('calc.mand')}</span></label>
+    </div>
+    <p class="calc__note">{t('calc.note')}</p>
+  </form>
+</section>
+
+<div class="band">
+  <figure class="wide" data-reveal data-drift>
+    <div><img src="/archive/cockpit-instrument-panel-of-n893pa-20230621141902.jpg" width="1920" height="1280" alt={t('tech.pic')} loading="lazy" decoding="async" /></div>
+    <figcaption>{t('tech.pic')}</figcaption>
+  </figure>
+</div>
+
+<script>
+  function initCalc() {
+    document.querySelectorAll<HTMLFormElement>('[data-calc]').forEach((form) => {
+      const fmt = new Intl.NumberFormat(form.dataset.lang || 'de', { maximumFractionDigits: 0 });
+      const val = (n: string) => Number((form.elements.namedItem(n) as HTMLInputElement).value);
+      const out = (k: string) => form.querySelector<HTMLOutputElement>(`[data-out="${k}"]`)!;
+      const calc = () => {
+        const spend = val('spend'), leads = val('leads'), mand = val('mand');
+        out('cpl').textContent = leads > 0 ? fmt.format(spend / leads) : '·';
+        out('cps').textContent = mand > 0 ? fmt.format(spend / mand) : '·';
+      };
+      form.addEventListener('input', calc);
+      calc();
+    });
+  }
+  document.addEventListener('astro:page-load', initCalc);
+</script>
