@@ -180,7 +180,7 @@ a { text-underline-offset: 0.18em; }
   .hero h1 { font-size: 9.4vw; }
   .hero__lead { font-size: 1.125rem; }
   .hero__word { left: -6vw; bottom: -0.08em; font-size: 104vw; }
-  .hero__photo { width: 50vw; right: var(--gutter); }
+  .hero__photo { width: 64vw; right: var(--gutter); }
 }
 
 /* ---------- Marquee ---------- */
@@ -403,7 +403,7 @@ a { text-underline-offset: 0.18em; }
   transform-origin: 0 0; will-change: transform, opacity; transition: none;
 }
 .dna--live .dna__node:hover { background: none; }
-.dna--live .dna__dot { position: absolute; left: -11px; top: -11px; width: 22px; height: 22px; background: var(--on-dusk); box-shadow: 0 0 0 5px var(--dusk); transition: transform 0.3s var(--ease), background 0.2s; }
+.dna--live .dna__dot { position: absolute; left: -11px; top: -11px; width: 22px; height: 22px; background: var(--on-dusk); outline: 5px solid var(--dusk); transition: transform 0.3s var(--ease), background 0.2s; }
 .dna--live .dna__node.is-alt .dna__dot { background: var(--apricot); }
 .dna--live .dna__node:hover .dna__dot, .dna--live .dna__node:focus-visible .dna__dot { transform: scale(1.5); background: var(--sun); }
 .dna--live .dna__label { position: absolute; top: -18px; width: max-content; max-width: 26vw; padding: 6px 10px; background: var(--dusk); }

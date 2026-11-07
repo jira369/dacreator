@@ -107,7 +107,9 @@ const nodes = [
         const a = ang(T[i], s ? Math.PI : 0);
         const x = cx + R * Math.cos(a), y = Y(T[i]), z = Math.sin(a);
         const k = (z + 1) / 2;
-        const right = x >= cx;
+        const lw = (el.querySelector('.dna__label') as HTMLElement).offsetWidth + 34;
+        // Seite des Labels so wählen, dass es nie aus der Bühne ragt
+        const right = x >= cx ? W - x > lw : x < lw;
         el.style.transform = `translate(${x}px, ${y}px) scale(${0.86 + 0.14 * k})`;
         el.style.opacity = String(0.62 + 0.38 * k);
         el.style.zIndex = String(Math.round(k * 10) + 1);
