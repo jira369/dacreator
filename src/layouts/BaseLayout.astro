@@ -3,24 +3,17 @@ import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import { getLangFromUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
-  tone?: 'paper' | 'sun';
-  footer?: boolean;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const {
-  title,
-  description = 'Dac Vu, Head of Performance Marketing bei der rightmart Group. AI-first, Direct Response, Tracking und Attribution.',
-  image = '/images/og-default.jpg',
-  tone = 'paper',
-  footer = true,
-} = Astro.props;
+const t = useTranslations(lang);
+const { title, description = t('meta.description'), image = '/images/og-default.jpg' } = Astro.props;
 const locale = { de: 'de_DE', en: 'en_US', vi: 'vi_VN' }[lang];
 ---
 
@@ -31,34 +24,28 @@ const locale = { de: 'de_DE', en: 'en_US', vi: 'vi_VN' }[lang];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#E0693B" />
-
+    <meta name="theme-color" content="#0a090b" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
     <meta property="og:locale" content={locale} />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="preload" href="/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin />
-
     <script is:inline>document.documentElement.classList.add('js');</script>
     <title>{title}</title>
     <ClientRouter />
   </head>
   <body>
-    <a class="skip" href="#main">{{ de: 'Zum Inhalt', en: 'Skip to content', vi: 'Bỏ qua đến nội dung' }[lang]}</a>
-    <Header tone={tone} />
+    <a class="skip" href="#main">{t('nav.skip')}</a>
+    <Header />
     <main id="main">
       <slot />
     </main>
-    {footer && <Footer />}
-
+    <Footer />
     <script>
       import { initMotion } from '../lib/motion';
       document.addEventListener('astro:page-load', initMotion);

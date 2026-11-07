@@ -1,16 +1,16 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ribbons } from './ribbons';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let stops: Array<() => void> = [];
 
-/** Reveal, hero, scroll-linked wordmark. Safe to call on every page load. */
 /** Ankerlinks beim Laden: nach dem Aufbau der ScrollTrigger ohne Animation zum Ziel springen. */
 function jumpToHash(): void {
   const id = decodeURIComponent(location.hash.slice(1));
-  if (!id) return;
-  const el = document.getElementById(id);
+  const el = id ? document.getElementById(id) : null;
   if (!el) return;
   ScrollTrigger.refresh();
   requestAnimationFrame(() => el.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' }));
@@ -18,59 +18,47 @@ function jumpToHash(): void {
 
 export function initMotion(): void {
   const root = document.documentElement;
+  stops.forEach((s) => s()); stops = [];
   ScrollTrigger.getAll().forEach((t) => t.kill());
 
-  if (reduced()) {
-    root.classList.add('no-motion');
-    jumpToHash();
-    return;
-  }
+  // Lichtbänder laufen auch bei reduzierter Bewegung, dann als Standbild
+  document.querySelectorAll<HTMLCanvasElement>('[data-ribbons]').forEach((c) => stops.push(ribbons(c)));
 
-  // Fallback: if anything below throws, content must still show.
+  if (reduced()) { root.classList.add('no-motion'); jumpToHash(); return; }
   const fallback = window.setTimeout(() => root.classList.add('reveal-fallback'), 4000);
 
   try {
-    // Hero headline: line by line
-    const heroSpans = document.querySelectorAll<HTMLElement>('.hero h1 .line > span');
-    if (heroSpans.length) {
-      gsap.from(heroSpans, { yPercent: 115, duration: 1.1, ease: 'expo.out', stagger: 0.12, delay: 0.1 });
-    }
-    const heroWord = document.querySelector<HTMLElement>('[data-hero-word]');
-    if (heroWord) {
-      gsap.from(heroWord, { yPercent: 18, opacity: 0, duration: 1.6, ease: 'expo.out' });
-      gsap.to(heroWord, {
-        scale: 0.93,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-      });
-    }
+    // Inhalte der Unterseiten (MDX) bekommen dieselbe Eintrittsbewegung
+    document.querySelectorAll<HTMLElement>('.project-content > *, .legal > *, .cv-role, .cv-skills > div').forEach((el) => { if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', ''); gsap.set(el, { opacity: 0, y: 22 }); });
 
-    // Reveal: elements within a [data-reveal-group] stagger; others singly
-    ScrollTrigger.batch('[data-reveal]', {
+    // Eintritt: Teile jeder Sektion nacheinander, Überschrift, Text, Bild
+    ScrollTrigger.batch('[data-reveal], [data-animate]', {
       start: 'top 90%',
       once: true,
-      onEnter: (batch) =>
-        gsap.to(batch, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.09, overwrite: true }),
+      onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: 0.08, overwrite: true }),
     });
 
-    // Footer wordmark grows into place
-    const mail = document.querySelector<HTMLElement>('[data-foot-mail]');
-    if (mail) {
-      gsap.fromTo(
-        mail,
-        { scale: 0.94 },
-        { scale: 1, ease: 'none', scrollTrigger: { trigger: mail, start: 'top 100%', end: 'top 55%', scrub: true } },
-      );
+    // Signatur: das eine Foto öffnet sich wie ein Shutter
+    document.querySelectorAll<HTMLElement>('[data-shutter]').forEach((fig) => {
+      const img = fig.querySelector('img');
+      const tl = gsap.timeline({ scrollTrigger: { trigger: fig, start: 'top 75%', once: true } });
+      tl.fromTo(fig, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'expo.inOut' });
+      if (img) tl.fromTo(img, { scale: 1.12 }, { scale: 1, duration: 1.6, ease: 'expo.out' }, 0);
+    });
+
+    // Balken im Case wachsen auf ihren Wert
+    document.querySelectorAll<HTMLElement>('[data-grow]').forEach((el) => {
+      gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+
+    // Footer-Marke baut sich beim Ankommen auf
+    const mark = document.querySelectorAll<HTMLElement>('[data-foot-mark] span');
+    if (mark.length) {
+      gsap.fromTo(mark, { scaleY: 0.35 }, {
+        scaleY: 1, duration: 1.2, ease: 'expo.out', stagger: 0.06,
+        scrollTrigger: { trigger: '[data-foot-mark]', start: 'top 92%', once: true },
+      });
     }
-
-    // Picture drift
-    document.querySelectorAll<HTMLElement>('[data-drift] img').forEach((img) => {
-      gsap.fromTo(
-        img,
-        { yPercent: -6 },
-        { yPercent: 6, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } },
-      );
-    });
 
     window.clearTimeout(fallback);
     jumpToHash();

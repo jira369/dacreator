@@ -1,30 +1,26 @@
 ---
 import { useTranslations } from '../../i18n/utils';
+import { accent, plain } from '../../lib/accent';
 import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const steps = [1, 2, 3, 4].map((n) => [t(`case.s${n}t` as 'case.s1t'), t(`case.s${n}` as 'case.s1')]);
 ---
-
-<section class="case on-dusk" id="case" aria-labelledby="case-title">
-  <h2 id="case-title" data-reveal>{t('case.h')}</h2>
-  <div>
-    <p class="case__figure" data-reveal>{t('case.fig')}<sup>{t('case.unit')}</sup></p>
-    <p class="case__cap" data-reveal>{t('case.cap')}</p>
-    <div class="case__steps" data-reveal>
-      {steps.map(([a, b]) => <div><b>{a}</b>{b}</div>)}
+<section class="section wrap" id="case" aria-labelledby="case-title">
+  <div class="case">
+    <div class="case__text">
+      <h2 id="case-title" data-reveal set:html={accent(t('case.h'))} />
+      <p data-reveal>{t('case.p')}</p>
+    </div>
+    <div class="case__ui ui-panel" data-ui data-reveal>
+      <div class="ui-bar"><b>{t('case.ui')}: sportwetten-kanzlei.de</b><span class="ui-pill"><i></i>{t('case.pill')}</span></div>
+      <div class="case__bars">
+        <div class="row"><span>{t('case.r1')}</span><div class="track"><div class="fill soft" data-grow style="width:7.5%"></div></div><span class="val">{t('case.r1v')}</span></div>
+        <div class="row"><span>{t('case.r2')}</span><div class="track"><div class="fill" data-grow style="width:100%"></div></div><span class="val">{t('case.r2v')}</span></div>
+      </div>
+      <div class="case__steps">
+        {[1, 2, 3, 4].map((n) => <div><b>{t(`case.s${n}` as 'case.s1')}</b>{t(`case.s${n}d` as 'case.s1d')}</div>)}
+      </div>
     </div>
   </div>
 </section>
-
-<div class="band">
-  <figure class="a" data-reveal data-drift>
-    <div><img src="/archive/automatic-ticker-apparatus-new-york-stock-exchange.jpg" width="1920" height="1508" alt={t('case.pic1')} loading="lazy" decoding="async" /></div>
-    <figcaption>{t('case.pic1')}</figcaption>
-  </figure>
-  <figure class="b" data-reveal data-drift>
-    <div><img src="/archive/wall-street-bubbles-always-the-same-keppler.jpg" width="1920" height="1296" alt={t('case.pic2')} loading="lazy" decoding="async" /></div>
-    <figcaption>{t('case.pic2')}</figcaption>
-  </figure>
-</div>

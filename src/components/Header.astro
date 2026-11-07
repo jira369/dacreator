@@ -1,34 +1,33 @@
 ---
-import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+import Mark from './Mark.astro';
+import { getLangFromUrl, useTranslations, getLocalizedPath, switchLocale } from '../i18n/utils';
 import { locales, localeNames } from '../i18n/config';
-import { switchLocale } from '../i18n/utils';
 
-interface Props { tone?: 'paper' | 'sun' }
-const { tone = 'paper' } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const home = getLocalizedPath('/', lang);
-
+const path = Astro.url.pathname;
 const links = [
-  { label: t('nav.role'), href: `${home}#role` },
-  { label: t('nav.case'), href: `${home}#case` },
+  { label: t('nav.dna'), href: `${home}#dna` },
   { label: t('nav.tech'), href: `${home}#tech` },
-  { label: t('nav.cv'), href: getLocalizedPath('/cv', lang) },
   { label: t('nav.projects'), href: getLocalizedPath('/projects', lang) },
-  { label: t('nav.contact'), href: `${home}#contact` },
+  { label: t('nav.cv'), href: getLocalizedPath('/cv', lang) },
+  { label: t('nav.blog'), href: getLocalizedPath('/blog', lang) },
 ];
 const others = locales.filter((l) => l !== lang);
 ---
 
-<header class="site-header" data-site-header style={tone === 'sun' ? '--header-ink:var(--on-sun)' : undefined}>
-  <a class="brand" href={home}>Dac Vu</a>
+<header class="site-header" data-site-header>
+  <a class="brand" href={home}><Mark class="brand__mark" />Dac Vu</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-btn data-open={t('nav.close')} data-closed={t('nav.menu')}>{t('nav.menu')}</button>
-  <nav id="site-nav" aria-label="Main">
-    {links.map((l) => <a href={l.href}>{l.label}</a>)}
-    <span class="lang">
-      {others.map((l) => <a href={switchLocale(Astro.url, l)} hreflang={l} lang={l}>{localeNames[l]}</a>)}
-    </span>
+  <nav id="site-nav" class="site-nav" aria-label="Navigation">
+    {links.map((l) => <a href={l.href} aria-current={path.startsWith(l.href) && !l.href.includes('#') ? 'page' : undefined}>{l.label}</a>)}
+    <span class="lang">{others.map((l) => <a href={switchLocale(Astro.url, l)} hreflang={l} lang={l}>{localeNames[l]}</a>)}</span>
   </nav>
+  <div class="header-cta">
+    <span class="status"><i aria-hidden="true"></i>{t('nav.status')}</span>
+    <a class="btn" href={`${home}#contact`}>{t('nav.contact')}</a>
+  </div>
 </header>
 
 <script>
@@ -36,18 +35,14 @@ const others = locales.filter((l) => l !== lang);
     const header = document.querySelector<HTMLElement>('[data-site-header]');
     const btn = header?.querySelector<HTMLButtonElement>('[data-menu-btn]');
     if (!header || !btn) return;
-    btn.onclick = () => {
-      const open = header.classList.toggle('open');
+    const set = (open: boolean) => {
+      header.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', String(open));
       btn.textContent = open ? btn.dataset.open! : btn.dataset.closed!;
     };
-    header.querySelectorAll('nav a').forEach((a) =>
-      a.addEventListener('click', () => {
-        header.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.textContent = btn.dataset.closed!;
-      }),
-    );
+    btn.onclick = () => set(!header.classList.contains('open'));
+    header.querySelectorAll('nav a').forEach((a) => a.addEventListener('click', () => set(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
   }
   document.addEventListener('astro:page-load', bind);
 </script>

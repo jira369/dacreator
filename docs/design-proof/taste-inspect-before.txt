@@ -1,0 +1,25 @@
+
+WARN — fix, or be able to defend
+  [size-count] @1440px (+768, 390)  10 different font sizes (17, 19, 26, 56, 64, 107, 113, 135, 331, 778).
+      → A page needs about five: display, heading, lead, body, small.
+  [no-footage] @1440px  No video anywhere on the page.
+      → Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject.
+  [empty-middle] @1440px  1 section(s) have content at both edges and 3129px of nothing between: "Direct Response"
+      → Bring the two parts together on the grid, or put the picture or figure of the section in the middle. An empty middle third reads as a hole, the same as an empty half.
+  [blank-gap] @1440px (+768)  A 384px stretch at 9548px holds nothing.
+      → Check that it is a deliberate rest (once per page at most); otherwise close it to the normal section gap.
+
+LOOK AT THE RENDER — open these with your image viewer / Read tool before saying anything about quality:
+  desktop 1440px  .taste-skill/before/desktop-fold.jpg
+                  .taste-skill/before/desktop-page-01.jpg
+                  .taste-skill/before/desktop-page-02.jpg
+                  .taste-skill/before/desktop-page-03.jpg
+  tablet 768px    .taste-skill/before/tablet-fold.jpg
+                  .taste-skill/before/tablet-page-01.jpg
+                  .taste-skill/before/tablet-page-02.jpg
+  mobile 390px    .taste-skill/before/mobile-fold.jpg
+                  .taste-skill/before/mobile-page-01.jpg
+                  .taste-skill/before/mobile-page-02.jpg
+
+report: .taste-skill/before/report.json
+RESULT: 1 FAIL, 4 WARN — not done.

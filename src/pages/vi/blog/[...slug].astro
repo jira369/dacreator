@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts
-    .filter((p) => p.id.startsWith('vi/') && !p.data.draft)
-    .map((post) => ({ params: { slug: post.id.replace('vi/', '') }, props: { post } }));
+    .filter((p) => p.id.startsWith('en/') && !p.data.draft)
+    .map((post) => ({ params: { slug: post.id.replace('en/', '') }, props: { post } }));
 }
 
 const { post } = Astro.props;

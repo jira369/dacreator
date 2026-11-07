@@ -80,3 +80,6 @@ Entscheidungen von Dac nach dem ersten Bau:
 - **Meine DNA:** interaktive Doppelhelix (Canvas 2D, pseudo-3D, Drag zum Drehen) mit sechs Knoten als echte Links: Direct Response (#case), AI-first (#work), Tracking und Daten (Projekt marketingcockpit), Creative und Brand (Lebenslauf), Führung (#role), Build (Projekte). Ohne JS eine Linkliste. Reduced Motion: statisch.
 - **Lebenslauf-Unterseite** /de/cv, /en/cv, /vi/cv mit Druckstil für PDF. Ohne Adresse, Telefon, Geburtsdatum. Head of Creative & Brand: 04/2026 bis 09/2026.
 - Look: SaaS-Anmutung, tech-savvy betont.
+
+## Addendum 3: Relay-Stil
+Dac verwirft den roten Editorial-Look und die Archivbilder. Neu: dunkle, techy SaaS-Seite nach Referenzvideo "Relay", Akzent Sonnenuntergang-Orange, Geist plus Instrument Serif, eigene Fotos, echte Werkzeuge als Interface-Fragmente, Lichtbänder als Motion. Projekt- und Stationsseiten im Layout der ersten Version, jede Station und jedes Projekt mit eigener Seite und Tech-Stack. Details in DESIGN.md und docs/design-proof/.

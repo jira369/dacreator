@@ -1,0 +1,107 @@
+## de/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count)
+MEASURED (first viewport listed)
+  hero headline   "Marketing, das sich selbst misst."  5 words · 2 line(s) · 90.7px (6.3vw) · Instrument Serif 400 · tracking -0.01em · leading 1.02
+  typefaces       Geist Variable 89%, Geist Mono Variable 9%
+  [size-count] @1440px (+768, 390)  21 different font sizes (13, 14, 15, 16, 17, 21, 36, 42, 46, 48, 52, 56, 57, 60, 61, 65, 84, 91, 101, 109, 259).
+  [no-real-pictures] @1440px  Only 1 real photograph(s) or clip(s); the rest are interface fragments.
+  [no-footage] @1440px  No video anywhere on the page.
+  [blank-gap] @1440px (+390)  A 464px stretch at 7900px holds nothing.
+RESULT: 0 FAIL, 4 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## en/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count)
+MEASURED (first viewport listed)
+  hero headline   "Marketing that measures itself."  4 words · 2 line(s) · 90.7px (6.3vw) · Instrument Serif 400 · tracking -0.01em · leading 1.02
+  typefaces       Geist Variable 89%, Geist Mono Variable 10%
+  [size-count] @1440px (+768, 390)  21 different font sizes (13, 14, 15, 16, 17, 21, 36, 42, 46, 48, 52, 56, 57, 60, 61, 65, 84, 91, 101, 109, 259).
+  [no-real-pictures] @1440px  Only 1 real photograph(s) or clip(s); the rest are interface fragments.
+  [no-footage] @1440px  No video anywhere on the page.
+  [blank-gap] @1440px (+390)  A 464px stretch at 7924px holds nothing.
+RESULT: 0 FAIL, 4 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## vi/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count)
+MEASURED (first viewport listed)
+  hero headline   "Marketing tự đo lường."  4 words · 2 line(s) · 90.7px (6.3vw) · Instrument Serif 400 · tracking -0.01em · leading 1.02
+  typefaces       Geist Variable 89%, Geist Mono Variable 10%
+  [size-count] @1440px (+768, 390)  21 different font sizes (13, 14, 15, 16, 17, 21, 36, 42, 46, 48, 52, 56, 57, 60, 61, 65, 84, 91, 101, 109, 259).
+  [no-real-pictures] @1440px  Only 1 real photograph(s) or clip(s); the rest are interface fragments.
+  [no-footage] @1440px  No video anywhere on the page.
+  [blank-gap] @1440px (+390)  A 464px stretch at 7924px holds nothing.
+RESULT: 0 FAIL, 4 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/cv/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Dac Vu"  2 words · 1 line(s) · 84px (5.8vw) · Geist Variable 500 · tracking -0.035em · leading 1.02
+  typefaces       Geist Variable 93%, Geist Mono Variable 7%
+  [no-footage] @1440px  No video anywhere on the page.
+  [blank-gap] @1440px  A 424px stretch at 3728px holds nothing.
+RESULT: 0 FAIL, 2 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/projects/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Was ich gebaut habe."  4 words · 1 line(s) · 64.8px (4.5vw) · Instrument Serif 400 · tracking -0.01em · leading 1.02
+  typefaces       Geist Variable 99%
+  [size-count] @1440px (+768)  11 different font sizes (13, 14, 15, 16, 17, 18, 20, 21, 30, 60, 65).
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 104 characters per line.
+  [blank-gap] @1440px (+390)  A 484px stretch at 3012px holds nothing.
+RESULT: 0 FAIL, 4 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/projects/rightmart/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "rightmart Group"  2 words · 1 line(s) · 92.2px (6.4vw) · Geist Variable 500 · tracking -0.035em · leading 1.02
+  typefaces       Geist Variable 99%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [blank-gap] @1440px  A 448px stretch at 2828px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/projects/42digital/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "42DIGITAL GmbH"  2 words · 1 line(s) · 92.2px (6.4vw) · Geist Variable 500 · tracking -0.035em · leading 1.02
+  typefaces       Geist Variable 98%, Geist Mono Variable 2%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [blank-gap] @1440px  A 448px stretch at 992px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/projects/marketingcockpit/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Performance Marketing Cockpit"  3 words · 2 line(s) · 80.6px (5.6vw) · Geist Variable 500 · tracking -0.035em · leading 1.02
+  typefaces       Geist Variable 98%, Geist Mono Variable 2%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [blank-gap] @1440px  A 452px stretch at 1272px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## en/projects/leben-in-deutschland/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Leben in Deutschland"  3 words · 1 line(s) · 80.6px (5.6vw) · Geist Variable 500 · tracking -0.035em · leading 1.02
+  typefaces       Geist Variable 99%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [blank-gap] @1440px  A 448px stretch at 1472px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/blog/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Gedanken und Einblicke."  3 words · 1 line(s) · 64.8px (4.5vw) · Instrument Serif 400 · tracking -0.01em · leading 1.02
+  typefaces       Geist Variable 94%, Geist Mono Variable 4%, Instrument Serif 2%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 106 characters per line.
+  [blank-gap] @1440px (+390)  A 472px stretch at 524px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/blog/hallo-welt/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Meine persönliche Webseite mit Astro"  5 words · 2 line(s) · 80.6px (5.6vw) · Geist Variable 500 · tracking -0.035em · leading 1.02
+  typefaces       Geist Variable 98%, Geist Mono Variable 2%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [blank-gap] @1440px  A 452px stretch at 1140px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/impressum/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Impressum"  1 words · 1 line(s) · 80px (5.6vw) · Geist Variable 500 · tracking -0.035em · leading 0.95
+  typefaces       Geist Variable 99%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 93 characters per line.
+  [blank-gap] @1440px  A 412px stretch at 1304px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/datenschutz/  (--allow mono,palette-claude,palette-terracotta,mixed-font-headline,font-count,outlined-box,few-pictures,off-centre,hero-void,empty-screens,still-page)
+MEASURED (first viewport listed)
+  hero headline   "Datenschutz­erklärung"  1 words · 2 line(s) · 84px (5.8vw) · Geist Variable 500 · tracking -0.035em · leading 1.02
+  typefaces       Geist Variable 100%
+  [no-footage] @1440px  No video anywhere on the page.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [blank-gap] @1440px  A 420px stretch at 5344px holds nothing.
+RESULT: 0 FAIL, 3 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.

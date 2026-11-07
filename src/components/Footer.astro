@@ -1,42 +1,47 @@
 ---
 import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
-import credits from '../../public/archive/credits.json';
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const year = new Date().getFullYear();
+const home = getLocalizedPath('/', lang);
 const email = t('contact.email');
-const [local, domain] = email.split('@');
+const year = new Date().getFullYear();
 ---
 
-<footer class="foot on-sun">
-  <div class="foot__top">
-    <p>{t('footer.n1')}</p>
-    <p>{t('footer.n2')}</p>
-    <p>
-      <a href="https://github.com/jira369" target="_blank" rel="noopener noreferrer">GitHub</a>,
-      <a href="https://linkedin.com/in/dacvu" target="_blank" rel="noopener noreferrer"> LinkedIn</a>
-    </p>
-    <a class="up" href="#main">{t('footer.up')}</a>
+<footer class="foot">
+  <div class="foot__mark" data-foot-mark role="img" aria-label="Dac Vu">
+    <span data-l="D"></span><span data-l="A"></span><span data-l="C"></span><span></span><span data-l="V"></span><span data-l="U"></span>
   </div>
-
-  <div>
-    <a class="foot__mail" data-foot-mail href={`mailto:${email}`}>{local}<wbr />@{domain}</a>
-    <div class="foot__meta">
-      <span>
-        <a href={getLocalizedPath('/impressum', lang)}>{t('footer.imprint')}</a>,
-        <a href={getLocalizedPath('/datenschutz', lang)}> {t('footer.privacy')}</a>
-      </span>
-      <span>Bremen, {year}</span>
+  <div class="foot__cols">
+    <nav aria-label={t('foot.site')}>
+      <b>{t('foot.site')}</b>
+      <a href={`${home}#dna`}>{t('nav.dna')}</a>
+      <a href={`${home}#tech`}>{t('nav.tech')}</a>
+      <a href={`${home}#stations`}>{t('foot.stations')}</a>
+    </nav>
+    <nav aria-label={t('foot.more')}>
+      <b>{t('foot.more')}</b>
+      <a href={getLocalizedPath('/projects', lang)}>{t('nav.projects')}</a>
+      <a href={getLocalizedPath('/cv', lang)}>{t('nav.cv')}</a>
+      <a href={getLocalizedPath('/blog', lang)}>{t('nav.blog')}</a>
+    </nav>
+    <nav aria-label={t('foot.profiles')}>
+      <b>{t('foot.profiles')}</b>
+      <a href="https://github.com/jira369" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/dacvu" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+    <nav aria-label={t('foot.legal')}>
+      <b>{t('foot.legal')}</b>
+      <a href={getLocalizedPath('/impressum', lang)}>{t('foot.imprint')}</a>
+      <a href={getLocalizedPath('/datenschutz', lang)}>{t('foot.privacy')}</a>
+    </nav>
+    <div class="foot__contact">
+      <b class="muted" style="font-weight:400;font-size:.875rem">{t('foot.contact')}</b>
+      <a class="link" href={`mailto:${email}`}>{email}</a>
+      <span class="muted">Bremen</span>
     </div>
-    <p class="foot__credits">
-      {t('footer.credits')}:
-      {credits.map((c, i) => (
-        <span>
-          <a href={c.page} target="_blank" rel="noopener noreferrer">{c.title.split(' (')[0].slice(0, 70)}</a>, {c.creator.split(',')[0]},
-          <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer"> {c.license}</a>{i < credits.length - 1 ? '; ' : '.'}
-        </span>
-      ))}
-    </p>
+  </div>
+  <div class="foot__base">
+    <span>© {year} Dac Vu</span>
+    <a class="btn btn--ghost" href="#main">{t('foot.up')}</a>
   </div>
 </footer>

@@ -1,0 +1,70 @@
+## de/
+  [blank-gap] @1440px (+390)  A 464px stretch at 7900px holds nothing.
+RESULT: 0 FAIL, 4 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## en/
+  [blank-gap] @1440px (+390)  A 464px stretch at 7924px holds nothing.
+RESULT: 0 FAIL, 4 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## vi/
+  [blank-gap] @1440px (+390)  A 464px stretch at 7924px holds nothing.
+RESULT: 0 FAIL, 4 WARN — measurements pass. Passing the meter is the floor, not the grade: score the screenshots with references/critique.md.
+## de/projects/
+  [eyebrow] @1440px  1 eyebrow/kicker label(s) above headings: "Ansehen" above "D A C V U"
+  [outlined-box] @1440px (+768, 390)  9 boxes drawn with a 1px outline.
+  [few-pictures] @1440px  Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.
+  [small-text] @1440px (+768, 390)  12 text blocks under 13px.
+  [off-centre] @1440px  The page sits off-centre: its content comes to 56px from the left edge but only to 266px from the right, at 1440px.
+  [body-size] @1440px (+768)  Body text is 15px.
+  [measure] @1440px  Longest paragraph runs about 111 characters per line.
+  [blank-gap] @1440px (+390)  A 484px stretch at 2924px holds nothing.
+  [off-centre] @768px (+390)  The margins differ: 24px on the left, 47px on the right, at 768px.
+RESULT: 5 FAIL, 6 WARN — not done.
+## de/projects/rightmart/
+  [eyebrow] @1440px (+768)  1 eyebrow/kicker label(s) above headings: "Zurück zu den Projekten" above "D A C V U"
+  [outlined-box] @1440px (+768, 390)  14 boxes drawn with a 1px outline.
+  [few-pictures] @1440px  Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.
+  [small-text] @1440px (+768, 390)  15 text blocks under 13px.
+  [focal-point] @1440px  The first screen has no dominant element: the largest type is 48px (3.3vw) and no single picture holds a third of the viewport.
+  [off-centre] @1440px  The page sits off-centre: its content comes to 56px from the left edge but only to 266px from the right, at 1440px.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [blank-gap] @1440px  A 452px stretch at 2780px holds nothing.
+  [still-page] @1440px  Little motion: 8 element(s) moved while the page loaded and scrolled.
+RESULT: 6 FAIL, 5 WARN — not done.
+## de/projects/marketingcockpit/
+  [eyebrow] @1440px (+768)  1 eyebrow/kicker label(s) above headings: "Zurück zu den Projekten" above "D A C V U"
+  [few-pictures] @1440px  Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.
+  [focal-point] @1440px  The first screen has no dominant element: the largest type is 48px (3.3vw) and no single picture holds a third of the viewport.
+  [outlined-box] @1440px (+768, 390)  1 box(es) drawn with a 1px outline.
+  [measure] @1440px  Longest paragraph runs about 90 characters per line.
+  [off-centre] @1440px (+768)  The margins differ: 56px on the left, 72px on the right, at 1440px.
+  [blank-gap] @1440px  A 452px stretch at 1184px holds nothing.
+  [still-page] @1440px  Little motion: 8 element(s) moved while the page loaded and scrolled.
+  [palette-cream] @768px (+390)  Yellow-cream background (text #f2eeea).
+RESULT: 3 FAIL, 7 WARN — not done.
+## de/cv/
+  [eyebrow] @1440px (+768, 390)  1 eyebrow/kicker label(s) above headings: "Universität Bremen" above "D A C V U"
+  [few-pictures] @1440px  Only 1 picture(s) on the page (1 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.
+  [empty-screens] @1440px  2 of 5 desktop screens are almost empty ground (under 20% of the screen holds text, a picture or a colour field): screens 3, 4.
+  [blank-gap] @1440px  A 424px stretch at 3728px holds nothing.
+RESULT: 3 FAIL, 3 WARN — not done.
+## de/blog/
+  [eyebrow] @1440px  1 eyebrow/kicker label(s) above headings: "Weiterlesen" above "D A C V U"
+  [body-size] @1440px (+768, 390)  Body text is 14px (the size most of the running text is set in).
+  [few-pictures] @1440px  Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.
+  [outlined-box] @1440px (+768, 390)  1 box(es) drawn with a 1px outline.
+  [measure] @1440px (+768)  Longest paragraph runs about 121 characters per line.
+  [small-text] @1440px (+768, 390)  2 text block(s) under 13px.
+  [off-centre] @1440px (+768)  The margins differ: 56px on the left, 72px on the right, at 1440px.
+  [blank-gap] @1440px (+390)  A 476px stretch at 512px holds nothing.
+  [hero-void] @1440px  40% of the first screen is one empty block (1440×360px at 0,540).
+  [still-page] @1440px  Little motion: 11 element(s) moved while the page loaded and scrolled.
+  [palette-cream] @768px (+390)  Yellow-cream background (text #f2eeea).
+RESULT: 3 FAIL, 10 WARN — not done.
+## de/impressum/
+  [few-pictures] @1440px  Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.
+  [still-page] @1440px  Only 7 element(s) moved while the page loaded and scrolled.
+  [measure] @1440px  Longest paragraph runs about 93 characters per line.
+  [off-centre] @1440px  The margins differ: 56px on the left, 72px on the right, at 1440px.
+  [blank-gap] @1440px  A 412px stretch at 1304px holds nothing.
+  [hero-void] @1440px  43% of the first screen is one empty block (780×720px at 660,120).
+  [palette-cream] @768px (+390)  Yellow-cream background (text #f2eeea).
+RESULT: 2 FAIL, 6 WARN — not done.

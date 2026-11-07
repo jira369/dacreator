@@ -8,22 +8,22 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const roles = cvRoles[lang];
 const groups = [1, 2, 3, 4].map((n) => ({ id: n === 4 ? 'creative' : undefined, h: t(`cv.g${n}` as 'cv.g1'), items: t(`cv.l${n}` as 'cv.l1').split('|') }));
-const edu = [1, 2].map((n) => [t(`journey.e${n}t` as 'journey.e1t'), t(`journey.e${n}c` as 'journey.e1c'), t(`journey.e${n}p` as 'journey.e1p')]);
+const edu = [1, 2].map((n) => [t(`cv.e${n}t` as 'cv.e1t'), t(`cv.e${n}c` as 'cv.e1c'), t(`cv.e${n}p` as 'cv.e1p')]);
 ---
 
-<BaseLayout title={`${t('cv.title')} | Dac Vu, ${t('hero.title1')} ${t('hero.title2')}`} description={t('cv.lead')}>
+<BaseLayout title={`${t('cv.title')} | Dac Vu, Head of Performance Marketing`} description={t('cv.lead')}>
   <article class="page wrap">
     <header class="cv-hero">
       <div class="cv-hero__text">
         <h1 data-reveal>Dac Vu</h1>
-        <p class="cv-hero__role" data-reveal>{t('hero.title1')} {t('hero.title2')}, rightmart Group. {t('cv.lead')}</p>
+        <p class="page__lead" data-reveal>{t('cv.role')} {t('cv.lead')}</p>
         <div class="cv-hero__actions no-print" data-reveal>
           <button class="btn" type="button" data-print>{t('cv.print')}</button>
-          <a class="btn btn--ink" href={`/${lang}/#contact`}>{t('cv.contact')}</a>
+          <a class="btn btn--ghost" href={`/${lang}/#contact`}>{t('cv.contact')}</a>
         </div>
       </div>
-      <figure class="cv-hero__photo" data-reveal>
-        <img src="/images/dac-portrait.webp" width="1040" height="1333" alt={t('hero.photo')} decoding="async" />
+      <figure class="cv-hero__photo" data-shutter>
+        <img src="/images/dac-portrait.webp" width="1040" height="1333" alt={t('cv.photo')} decoding="async" />
       </figure>
     </header>
 
@@ -32,7 +32,7 @@ const edu = [1, 2].map((n) => [t(`journey.e${n}t` as 'journey.e1t'), t(`journey.
       <div class="cv-block__body">
         {roles.map((r) => (
           <div class={`cv-role ${r.now ? 'is-now' : ''}`} data-reveal>
-            <h3>{r.title}</h3>
+            <h3>{r.slug ? <a href={`/${lang}/projects/${r.slug}`}>{r.title}</a> : r.title}</h3>
             <span class="cv-role__period">{r.period}</span>
             <span class="cv-role__org">{r.org}</span>
             <ul>{r.bullets.map((b) => <li>{b}</li>)}</ul>

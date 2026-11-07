@@ -4,6 +4,8 @@ export interface CvRole {
   period: string;
   bullets: string[];
   now?: boolean;
+  /** Slug der Stationsseite unter /projects */
+  slug?: string;
 }
 
 // Quelle: Lebenslauf von Dac, ergänzt um die Rolle ab 10/2026. Keine privaten Kontaktdaten.
@@ -11,6 +13,7 @@ const de: CvRole[] = [
   {
     title: 'Head of Performance Marketing',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: 'seit 10/2026',
     now: true,
     bullets: [
@@ -25,6 +28,7 @@ const de: CvRole[] = [
   {
     title: 'Head of Creative & Brand',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: '04/2026 bis 09/2026',
     bullets: [
       'Verantwortung für ein 8-stelliges Jahresbudget',
@@ -36,6 +40,7 @@ const de: CvRole[] = [
   {
     title: 'Teamleiter Social Media Marketing (Paid & Organic)',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: '04/2024 bis 03/2026',
     bullets: [
       'Leitung und Aufbau eines 7-köpfigen Creative Teams',
@@ -47,6 +52,7 @@ const de: CvRole[] = [
   {
     title: 'Performance Marketing Manager',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: '03/2023 bis 04/2024',
     bullets: [
       'Performance Marketing über DSP, Search, Social und Native, dazu Tracking und Reporting',
@@ -57,6 +63,7 @@ const de: CvRole[] = [
   {
     title: 'Account Manager',
     org: '42DIGITAL GmbH',
+    slug: '42digital',
     period: '09/2021 bis 03/2023',
     bullets: [
       'Performance Marketing über DSP, Search, Social und Native für internationale Unternehmen',
@@ -67,18 +74,21 @@ const de: CvRole[] = [
   {
     title: 'Freiberufler',
     org: 'Hildebrand & Vu GbR',
+    slug: 'hildebrand-vu',
     period: '06/2020 bis 01/2025',
     bullets: ['Webdesign und Webentwicklung für KMUs', 'SEA, Paid Social und Consulting'],
   },
   {
     title: 'Gründer',
     org: 'Triagramm UG',
+    slug: 'triagramm',
     period: '12/2018 bis 06/2020',
     bullets: ['Social-Media-Beratung (Paid und Organic) für KMUs', 'Entwicklung und Vertrieb eines Engagement-Bots für Instagram'],
   },
   {
     title: 'Product Owner',
     org: 'Vitapio GmbH',
+    slug: 'vitapio',
     period: '02/2018 bis 05/2019',
     bullets: ['Product Ownership in agiler Softwareentwicklung', 'Begleitung und Sicherstellung des MVPs'],
   },
@@ -88,6 +98,7 @@ const en: CvRole[] = [
   {
     title: 'Head of Performance Marketing',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: 'since 10/2026',
     now: true,
     bullets: [
@@ -102,6 +113,7 @@ const en: CvRole[] = [
   {
     title: 'Head of Creative & Brand',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: '04/2026 to 09/2026',
     bullets: [
       'Accountable for an eight-figure annual budget',
@@ -113,6 +125,7 @@ const en: CvRole[] = [
   {
     title: 'Team Lead Social Media Marketing (Paid & Organic)',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: '04/2024 to 03/2026',
     bullets: [
       'Led and built a creative team of 7',
@@ -124,6 +137,7 @@ const en: CvRole[] = [
   {
     title: 'Performance Marketing Manager',
     org: 'rightmart Group',
+    slug: 'rightmart',
     period: '03/2023 to 04/2024',
     bullets: [
       'Performance marketing across DSP, search, social and native, plus tracking and reporting',
@@ -134,6 +148,7 @@ const en: CvRole[] = [
   {
     title: 'Account Manager',
     org: '42DIGITAL GmbH',
+    slug: '42digital',
     period: '09/2021 to 03/2023',
     bullets: [
       'Performance marketing across DSP, search, social and native for international companies',
@@ -144,18 +159,21 @@ const en: CvRole[] = [
   {
     title: 'Freelancer',
     org: 'Hildebrand & Vu GbR',
+    slug: 'hildebrand-vu',
     period: '06/2020 to 01/2025',
     bullets: ['Web design and development for SMBs', 'SEA, paid social and consulting'],
   },
   {
     title: 'Founder',
     org: 'Triagramm UG',
+    slug: 'triagramm',
     period: '12/2018 to 06/2020',
     bullets: ['Social media consulting (paid and organic) for SMBs', 'Built and sold an engagement bot for Instagram'],
   },
   {
     title: 'Product Owner',
     org: 'Vitapio GmbH',
+    slug: 'vitapio',
     period: '02/2018 to 05/2019',
     bullets: ['Product ownership in agile software development', 'Guided and secured the MVP'],
   },

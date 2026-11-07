@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects
-    .filter((p) => p.id.startsWith('vi/'))
-    .map((project) => ({ params: { slug: project.id.replace('vi/', '') }, props: { project } }));
+    .filter((p) => p.id.startsWith('en/'))
+    .map((project) => ({ params: { slug: project.id.replace('en/', '') }, props: { project } }));
 }
 
 const { project } = Astro.props;

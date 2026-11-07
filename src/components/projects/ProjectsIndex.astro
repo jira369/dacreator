@@ -1,35 +1,48 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHead from '../PageHead.astro';
+import ProjectCard from './ProjectCard';
 import { getCollection } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
+import { accent } from '../../lib/accent';
 import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-
-const projects = (await getCollection('projects'))
-  .filter((p) => p.id.startsWith(`${lang}/`))
-  .sort((a, b) => a.data.order - b.data.order);
+// VI nutzt die englischen Inhalte, wie in der ersten Version
+const src = lang === 'vi' ? 'en' : lang;
+const all = (await getCollection('projects')).filter((p) => p.id.startsWith(`${src}/`)).sort((a, b) => a.data.order - b.data.order);
+const groups = [
+  { h: t('projects.employers'), items: all.filter((p) => p.data.kind === 'employer') },
+  { h: t('projects.builds'), items: all.filter((p) => p.data.kind === 'project') },
+];
 ---
 
 <BaseLayout title={`${t('projects.heading')} | Dac Vu`} description={t('projects.lead')}>
-  <section class="page wrap">
-    <PageHead title={t('projects.title')} lead={t('projects.lead')} />
-    <div class="ledger-wrap" style="margin-top: clamp(48px, 7vw, 96px)">
-      <div class="ledger plist" style="grid-column: 1 / -1">
-        <ul>
-          {projects.map((p) => (
-            <li data-reveal>
-              <a href={`/${lang}/projects/${p.id.replace(`${lang}/`, '')}`} style="display: contents">
-                <span class="name plist__name">{p.data.title}</span>
-                <span class="kind">{p.data.description}</span>
-                <span class="tag">{t('projects.viewProject')}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+  <section class="pt-32 sm:pt-40 pb-12 px-6">
+    <div class="mx-auto max-w-4xl">
+      <h1 data-reveal class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" set:html={accent(t('projects.title').replace(/(\S+)\.$/, '*$1*.'))} />
+      <p data-reveal class="text-text-muted text-lg max-w-2xl">{t('projects.lead')}</p>
+
+      {groups.map((g) => (
+        <div class="mt-16">
+          <h2 class="text-2xl sm:text-3xl font-medium tracking-tight mb-6">{g.h}</h2>
+          <div class="grid gap-5">
+            {g.items.map((p, i) => (
+              <ProjectCard
+                client:visible
+                title={p.data.title}
+                description={p.data.description}
+                tags={p.data.tags}
+                href={`/${lang}/projects/${p.id.replace(`${src}/`, '')}`}
+                viewProject={t('projects.viewProject')}
+                index={i}
+                meta={p.data.period}
+                role={p.data.role}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 </BaseLayout>

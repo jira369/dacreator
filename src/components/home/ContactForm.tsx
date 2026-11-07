@@ -6,9 +6,9 @@ interface Props {
 
 const t = {
   en: {
-    name: 'Your name',
-    email: 'Your email',
-    message: 'Your message',
+    name: 'Name',
+    email: 'Email',
+    message: 'Message',
     captcha: 'What is',
     captchaPlaceholder: 'Answer',
     send: 'Send message',
@@ -19,9 +19,9 @@ const t = {
     messageMissing: 'Please enter a message.',
   },
   de: {
-    name: 'Dein Name',
-    email: 'Deine E-Mail',
-    message: 'Deine Nachricht',
+    name: 'Name',
+    email: 'E-Mail',
+    message: 'Nachricht',
     captcha: 'Was ist',
     captchaPlaceholder: 'Antwort',
     send: 'Nachricht senden',
@@ -93,57 +93,28 @@ export default function ContactForm({ lang }: Props) {
   return (
     <form onSubmit={handleSubmit} className="form" noValidate>
       <div className="form__row">
-        <input
-          type="text"
-          placeholder={labels.name}
-          value={form.name}
-          onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-          aria-label={labels.name}
-          autoComplete="name"
-        />
-        <input
-          type="email"
-          placeholder={labels.email}
-          value={form.email}
-          onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-          aria-label={labels.email}
-          autoComplete="email"
-        />
-      </div>
-
-      <textarea
-        placeholder={labels.message}
-        rows={5}
-        value={form.message}
-        onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-        aria-label={labels.message}
-      />
-
-      {/* Simple math captcha */}
-      <div className="form__row" style={{ gridTemplateColumns: 'auto 8rem', alignItems: 'center' }}>
-        <label htmlFor="captcha">
-          {labels.captcha} <strong>{captcha.a} + {captcha.b}</strong> ?
+        <label>
+          {labels.name}
+          <input type="text" autoComplete="name" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
         </label>
-        <input
-          type="text"
-          id="captcha"
-          inputMode="numeric"
-          placeholder={labels.captchaPlaceholder}
-          value={form.captchaInput}
-          onChange={(e) => setForm((f) => ({ ...f, captchaInput: e.target.value }))}
-        />
+        <label>
+          {labels.email}
+          <input type="email" autoComplete="email" value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
+        </label>
       </div>
-
-      {error && (
-        <p className="err" role="alert">{error}</p>
-      )}
-
-      <button type="submit" disabled={sent} className="btn btn--ink" style={{ justifySelf: 'start' }}>
+      <label>
+        {labels.message}
+        <textarea rows={4} value={form.message} onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))} />
+      </label>
+      <label>
+        {labels.captcha} {captcha.a} + {captcha.b} ?
+        <input type="text" inputMode="numeric" placeholder={labels.captchaPlaceholder} value={form.captchaInput} onChange={(e) => setForm((f) => ({ ...f, captchaInput: e.target.value }))} style={{ maxWidth: '10rem' }} />
+      </label>
+      {error && <p className="err" role="alert">{error}</p>}
+      <button type="submit" disabled={sent} className="btn">
         {sent ? labels.sending : labels.send}
         {!sent && (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         )}
       </button>
     </form>

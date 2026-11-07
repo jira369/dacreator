@@ -1,0 +1,38 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { accent, plain } from '../../lib/accent';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+import Mark from '../Mark.astro';
+const items = [
+  { s: 'rightmart', n: 'rightmart Group', k: 'rm' },
+  { s: '42digital', n: '42DIGITAL GmbH', k: '42' },
+  { s: 'hildebrand-vu', n: 'Hildebrand & Vu GbR', k: 'hv' },
+  { s: 'triagramm', n: 'Triagramm UG', k: 'tg' },
+  { s: 'vitapio', n: 'Vitapio GmbH', k: 'vp' },
+].map((i) => ({ ...i, role: t(`st.${i.k}.role` as 'st.rm.role'), desc: t(`st.${i.k}.desc` as 'st.rm.desc'), p: t(`st.${i.k}.p` as 'st.rm.p') }));
+---
+<section class="section wrap" id="stations" aria-labelledby="st-title">
+  <div class="stations__head">
+    <h2 id="st-title" data-reveal>{t('st.h')}</h2>
+    <p data-reveal>{t('st.p')}</p>
+  </div>
+  <ul class="stations">
+    {items.map((i) => (
+      <li data-reveal>
+        <a href={`/${lang}/projects/${i.s}`}>
+          <span class="mark"><Mark size={26} /></span>
+          <span class="top">{i.n}<span>{i.p}</span></span>
+          <span class="role">{i.role}</span>
+          <span class="desc">{i.desc}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <div class="stations__more" data-reveal>
+    <a class="btn" href={`/${lang}/cv`}>{t('st.cv')}</a>
+    <a class="btn btn--ghost" href={`/${lang}/projects`}>{t('st.all')}</a>
+  </div>
+</section>

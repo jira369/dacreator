@@ -1,37 +1,29 @@
 ---
 import { useTranslations } from '../../i18n/utils';
+import { accent, plain } from '../../lib/accent';
 import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const home = `/${lang}/`;
 const nodes = [
-  { k: 1, href: `${home}#case` },
-  { k: 2, href: `${home}#work` },
+  { k: 1, href: `/${lang}/#case` },
+  { k: 2, href: `/${lang}/#work` },
   { k: 3, href: `/${lang}/projects/marketingcockpit` },
   { k: 4, href: `/${lang}/cv#creative` },
-  { k: 5, href: `${home}#role` },
+  { k: 5, href: `/${lang}/projects/rightmart` },
   { k: 6, href: `/${lang}/projects` },
-].map((n) => ({ ...n, title: t(`dna.n${n.k}t` as 'dna.n1t'), sub: t(`dna.n${n.k}s` as 'dna.n1s') }));
+].map((n) => ({ ...n, title: t(`dna.n${n.k}t` as 'dna.n1t'), fact: t(`dna.n${n.k}s` as 'dna.n1s') }));
 ---
-
-<section class="dna on-dusk" id="dna" aria-labelledby="dna-title" data-dna>
-  <div class="dna__head">
-    <h2 id="dna-title" data-reveal>{t('dna.h')}</h2>
-    <p data-reveal>{t('dna.sub')}</p>
-  </div>
-  <div class="dna__stage" data-dna-stage>
-    <canvas class="dna__canvas" aria-hidden="true"></canvas>
-    <ul class="dna__nodes">
-      {nodes.map((n) => (
-        <li>
-          <a class="dna__node" href={n.href}>
-            <span class="dna__dot" aria-hidden="true"></span>
-            <span class="dna__label"><b>{n.title}</b><i>{n.sub}</i></span>
-          </a>
-        </li>
-      ))}
-    </ul>
+<section class="section wrap" id="dna" aria-labelledby="dna-title">
+  <div class="dna" data-dna>
+    <div class="dna__stage" aria-hidden="true"><canvas></canvas></div>
+    <div class="dna__list">
+      <h2 id="dna-title" data-reveal set:html={accent(t('dna.h'))} />
+      <ul data-reveal>
+        {nodes.map((n, i) => <li><a href={n.href} data-i={i} data-fact={n.fact} class={i === 0 ? 'is-active' : undefined}>{n.title}</a></li>)}
+      </ul>
+    </div>
+    <p class="dna__fact" aria-live="polite" data-reveal><b data-fact-title>{nodes[0].title}</b><span data-fact-text>{nodes[0].fact}</span></p>
   </div>
 </section>
 
@@ -39,114 +31,103 @@ const nodes = [
   function initDna() {
     const root = document.querySelector<HTMLElement>('[data-dna]');
     if (!root || root.dataset.ready) return;
-    const stage = root.querySelector<HTMLElement>('[data-dna-stage]')!;
-    const canvas = root.querySelector<HTMLCanvasElement>('canvas')!;
+    const stage = root.querySelector<HTMLElement>('.dna__stage')!;
+    const canvas = stage.querySelector('canvas')!;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     root.dataset.ready = '1';
-    root.classList.add('dna--live');
-
+    const links = Array.from(root.querySelectorAll<HTMLAnchorElement>('.dna__list a'));
+    const fTitle = root.querySelector('[data-fact-title]')!;
+    const fText = root.querySelector('[data-fact-text]')!;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const css = getComputedStyle(document.documentElement);
-    const col = (n: string, f: string) => (css.getPropertyValue(n).trim() || f);
-    const SUN = col('--sun', '#E0693B');
-    const APR = col('--apricot', '#F4A58A');
-    const LINE = col('--on-dusk', '#F6EFEA');
-
-    const items = Array.from(root.querySelectorAll<HTMLAnchorElement>('.dna__node'));
-    const T = [0.07, 0.23, 0.39, 0.55, 0.71, 0.87];
-    const TURNS = 2.1;
-    let W = 0, H = 0, R = 0, dpr = 1;
-    let hold = false;
-    let rot = 0.6, vel = reduced ? 0 : 0.35, drag = false, moved = 0, lastX = 0, visible = true, last = 0;
+    const SUN = '236,122,69', APR = '246,179,148', INK = '242,238,234';
+    const T = [0.1, 0.26, 0.42, 0.58, 0.74, 0.9];
+    let W = 0, H = 0, dpr = 1, rot = 0, vel = reduced ? 0 : 0.28, active = 0, hover = false, drag = false, lastX = 0, moved = 0, visible = true, last = 0, idle = 0;
+    const pts: { x: number; y: number }[] = [];
 
     function size() {
       const r = stage.getBoundingClientRect();
       W = r.width; H = r.height; dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = W * dpr; canvas.height = H * dpr;
-      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-      R = Math.min(W * 0.2, 250);
-      draw();
+      canvas.width = W * dpr; canvas.height = H * dpr; draw();
     }
-    const ang = (t: number, off = 0) => rot + t * TURNS * Math.PI * 2 + off;
-    const pad = 28;
-    const Y = (t: number) => pad + t * (H - pad * 2);
-
+    const cx = () => (W > 860 ? W * 0.6 : W * 0.5);
     function draw() {
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx!.globalCompositeOperation = 'source-over';
       ctx!.clearRect(0, 0, W, H);
-      const cx = W / 2;
-      // rungs
-      for (let t = 0.02; t < 0.99; t += 0.03) {
-        const a = ang(t), x1 = cx + R * Math.cos(a), x2 = cx - R * Math.cos(a);
-        const z = Math.sin(a);
-        ctx!.globalAlpha = 0.14 + 0.2 * Math.abs(z);
-        ctx!.strokeStyle = LINE; ctx!.lineWidth = 2;
-        ctx!.beginPath(); ctx!.moveTo(x1, Y(t)); ctx!.lineTo(x2, Y(t)); ctx!.stroke();
+      const R = Math.min(W * (W > 860 ? 0.14 : 0.28), 200), pad = H * 0.08, X = cx();
+      const Y = (t: number) => pad + t * (H - pad * 2);
+      const ang = (t: number, o: number) => rot + t * Math.PI * 2 * 2.2 + o;
+      // Sprossen
+      for (let t = 0.02; t < 0.99; t += 0.028) {
+        const a = ang(t, 0), z = Math.sin(a);
+        ctx!.strokeStyle = `rgba(${INK},${0.05 + 0.1 * Math.abs(z)})`; ctx!.lineWidth = 1;
+        ctx!.beginPath(); ctx!.moveTo(X + R * Math.cos(a), Y(t)); ctx!.lineTo(X - R * Math.cos(a), Y(t)); ctx!.stroke();
       }
-      // strands, back first
-      for (const pass of [0, 1]) {
-        for (let t = 0; t <= 1; t += 0.0035) {
-          for (const s of [0, 1]) {
-            const a = ang(t, s ? Math.PI : 0);
-            const z = Math.sin(a);
-            if ((pass === 0) !== (z < 0)) continue;
-            const k = (z + 1) / 2;
-            ctx!.globalAlpha = 0.25 + 0.75 * k;
-            ctx!.fillStyle = s ? APR : SUN;
-            ctx!.beginPath();
-            ctx!.arc(cx + R * Math.cos(a), Y(t), 2.4 + 3.4 * k, 0, 6.283);
-            ctx!.fill();
+      // Stränge als leuchtende Bänder
+      ctx!.globalCompositeOperation = 'lighter';
+      for (const [o, col] of [[0, SUN], [Math.PI, APR]] as const) {
+        for (const [lw, al] of [[10, 0.06], [4, 0.22], [1.6, 0.9]]) {
+          ctx!.lineWidth = lw; ctx!.lineCap = 'round';
+          for (let t = 0; t < 1; t += 0.004) {
+            const a = ang(t, o), z = (Math.sin(a) + 1) / 2;
+            ctx!.strokeStyle = `rgba(${col},${al * (0.25 + 0.75 * z)})`;
+            ctx!.beginPath(); ctx!.moveTo(X + R * Math.cos(a), Y(t)); ctx!.lineTo(X + R * Math.cos(ang(t + 0.004, o)), Y(t + 0.004)); ctx!.stroke();
           }
         }
       }
-      ctx!.globalAlpha = 1;
-      // nodes
-      items.forEach((el, i) => {
-        const s = i % 2;
-        const a = ang(T[i], s ? Math.PI : 0);
-        const x = cx + R * Math.cos(a), y = Y(T[i]), z = Math.sin(a);
-        const k = (z + 1) / 2;
-        const lw = (el.querySelector('.dna__label') as HTMLElement).offsetWidth + 34;
-        // Seite des Labels so wählen, dass es nie aus der Bühne ragt
-        const right = x >= cx ? W - x > lw : x < lw;
-        el.style.transform = `translate(${x}px, ${y}px) scale(${0.86 + 0.14 * k})`;
-        el.style.opacity = String(0.62 + 0.38 * k);
-        el.style.zIndex = String(Math.round(k * 10) + 1);
-        el.classList.toggle('is-right', right);
-        el.classList.toggle('is-left', !right);
-        el.classList.toggle('is-alt', !!s);
+      ctx!.globalCompositeOperation = 'source-over';
+      // Knoten
+      pts.length = 0;
+      T.forEach((t, i) => {
+        const o = i % 2 ? Math.PI : 0, a = ang(t, o), z = (Math.sin(a) + 1) / 2;
+        const x = X + R * Math.cos(a), y = Y(t), on = i === active;
+        pts.push({ x, y });
+        ctx!.fillStyle = on ? `rgb(${SUN})` : `rgba(${INK},${0.35 + 0.65 * z})`;
+        ctx!.beginPath(); ctx!.arc(x, y, on ? 9 : 5 + 2 * z, 0, 6.283); ctx!.fill();
+        if (on) { ctx!.strokeStyle = `rgba(${SUN},.35)`; ctx!.lineWidth = 2; ctx!.beginPath(); ctx!.arc(x, y, 17, 0, 6.283); ctx!.stroke(); }
       });
     }
-
+    function setActive(i: number) {
+      active = i;
+      links.forEach((a, j) => a.classList.toggle('is-active', j === i));
+      fTitle.textContent = links[i].textContent; fText.textContent = links[i].dataset.fact || '';
+      draw();
+    }
     function frame(now: number) {
       const dt = Math.min((now - last) / 1000, 0.05); last = now;
-      if (visible && !drag && !hold) {
-        const base = reduced ? 0 : 0.35;
-        vel += (base - vel) * Math.min(dt * 2, 1);
-        if (Math.abs(vel) > 0.0005 || !reduced) { rot += vel * dt; draw(); }
+      if (visible && !drag) {
+        rot += vel * dt; vel += ((reduced ? 0 : 0.28) - vel) * Math.min(dt * 2, 1);
+        if (!hover) { idle += dt; if (idle > 2.6) { idle = 0; setActive((active + 1) % links.length); } }
+        draw();
       }
       requestAnimationFrame(frame);
     }
-
-    items.forEach((el) => {
-      el.addEventListener('pointerenter', () => { hold = true; });
-      el.addEventListener('pointerleave', () => { hold = false; });
-      el.addEventListener('focus', () => { hold = true; });
-      el.addEventListener('blur', () => { hold = false; });
+    links.forEach((a, i) => {
+      a.addEventListener('pointerenter', () => { hover = true; setActive(i); });
+      a.addEventListener('pointerleave', () => { hover = false; idle = 0; });
+      a.addEventListener('focus', () => { hover = true; setActive(i); });
+      a.addEventListener('blur', () => { hover = false; });
     });
     stage.addEventListener('pointerdown', (e) => { drag = true; moved = 0; lastX = e.clientX; });
     stage.addEventListener('pointermove', (e) => {
+      const r = stage.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
+      const hit = pts.findIndex((p) => Math.hypot(p.x - px, p.y - py) < 22);
+      stage.style.cursor = hit >= 0 ? 'pointer' : '';
+      if (hit >= 0 && !drag) { hover = true; if (hit !== active) setActive(hit); } else if (!drag) hover = false;
       if (!drag) return;
-      const dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx);
-      // Erst beim echten Ziehen einfangen, sonst erreicht ein Klick den Link nicht
-      if (moved > 4 && !stage.hasPointerCapture?.(e.pointerId)) stage.setPointerCapture?.(e.pointerId);
-      rot += dx * 0.009; vel = dx * 0.5; draw();
+      const dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx); rot += dx * 0.009; vel = dx * 0.4; draw();
     });
-    const end = () => { drag = false; };
-    stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
-    stage.addEventListener('click', (e) => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } moved = 0; }, true);
-
+    const end = (e: PointerEvent) => {
+      if (drag && moved < 6) {
+        const r = stage.getBoundingClientRect();
+        const hit = pts.findIndex((p) => Math.hypot(p.x - (e.clientX - r.left), p.y - (e.clientY - r.top)) < 22);
+        if (hit >= 0) links[hit].click();
+      }
+      drag = false;
+    };
+    stage.addEventListener('pointerup', end);
+    stage.addEventListener('pointercancel', () => { drag = false; });
     new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(stage);
     new ResizeObserver(size).observe(stage);
     size();
