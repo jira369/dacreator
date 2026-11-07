@@ -12,6 +12,7 @@ const map: Record<string, string> = {
   duckdb: 'duckdb', 'google drive': 'googledrive', asana: 'asana', jira: 'jira', wordpress: 'wordpress',
   html: 'html5', css: 'css', astro: 'astro', instapy: 'instagram',
   'rightmart group': 'rightmart', rightmart: 'rightmart', '42digital gmbh': '42digital', '42digital': '42digital',
+  'vitapio gmbh': 'vitapio.png', vitapio: 'vitapio.png',
 };
 
 /** Pfad zum Logo für einen Namen, oder undefined, wenn es keins gibt. */
@@ -21,8 +22,8 @@ export function logoFor(name: string): string | undefined {
   return `/logos/${f.includes('.') ? f : `${f}.svg`}`;
 }
 
-/** Monogramm für Stationen ohne Logo-Datei (bis Dac die Dateien liefert). */
+/** Monogramm für Stationen ohne Logo (Hildebrand & Vu, Triagramm). */
 export function monogram(name: string): string {
-  const m: Record<string, string> = { 'hildebrand & vu gbr': 'HV', 'triagramm ug': 'TG', 'vitapio gmbh': 'VP' };
+  const m: Record<string, string> = { 'hildebrand & vu gbr': 'HV', 'triagramm ug': 'TG' };
   return m[name.trim().toLowerCase()] ?? name.slice(0, 2).toUpperCase();
 }

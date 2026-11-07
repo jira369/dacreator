@@ -58,5 +58,5 @@ Top three problems:
 ## Logos (Stand nach Feedback)
 - Plattformen und Tools: Simple Icons (CC0) für Meta, Google Ads, TikTok, YouTube, Instagram, Facebook, Google Analytics, GTM, Looker, Claude und Tech-Stack; Power BI und Bing aus Simple Icons v6; Microsoft-Logo nach offizieller Vier-Quadrat-Geometrie.
 - Von den Websites der Anbieter: Taboola, Criteo, RTB House, Tisoomi, Looker Studio (gstatic), rightmart, 42DIGITAL.
-- Offen: Logos von Hildebrand & Vu, Triagramm, Vitapio. Bis dahin Monogramme.
+- Vitapio: Logo von Dac geliefert. Hildebrand & Vu und Triagramm: Monogramme HV und TG (kein Logo vorhanden).
 - Seitenlogo: Dacs Signatur (`public/images/signature.png`), freigestellt als Maske `signature-mask.webp`, hell im Header, groß in Orange im Footer.
