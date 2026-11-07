@@ -1,0 +1,113 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { accent } from '../../lib/accent';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+// Beste Creatives des Teams, komprimiert auf 540×960 (public/creatives)
+const items = [
+  { file: 'glitch', title: t('cr.c5'), tag: '' },
+  { file: 'epic-motion', title: t('cr.c1'), tag: 'MOFU' },
+  { file: 'pain-point', title: t('cr.c3'), tag: 'TOFU' },
+  { file: 'singendes-objekt', title: t('cr.c4'), tag: '' },
+  { file: 'fakten-motion', title: t('cr.c2'), tag: '' },
+];
+---
+
+<section class="section wrap" id="creatives" aria-labelledby="cr-title">
+  <div class="cr__head">
+    <h2 id="cr-title" data-reveal set:html={accent(t('cr.h'))} />
+    <p data-reveal>{t('cr.p')}</p>
+  </div>
+
+  <div class="cr" data-cr data-sound={t('cr.sound')} data-mute={t('cr.mute')} aria-roledescription="carousel" aria-label={t('cr.h').replace(/\*/g, '')}>
+    <div class="cr__track">
+      {items.map((it, i) => (
+        <figure class="cr__card" data-i={i} aria-roledescription="slide" aria-label={`${i + 1} / ${items.length}: ${it.title}`}>
+          <div class="cr__frame">
+            <video
+              src={`/creatives/${it.file}.mp4`}
+              poster={`/creatives/${it.file}.jpg`}
+              muted
+              loop
+              playsinline
+              preload="none"
+              width="540"
+              height="960"
+              aria-label={it.title}
+            ></video>
+            <button class="cr__sound" type="button" aria-pressed="false" data-sound-btn>{t('cr.sound')}</button>
+          </div>
+          <figcaption><span>{it.title}</span>{it.tag && <span class="ui-pill">{it.tag}</span>}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <button class="cr__nav cr__nav--prev" type="button" data-prev aria-label={t('cr.prev')}>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+    </button>
+    <button class="cr__nav cr__nav--next" type="button" data-next aria-label={t('cr.next')}>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  function initCreatives() {
+    const root = document.querySelector<HTMLElement>('[data-cr]');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = '1';
+    root.classList.add('cr--live');
+    const cards = Array.from(root.querySelectorAll<HTMLElement>('.cr__card'));
+    const n = cards.length;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let active = 0, visible = false, sound = false, startX = 0, dx = 0;
+
+    // Position relativ zum aktiven Creative: -1 links, 0 Mitte, 1 rechts, sonst versteckt
+    function render() {
+      cards.forEach((card, i) => {
+        let d = i - active;
+        if (d > n / 2) d -= n;
+        if (d < -n / 2) d += n;
+        card.dataset.pos = String(Math.max(-2, Math.min(2, d)));
+        card.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
+        const v = card.querySelector('video')!;
+        const btn = card.querySelector<HTMLButtonElement>('[data-sound-btn]')!;
+        btn.tabIndex = d === 0 ? 0 : -1;
+        if (d === 0 && visible && !reduced) {
+          v.muted = !sound;
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+          if (d !== 0) { v.muted = true; }
+        }
+        btn.setAttribute('aria-pressed', String(sound && d === 0));
+        btn.textContent = sound && d === 0 ? root!.dataset.mute! : root!.dataset.sound!;
+        if (reduced) v.controls = d === 0;
+      });
+    }
+    const go = (i: number) => { active = (i + n) % n; render(); };
+
+    root.querySelector('[data-prev]')!.addEventListener('click', () => go(active - 1));
+    root.querySelector('[data-next]')!.addEventListener('click', () => go(active + 1));
+    cards.forEach((card, i) => card.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('[data-sound-btn]')) return;
+      if (i !== active) go(i);
+    }));
+    root.querySelectorAll<HTMLButtonElement>('[data-sound-btn]').forEach((b) => b.addEventListener('click', (e) => {
+      e.stopPropagation(); sound = !sound; render();
+    }));
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); }
+    });
+    // Wischen auf dem Handy
+    root.addEventListener('pointerdown', (e) => { startX = e.clientX; dx = 0; });
+    root.addEventListener('pointermove', (e) => { if (e.buttons) dx = e.clientX - startX; });
+    root.addEventListener('pointerup', () => { if (Math.abs(dx) > 50) go(active + (dx < 0 ? 1 : -1)); dx = 0; });
+
+    new IntersectionObserver((en) => { visible = en[0].isIntersecting; render(); }, { threshold: 0.35 }).observe(root);
+    render();
+  }
+  document.addEventListener('astro:page-load', initCreatives);
+</script>

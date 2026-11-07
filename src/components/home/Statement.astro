@@ -1,0 +1,11 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { accent, plain } from '../../lib/accent';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<section class="statement wrap" aria-label={plain(t('statement'))}>
+  <p data-reveal set:html={accent(t('statement'))} />
+</section>

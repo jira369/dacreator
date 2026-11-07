@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from './BlogCard.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/utils';
+import { accent } from '../../lib/accent';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const src = lang === 'vi' ? 'en' : lang;
+const posts = (await getCollection('blog')).filter((p) => p.id.startsWith(`${src}/`) && !p.data.draft).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={`${t('blog.heading')} | Dac Vu`} description={t('blog.lead')}>
+  <section class="pt-32 sm:pt-40 pb-12 px-6">
+    <div class="mx-auto max-w-4xl">
+      <h1 data-reveal class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" set:html={accent(t('blog.title').replace(/(\S+)\.$/, '*$1*.'))} />
+      <p data-reveal class="text-text-muted text-lg max-w-2xl mb-16">{t('blog.lead')}</p>
+      {posts.length > 0 ? (
+        <div class="grid gap-5">
+          {posts.map((p) => <BlogCard title={p.data.title} description={p.data.description} date={p.data.date} slug={p.id.replace(`${src}/`, '')} tags={p.data.tags} />)}
+        </div>
+      ) : <p class="text-text-muted">{t('blog.empty')}</p>}
+    </div>
+  </section>
+</BaseLayout>

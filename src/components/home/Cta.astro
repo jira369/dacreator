@@ -1,0 +1,20 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { accent, plain } from '../../lib/accent';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+import ContactForm from './ContactForm';
+---
+<section class="cta on-sun" id="contact" aria-labelledby="cta-title">
+  <div class="cta__line">
+    <h2 id="cta-title" data-reveal set:html={accent(t('cta.h'))} />
+    <p data-reveal>{t('cta.p')}</p>
+  </div>
+  <div class="cta__dialog" data-ui data-reveal>
+    <h3>{t('cta.dh')}</h3>
+    <p>{t('cta.dp')}</p>
+    <ContactForm client:visible lang={lang} />
+  </div>
+</section>

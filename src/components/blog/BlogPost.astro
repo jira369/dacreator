@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { render } from 'astro:content';
+import { useTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale; post: any }
+const { lang, post } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(post);
+const loc = { de: 'de-DE', en: 'en-US', vi: 'vi-VN' }[lang];
+---
+
+<BaseLayout title={`${post.data.title} | Dac Vu`} description={post.data.description}>
+  <article class="pt-32 sm:pt-40 pb-12 px-6">
+    <div class="mx-auto max-w-5xl">
+      <header class="mb-12" data-reveal>
+        <h1 class:list={["font-medium tracking-tight leading-[1.02]", post.data.title.length > 18 ? "text-[clamp(1.875rem,5.6vw,5.25rem)]" : "text-[clamp(2.75rem,6.4vw,6rem)]"]}>{post.data.title}</h1>
+        <p class="mt-4 text-lg text-text-muted">{post.data.description}</p>
+        <div class="flex flex-wrap items-center gap-3 mt-6">
+          <time class="text-sm text-text-muted tabular-nums" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString(loc, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          {post.data.tags.map((tag: string) => <span class="text-[13px] text-accent-light bg-surface px-2 py-0.5 rounded-md">{tag}</span>)}
+        </div>
+      </header>
+      <div class="prose prose-lg max-w-3xl project-content"><Content /></div>
+      <p class="mt-16"><a class="link" href={`/${lang}/blog`}>{t('blog.back')}</a></p>
+    </div>
+  </article>
+</BaseLayout>
+<style is:global>
+  .project-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.375rem; font-weight: 600; letter-spacing: -0.02em; color: var(--color-text-primary); }
+  .project-content h3 { margin-top: 1.75rem; margin-bottom: 0.75rem; font-size: 1.0625rem; font-weight: 600; color: var(--color-accent-light); }
+  .project-content ul { list-style: none; padding-left: 0; display: grid; gap: 0.5rem; }
+  .project-content li { position: relative; padding-left: 1.4rem; color: var(--color-text-muted); }
+  .project-content li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.6rem; height: 2px; border-radius: 2px; background: var(--color-accent); }
+</style>

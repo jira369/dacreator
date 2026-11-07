@@ -1,4 +1,4 @@
-import { ui } from './ui';
+import { ui, type UiKey } from './ui';
 import { defaultLocale, type Locale, locales } from './config';
 
 export function getLangFromUrl(url: URL): Locale {
@@ -8,7 +8,7 @@ export function getLangFromUrl(url: URL): Locale {
 }
 
 export function useTranslations(lang: Locale) {
-  return function t(key: keyof (typeof ui)[typeof defaultLocale]): string {
+  return function t(key: UiKey): string {
     return (ui[lang] as Record<string, string>)?.[key] ?? ui[defaultLocale][key];
   };
 }

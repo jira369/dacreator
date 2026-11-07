@@ -1,0 +1,38 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { accent, plain } from '../../lib/accent';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const P = (s: string) => `/${lang}/projects/${s}`;
+---
+<section class="section wrap" id="work" aria-labelledby="work-title">
+  <div class="tiles">
+    <h2 id="work-title" data-reveal set:html={accent(t('work.h'))} />
+    <a class="tile t1" href={P('rightmart')} data-reveal>
+      <div class="tile__art"><div class="art-word" aria-hidden="true"><span>rightmart <span class="it">Group</span></span></div></div>
+      <div class="tile__cap"><span>{t('work.rightmart')}</span><span>{t('work.rightmartk')}</span></div>
+    </a>
+    <a class="tile t2" href={P('marketingcockpit')} data-reveal>
+      <div class="tile__art"><div class="art-bars" aria-hidden="true"><i style="height:42%"></i><i style="height:58%"></i><i style="height:50%"></i><i style="height:71%"></i><i style="height:64%"></i><i style="height:80%"></i><i class="on" style="height:92%"></i></div></div>
+      <div class="tile__cap"><span>{t('work.cockpit')}</span><span>{t('work.cockpitk')}</span></div>
+    </a>
+    <a class="tile t3" href={P('utm-generator')} data-reveal>
+      <div class="tile__art"><div class="art-utm" aria-hidden="true"><span>?utm_source=<b>google</b></span><span>&utm_medium=<b>paid-marketing</b></span><span>&utm_term=<b>&#123;keyword&#125;</b></span><span>&gclid=<b>&#123;gclid&#125;</b></span></div></div>
+      <div class="tile__cap"><span>{t('work.utm')}</span><span>{t('work.utmk')}</span></div>
+    </a>
+    <a class="tile t4" href={P('leben-in-deutschland')} data-reveal>
+      <div class="tile__art"><div class="art-quiz" aria-hidden="true"><span style="color:var(--ink)">Wie viele Bundesländer hat Deutschland?</span><span>14</span><span class="ok">16</span><span>18</span></div></div>
+      <div class="tile__cap"><span>{t('work.lid')}</span><span>{t('work.lidk')}</span></div>
+    </a>
+    <a class="tile t6" href={P('instapy')} data-reveal>
+      <div class="tile__art"><div class="art-utm" aria-hidden="true"><span>from instapy import <b>InstaPy</b></span><span>session.<b>login</b>()</span><span>session.<b>like_by_tags</b>(</span><span>&nbsp;&nbsp;['growth'], amount=<b>10</b>)</span></div></div>
+      <div class="tile__cap"><span>{t('work.insta')}</span><span>{t('work.instak')}</span></div>
+    </a>
+    <a class="tile t5" href={`/${lang}/projects`} data-reveal>
+      <div class="tile__art"><div class="art-list" aria-hidden="true">{['rightmart Group', '42DIGITAL', 'Hildebrand & Vu', 'Triagramm', 'Vitapio', 'Performance Cockpit', 'UTM-Generator', 'Leben in Deutschland', 'InstaPy'].map((n) => <span>{n}</span>)}</div></div>
+      <div class="tile__cap"><span>{t('work.all')}</span><span>{t('work.allk')}</span></div>
+    </a>
+  </div>
+</section>

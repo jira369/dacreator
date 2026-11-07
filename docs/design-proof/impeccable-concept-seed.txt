@@ -1,0 +1,153 @@
+DIRECTION CONCEPT SEED (key: 08e38ed899c1a66ff96938e31fd42867; mode: persuade; source: api; approved pool: c3b204a1eed6; 306/564 human-approved; rerun with --scope direction --mode persuade --from 08e38ed899c1a66ff96938e31fd42867 --candidate-count 7 to reproduce this roll against this catalog revision)
+ASSIGNED INDEX: 6
+  After ordering the grounded directions by resonance, build candidate
+  6 of your own grounded list; the assignment never points at a
+  challenger. The assignment is the roll, not a suggestion: your top-ranked
+  direction is what every run would ship, so the script decides which grounded
+  direction gets built. Each direction joins a durable visual system to a
+  concrete expression for the requested first surface, decided as one. It must
+  survive the current task plus navigation, quiet and dense content,
+  interaction and state, and a substantially different future surface. In an
+  attended run, present the assigned direction fully committed and offer
+  re-roll. You may add ONE card for your top-ranked grounded candidate when
+  it is not the assigned direction, kicker IMPECCABLE’S PICK, with an honest risk line
+  naming its familiarity; one pick card, never a ranked lineup, and the pick
+  never takes the lead position. When the assignment IS your top candidate,
+  there is no pick card. Re-roll yourself only
+  on named factual grounds, when the assignment cannot carry the product's
+  truth or task; taste is never grounds.
+  The assignment exists to refuse the model's ranking rut, never to outrank
+  the user or the brief. Never expose assignment metadata in user-facing labels.
+CHALLENGERS:
+  1. a wide silk cape threaded with hidden drawcord channels, where one pull transforms a flat plane into ribs, gathers, and a protective volume
+     SOURCE ID: textiles-weave-drape-fashion-drawcord-transforming-cape
+     CREATIVE SPARK: The cape begins as a black semicircle; one gold cord is pulled and the cloth rises into a pleated shell around the shoulders.
+     SYSTEM GRAMMAR:
+       - Palette/material: matte black silk as ground, one gold drawcord as accent and control, channel stitching in graphite, gathered shadow rendered in slate
+       - Type/composition: narrow tailored grotesk with wide tracking like topstitching, labels riding the cord channels, the semicircle's radius ruling all alignment
+       - Topology/navigation: Trace cord channel, gathered region, anchor, and complete silhouette through each transformation.
+       - Controls/state: Pull, lock, release, and compare with flat, gathering, shaped, tensioned, and relaxed states.
+       - Responsive/motion: Offer a small set of named silhouettes on phones and let users advance transformations stepwise.
+     WEB LEVERAGE: A constraint-driven cloth model can demonstrate functional transformation while static pattern and pose views remain complete.
+     QUALITY BAR: board https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-drawcord-transforming-cape.webp · hero https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-drawcord-transforming-cape-hero.webp
+  2. a hand-cranked paper menagerie of tabs, bellows, and pinned joints, where humble folds produce a surprising procession of motion
+     SOURCE ID: kinetic-sculpture-automata-crank-paper-menagerie
+     CREATIVE SPARK: The crank turns; a white fox bows, a crimson bird opens concertina wings, and their shadows cross on the paper wall behind them.
+     SYSTEM GRAMMAR:
+       - Palette/material: cut white paper on kraft board as the ground, charcoal cast shadow as body ink, one crimson fold reserved for the figure currently in motion
+       - Type/composition: hand-cut letterpress caps with visible tab and slot marks, captions on folded paper strips beneath each figure, one crank line ruling the base
+       - Topology/navigation: Advance through a procession while each figure opens into its own linkage and supporting details.
+       - Controls/state: Turn, pause, reverse, and inspect joints with folded, tensioned, extended, and resting states.
+       - Responsive/motion: Reduce the procession to one figure per viewport and provide illustrated keyframes beside every control.
+     WEB LEVERAGE: Pointer and keyboard input can drive a common crank timeline, synchronizing SVG cut-paper layers with accessible step descriptions.
+     QUALITY BAR: board https://impeccable.style/worlds/cards/kinetic-sculpture-automata-crank-paper-menagerie.webp · hero https://impeccable.style/worlds/cards/kinetic-sculpture-automata-crank-paper-menagerie-hero.webp
+  3. a printing darkroom under amber safelight, where enlarger beams, timed baths, and drying lines stage photographs into slow deliberate existence
+     SOURCE ID: signals-instruments-darkroom-safelight-bay
+     CREATIVE SPARK: In the developer tray, gray ghosts gather into a face; the timer ticks, and pulling the print too early is a real loss.
+     SYSTEM GRAMMAR:
+       - Palette/material: amber safelight washing every surface as the ground, wet-print silver grays deepening to black as the image ink, enamel tray white at the edges
+       - Type/composition: grease-pencil notes and printed timer digits under amber, labels sparse on bottles and trays; test strips band the field into stepped exposures
+       - Topology/navigation: work moves through fixed stations in order: compose, expose, develop, fix, wash, dry.
+       - Controls/state: progress is chemical and irreversible past marked points; test strips preview before committing.
+       - Responsive/motion: stations linearize on phones; the develop reveal is one continuous emergence, shown statically under
+     WEB LEVERAGE: Canvas-simulated development curves let previews emerge in real time before an action commits.
+     QUALITY BAR: board https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay.webp · hero https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay-hero.webp
+  4. a data-sublime field, where dense barcode columns and sine lattices strobe in pure black and white
+     SOURCE ID: ikeda-datamatics
+     CREATIVE SPARK: A wall of hairline vertical bars, some black, some white, holds like a frozen barcode. Dense monospace numbers pack the margin. A single sine curve traces the lattice, and for one frame the whole field snaps to its negative.
+     SYSTEM GRAMMAR:
+       - Palette/material: Pure black and pure white only, no grey and no color; flat pixel-crisp bars, hairline rules, and monospace numerics; the occasional full-frame inversion.
+       - Type/composition: One monospace face at data density, set in tight tabular columns; barcode bar-fields and sine curves structure the page
+       - Topology/navigation: Move by data column, by frequency band, and by frame index.
+       - Controls/state: Scan, sample, and invert; selecting a column pulls its numbers into focus while the surrounding field drops to a faint bar pattern.
+       - Responsive/motion: Columns thin and drop from the edges as width shrinks; reduced-motion disables all strobing and holds a single high-contrast still.
+     WEB LEVERAGE: Render the barcode and sine lattice on canvas from a seeded sequence, stepping frames on requestAnimationFrame that halts entirely under prefers-reduced-motion.
+     QUALITY BAR: board https://impeccable.style/worlds/cards/ikeda-datamatics.webp · hero https://impeccable.style/worlds/cards/ikeda-datamatics-hero.webp
+  5. a couture doll atelier, dress forms and hatboxes at one-sixth scale, garments bagged in tissue with script labels, and a runway lookbook art-directing every miniature look in ivory, blush and black
+     SOURCE ID: pop-culture-shelf-couture-doll-atelier
+     CREATIVE SPARK: You untie one striped garment bag and the tissue sighs open on a black-and-white maillot the size of your palm, plate No. 7 in the book, the gold script on its tag naming it like a couture house would.
+     SYSTEM GRAMMAR:
+       - Palette/material: ivory box-board ground, blush satin and black grosgrain accents, gold-foil script for names, one rouge red reserved for the chosen look
+       - Type/composition: high-contrast didone headlines signed with a fine script, looks presented as numbered plates with lookbook margins, captions in letterspaced small caps
+       - Topology/navigation: the collection reads as a runway lineup, look by look in order, while wardrobe trunks hold the sections and open into labeled trays
+       - Controls/state: hover loosens the tissue, selection pins the garment to the dress form under a spotlight, and sold-out looks keep only a tissue silhouette
+       - Responsive/motion: plates fall into a single lookbook column on phones, and motion is a tissue lift and the dress form's slow quarter turn
+     WEB LEVERAGE: css 3d transforms turn the dress form, layered translucency plays the tissue, and the lineup runs as a scroll-snapped runway
+     QUALITY BAR: board https://impeccable.style/worlds/cards/pop-culture-shelf-couture-doll-atelier.webp · hero https://impeccable.style/worlds/cards/pop-culture-shelf-couture-doll-atelier-hero.webp
+  6. the digital flagship of a fashion house, where monumental editorial type and vast negative space frame slow full-bleed imagery like a printed lookbook come to life
+     SOURCE ID: luxury-fashion-flagship
+     CREATIVE SPARK: A single garment fills the screen against acres of bone-white space, one enormous serif word set low; scroll and the image holds, then cuts slowly to the next look as a hairline nav waits quietly overhead.
+     SYSTEM GRAMMAR:
+       - Palette/material: near-monochrome bone-white and ink, one restrained seasonal accent, full-bleed photography as the only texture, and generous matte negative space.
+       - Type/composition: a monumental high-contrast serif for display against a spare grotesk for labels and product data
+       - Topology/navigation: Move by slow full-bleed look-to-look scroll, by a hairline top nav of few words, and into a spare product grid and a quiet cart drawer.
+       - Controls/state: Hover fades between garment views; add-to-cart slides a minimal drawer from the edge; size and color selectors are set as understated type rather than chips.
+       - Responsive/motion: reveals are slow full-bleed fades, and reduced-motion cuts directly between looks.
+     WEB LEVERAGE: Drive the full-bleed look transitions with scroll-snap sections and slow object-fit:cover crossfades, keeping a persistent hairline nav and a slide-in cart drawer across routes.
+     QUALITY BAR: board https://impeccable.style/worlds/cards/luxury-fashion-flagship.webp · hero https://impeccable.style/worlds/cards/luxury-fashion-flagship-hero.webp
+Fuse each challenger before judging it: the challenger supplies the form
+  and its system grammar, the product supplies every fact, and clarity wins
+  conflicts. Weigh the fused result against the assigned direction on exactly
+  two axes, audience identification and product clarity. Losing to strong
+  grounded material is a valid outcome; beating a thin or tool-monoculture
+  list is the point. A fused challenger that wins both axes becomes the build.
+  Close the weighing with a verdict per challenger, decided before any
+  borrowing is considered: wins (beats the assigned direction on both axes),
+  competitive (holds one axis), or declined (loses both). A declined
+  challenger is not spent: name the one discipline of its system the assigned
+  direction lacks, and raise the assigned direction to match before
+  presenting it. A donation transfers ambition and system discipline, never
+  the challenger's clothes. A component treatment, such as a button's shadow
+  or a display face, is clothes, not discipline; one world owns the page.
+  Write each raise as its own named line on the presented direction, and
+  carry every verdict, kept line, and raise into the decision page payload.
+When you can view images, open the QUALITY BAR board and hero for any
+challenger you weigh seriously and for the world you build. They exist as a
+craft bar, the finish level and commitment the build is expected to reach,
+never as a mockup to copy; your surface serves this product, not that render.
+PRODUCT.md and explicit incumbent brand commitments constrain every direction.
+The seed never chooses exact colors, fonts, tokens, or a user preference, and
+it never permits the world and first surface to be selected independently.
+The CREATIVE SPARK is a complete visual system, not a theme or decorative
+reference. Translate every supplied system rule into the product: palette and
+material, type and composition, topology, controls and states, and adaptation.
+Keep the source's visible character, scale, rhythm, and interaction instead of
+reducing vivid grammar to generic nouns. Keep a literal carrier only when it
+becomes functional.
+Ambitious motion, spatial media, or interaction is welcome when it strengthens
+the product without weakening semantics, performance, or fallback behavior.
+MODE RULES (persuade, from /root/.claude/skills/synced/96e449e8-d4d1-4a39-b94f-f983eca16207_3ff15e2f-9282-4d67-8c65-abbdc1d184f5/impeccable/reference/mode-persuade.md). They govern this surface's directions and every comp you write or judge for it, the decision comps included; where shared guidance conflicts, these win.
+DIRECTIONS
+When a catalog world's source is itself an interface language, the surface may carry its native grammar across navigation, content, controls, and states, within the platform conventions a native app keeps.
+
+For **Persuade**, the opening must make the offer intelligible and desirable, expose a clear action, and demonstrate something only this product can prove. The action is the one the category's visitors came to take, in its working form: an airline's route-and-dates search, a clinic's open appointment slots, a store's add to cart. A decorative link pointing at it elsewhere does not count. Conversion lives inside the form's own vocabulary: a hook that lands in one line, a visible primary action, a legible reading order. A committed form that hides the offer or the action has not finished translating. For **Experience**, the work itself leads from the first viewport.
+COMPS
+The world may be the carrier of the page, never a picture of it: a facade, a shutter or a book can be what the page is built on, while a viewport painted whole as a facade, a book cover or a travel poster, with no working parts in it, is a picture of the world, not its website. Material coverage is wanted: the world's material is the ground and the major surfaces, its type sets the headlines, and a world reduced to an accent on a neutral template is the category default with a sticker on it. Coverage is not performance: how many regions act out the concept is limited by the depth rule in visualize.md, and the rest stay in the world's material without performing it. Both ends erase the direction: the painted poster, and the generic product page (a headline over subcopy and a button, a row of equal cards below). The dealt composition sets the skeleton, and the compositions you write for comps two and three answer to the same test: a split hero (copy on one side, the product on the other, a badge row under it) or a centred headline over a row of cards is the template whatever world paints it.
+
+The world carries the page's parts and never absorbs them, so wherever it puts one, the page still works as a page: navigation set into a facade reads as links, copy on a shutter as set text a visitor reads, an action on a door plaque as plainly clickable, text reads against whatever sits behind it, the sections keep a steady vertical rhythm, the primary action is unmistakable, and the section below starts as a section rather than more painting. Fix a poster by making its parts work where the world put them, never by moving them into a standard layout on the world's colour: a cover that becomes copy beside a device on marigold has lost the cover.
+
+When the world is an object, the page is that one object seen once, at one scale and from one point of view, and the object keeps its real form: a book opens to two pages on one gutter, never a third panel, and a spine that carries the navigation belongs to the book on the page, never a second book beside it. More content goes on the object's own surfaces or on the next spread below, never on extra copies or impossible folds.
+
+Comps two and three each go further than the first, never cleaner: a bolder use of the same world, where the world's material carries more of the page's structure (still one dominant move, per the depth rule), a larger or stranger focal move, or a composition the category would not attempt.
+TELEMETRY: once the round resolves, rerun this script once with
+  --from 08e38ed899c1a66ff96938e31fd42867 --scope direction --mode persuade plus what the user did:
+  - chose a card: --kind <assigned|pick|challenger|grounded|canon>, the kind the
+    card declares, adding --chosen <SOURCE ID> when a dealt challenger won (its
+    catalogId, never your card's id) and keeping --register <safer|bolder>
+    when the round came from a steered hand;
+  - asked for another hand instead of choosing: --kind reroll, adding
+    --register <safer|bolder> when they steered it.
+  One ping per attended round the user resolved; when the decision page
+  already sent it, the rerun prints `choice already recorded`. The ping is anonymous, the card kind plus the catalog id when one
+  won; your grounded candidates' names never leave the machine, and the ping
+  is skipped automatically when DO_NOT_TRACK or IMPECCABLE_NO_TELEMETRY is set.
+A user- or brief-pinned decision beats the roll, always.
+ASSIGNED INDEX (restated for truncated readers): 6. Build candidate
+6 of your own grounded list; seed key 08e38ed899c1a66ff96938e31fd42867.
+SEED REFERENCE: seed:4944020481f5a4b6. Write this, never the key, wherever the seed is recorded (the surface brief's FORM line, build-phase start --direction); on this machine --from accepts it in place of the key.
+PRESENTATION (the decision round, condensed from new-work.md; follow it even when your read of that file came back cut):
+- Present this hand on the decision page: write the options payload (`/root/.claude/skills/synced/96e449e8-d4d1-4a39-b94f-f983eca16207_3ff15e2f-9282-4d67-8c65-abbdc1d184f5/impeccable/scripts/impeccable serve-question --schema` prints its shape), run `/root/.claude/skills/synced/96e449e8-d4d1-4a39-b94f-f983eca16207_3ff15e2f-9282-4d67-8c65-abbdc1d184f5/impeccable/scripts/impeccable serve-question --start --payload <file>`, and open the URL it prints for the user.
+- With image generation, every card declares a comp under .impeccable/mocks/decision/, canon included, declined challengers excepted. Serve first, then generate each comp in reading order (assigned, pick, full-card hand, canon), writing its prompt sidecar as it lands (a.png gets a.png.json).
+- After the last comp or sketch lands (at once when this round makes none), hold `/root/.claude/skills/synced/96e449e8-d4d1-4a39-b94f-f983eca16207_3ff15e2f-9282-4d67-8c65-abbdc1d184f5/impeccable/scripts/impeccable serve-question --wait --key <key>`. If your shell hands back a session before --wait exits, keep polling that session until it exits; rerun --wait only after it exits 3 with no answer.
+- Build path: none recorded in .impeccable/config.json or .impeccable/config.local.json, so comp-led whenever image generation exists. Then put "buildPath": {"value": "comp", "toggle": true} in the payload; without image generation there is no toggle and the build is code-led. Never ask about the build path during the round; only when the ANSWER returns buildPathFlipped: true, offer once afterwards to keep the flipped value as the default.
+- The structured question tool is the fallback, never the first channel: take it when --start exits 2, when --wait exits 4 after the page closed unanswered, or when your harness cannot hold a blocking --wait at all (say so in your first reply). It carries the same options and asks nothing about the build path.

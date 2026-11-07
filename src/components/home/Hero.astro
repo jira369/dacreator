@@ -1,0 +1,50 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { accent, plain } from '../../lib/accent';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const node = (k: number) => ({ b: t(`pipe.n${k}` as 'pipe.n1'), s: t(`pipe.n${k}s` as 'pipe.n1s') });
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <canvas class="hero__ribbons" data-ribbons aria-hidden="true"></canvas>
+  <div class="hero__head">
+    <h1 id="hero-title" data-reveal set:html={accent(t('hero.title'))} />
+    <p class="hero__lead" data-reveal set:html={accent(t('hero.lead'))} />
+    <div class="hero__actions" data-reveal>
+      <a class="btn" href="#contact">{t('hero.cta')}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </a>
+      <a class="btn btn--ghost" href={`/${lang}/cv`}>{t('hero.cta2')}</a>
+    </div>
+  </div>
+  <p class="stage__note">{t('hero.note')}</p>
+  <div class="stage">
+    <div class="pipe ui-panel" data-ui role="img" aria-label={`${t('pipe.title')}: ${[1, 2, 3, 4, 5, 6].map((k) => node(k).b).join(', ')}`}>
+      <div class="ui-bar"><b>{t('pipe.title')}</b><span class="ui-pill ok"><i></i>{t('pipe.status')}</span></div>
+      <div class="pipe__canvas" aria-hidden="true">
+        <svg viewBox="0 0 800 290" preserveAspectRatio="none">
+          <g fill="none" stroke="rgba(242,238,234,.14)" stroke-width="1.5">
+            <path d="M186 145 H220" /><path d="M390 145 C410 145 410 45 440 45" /><path d="M390 145 H440" /><path d="M390 145 C410 145 410 245 440 245" /><path d="M610 245 H640" />
+          </g>
+          <g fill="none" stroke="#ec7a45" stroke-width="1.5" class="flow">
+            <path d="M186 145 H220" /><path d="M390 145 C410 145 410 45 440 45" /><path d="M390 145 H440" /><path d="M390 145 C410 145 410 245 440 245" /><path d="M610 245 H640" />
+          </g>
+        </svg>
+        <div class="pipe__node" style="left:16px;top:118px"><b>{node(1).b}</b><span>{node(1).s}</span></div>
+        <div class="pipe__node is-hot" style="left:220px;top:118px"><b>{node(2).b}</b><span>{node(2).s}</span></div>
+        <div class="pipe__node" style="left:440px;top:18px"><b>{node(3).b}</b><span>{node(3).s}</span></div>
+        <div class="pipe__node" style="left:440px;top:118px"><b>{node(4).b}</b><span>{node(4).s}</span></div>
+        <div class="pipe__node" style="left:440px;top:218px"><b>{node(5).b}</b><span>{node(5).s}</span></div>
+        <div class="pipe__node is-hot" style="left:640px;top:218px"><b>{node(6).b}</b><span>{node(6).s}</span></div>
+      </div>
+      <ul class="pipe__log" aria-hidden="true">
+        <li><span>{t('pipe.l1')}</span><span class="ui-pill ok"><i></i>{t('pipe.l1v')}</span></li>
+        <li><span>{t('pipe.l2')}</span><span class="ui-pill ok"><i></i>{t('pipe.l2v')}</span></li>
+        <li><span>{t('pipe.l3')}</span><span class="ui-pill"><i></i>{t('pipe.l3v')}</span></li>
+      </ul>
+    </div>
+  </div>
+</section>

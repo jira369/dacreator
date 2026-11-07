@@ -24,6 +24,9 @@ const projects = defineCollection({
     live: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(0),
+    kind: z.enum(['employer', 'project']).default('project'),
+    period: z.string().optional(),
+    role: z.string().optional(),
   }),
 });
 

@@ -13,7 +13,7 @@ const { title, description, date, slug, tags = [] } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const formattedDate = date.toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-US', {
+const formattedDate = date.toLocaleDateString(lang === 'de' ? 'de-DE' : lang === 'vi' ? 'vi-VN' : 'en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -22,13 +22,13 @@ const formattedDate = date.toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-US',
 
 <a
   href={`/${lang}/blog/${slug}`}
-  class="group block p-6 bg-surface rounded-2xl border border-border hover:border-accent/30 transition-all duration-300"
+  class="group block p-6 bg-surface rounded-2xl border border-border hover:border-accent/30 transition-colors duration-300"
   data-animate
 >
   <div class="flex items-center gap-3 mb-3">
-    <time class="text-xs text-text-muted">{formattedDate}</time>
+    <time class="text-[13px] text-text-muted">{formattedDate}</time>
     {tags.length > 0 && (
-      <span class="text-xs text-accent bg-accent/10 px-2 py-0.5 rounded-md">{tags[0]}</span>
+      <span class="text-[13px] text-accent-light bg-surface-hover px-2 py-0.5 rounded-md">{tags[0]}</span>
     )}
   </div>
 
@@ -36,14 +36,14 @@ const formattedDate = date.toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-US',
     {title}
   </h3>
 
-  <p class="text-text-muted text-sm leading-relaxed line-clamp-2 mb-4">
+  <p class="text-text-muted text-base leading-relaxed line-clamp-2 mb-4">
     {description}
   </p>
 
-  <span class="inline-flex items-center gap-1.5 text-sm text-accent-light group-hover:gap-2.5 transition-all">
+  <span class="inline-flex items-center gap-1.5 text-sm text-accent-light group-hover:gap-2.5 transition-[gap]">
     {t('blog.readMore')}
     <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   </span>
 </a>

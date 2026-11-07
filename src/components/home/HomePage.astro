@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from './Hero.astro';
+import Statement from './Statement.astro';
+import Creatives from './Creatives.astro';
+import DNA from './DNA.astro';
+import Case from './Case.astro';
+import Tech from './Tech.astro';
+import Work from './Work.astro';
+import Stations from './Stations.astro';
+import Cta from './Cta.astro';
+import { useTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t('meta.title')} description={t('meta.description')}>
+  <Hero lang={lang} />
+  <Statement lang={lang} />
+  <Creatives lang={lang} />
+  <DNA lang={lang} />
+  <Case lang={lang} />
+  <Tech lang={lang} />
+  <Work lang={lang} />
+  <Stations lang={lang} />
+  <Cta lang={lang} />
+</BaseLayout>
