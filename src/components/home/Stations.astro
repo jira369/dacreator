@@ -5,14 +5,14 @@ import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-import { logoFor, monogram } from '../../data/logos';
+import { brand } from '../../data/logos';
 const items = [
   { s: 'rightmart', n: 'rightmart Group', k: 'rm' },
   { s: '42digital', n: '42DIGITAL GmbH', k: '42' },
   { s: 'hildebrand-vu', n: 'Hildebrand & Vu GbR', k: 'hv' },
   { s: 'triagramm', n: 'Triagramm UG', k: 'tg' },
   { s: 'vitapio', n: 'Vitapio GmbH', k: 'vp' },
-].map((i) => ({ ...i, role: t(`st.${i.k}.role` as 'st.rm.role'), desc: t(`st.${i.k}.desc` as 'st.rm.desc'), p: t(`st.${i.k}.p` as 'st.rm.p') }));
+].map((i) => ({ ...i, b: brand(i.n), role: t(`st.${i.k}.role` as 'st.rm.role'), desc: t(`st.${i.k}.desc` as 'st.rm.desc'), p: t(`st.${i.k}.p` as 'st.rm.p') }));
 ---
 <section class="section wrap" id="stations" aria-labelledby="st-title">
   <div class="stations__head">
@@ -23,8 +23,13 @@ const items = [
     {items.map((i) => (
       <li data-reveal>
         <a href={`/${lang}/projects/${i.s}`}>
-          <span class="mark">{logoFor(i.n) ? <img class="logo-img" src={logoFor(i.n)} alt={i.n} loading="lazy" /> : <span class="mono-mark">{monogram(i.n)}</span>}</span>
-          <span class="top">{i.n}<span>{i.p}</span></span>
+          <span class="top">
+            <span class="brand-line">
+              {i.b.logo ? <img class="logo-img brand-logo" src={i.b.logo} alt={i.n} loading="lazy" /> : <span class="brand-name">{i.n}</span>}
+              {i.b.logo && i.b.legal && <span class="legal-tag" aria-hidden="true">{i.b.legal}</span>}
+            </span>
+            <span>{i.p}</span>
+          </span>
           <span class="role">{i.role}</span>
           <span class="desc">{i.desc}</span>
         </a>

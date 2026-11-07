@@ -64,3 +64,8 @@ Top three problems:
 
 ## Creatives-Carousel
 Vier Creatives des Teams, auf 540×960 H.264 komprimiert (zusammen 11 MB, `preload="none"`, nur das mittlere spielt stumm im Loop, Ton per Button). Taste-Inspector danach: 0 FAIL, die Warnung "no-real-pictures" ist verschwunden.
+
+## Logos statt Namen, Substack statt Blog (Stand nach Feedback)
+- Hat eine Station ein Logo, ersetzt das Logo den Namen. Die Rechtsform (GmbH) steht klein daneben, nie doppelt. Das rightmart-Logo enthält "group" bereits, dort entfällt der Zusatz. Ohne Logo (Hildebrand & Vu, Triagramm) steht der Name als Text, ohne Monogramm.
+- Auf den Station-Seiten mit Logo gilt für den Inspector `--allow focal-point`: Das Logo ist die Überschrift (bis 84 px hoch), wird aber nur nach Bildgröße gemessen. Der h1-Text liegt für Screenreader im Dokument.
+- Blog: Beiträge entfernt, Seite verweist auf https://substack.com/@dactales. Neue Beiträge kommen später als MDX in `src/content/blog/`.

@@ -8,38 +8,41 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="foot">
-  <div class="foot__sig" data-foot-sig role="img" aria-label="Dac Vu"><span class="sig"></span></div>
-  <div class="foot__cols">
-    <nav aria-label={t('foot.site')}>
-      <b>{t('foot.site')}</b>
-      <a href={`${home}#dna`}>{t('nav.dna')}</a>
-      <a href={`${home}#tech`}>{t('nav.tech')}</a>
-      <a href={`${home}#stations`}>{t('foot.stations')}</a>
-    </nav>
-    <nav aria-label={t('foot.more')}>
-      <b>{t('foot.more')}</b>
-      <a href={getLocalizedPath('/projects', lang)}>{t('nav.projects')}</a>
-      <a href={getLocalizedPath('/cv', lang)}>{t('nav.cv')}</a>
-      <a href={getLocalizedPath('/blog', lang)}>{t('nav.blog')}</a>
-    </nav>
-    <nav aria-label={t('foot.profiles')}>
-      <b>{t('foot.profiles')}</b>
-      <a href="https://github.com/jira369" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://linkedin.com/in/dacvu" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </nav>
-    <nav aria-label={t('foot.legal')}>
-      <b>{t('foot.legal')}</b>
-      <a href={getLocalizedPath('/impressum', lang)}>{t('foot.imprint')}</a>
-      <a href={getLocalizedPath('/datenschutz', lang)}>{t('foot.privacy')}</a>
-    </nav>
-    <div class="foot__contact">
-      <b class="muted" style="font-weight:400;font-size:.875rem">{t('foot.contact')}</b>
-      <a class="link" href={`mailto:${email}`}>{email}</a>
-      <span class="muted">Bremen</span>
+  <div class="foot__main">
+    <div class="foot__brand">
+      <a class="foot__sig" data-foot-sig href={home} aria-label="Dac Vu"><span class="sig"></span></a>
+      <p class="foot__sub">{t('foot.sub')}</p>
+      <a class="link foot__mail" href={`mailto:${email}`}>{email}</a>
+    </div>
+    <div class="foot__cols">
+      <nav aria-label={t('foot.site')}>
+        <b>{t('foot.site')}</b>
+        <a href={`${home}#dna`}>{t('nav.dna')}</a>
+        <a href={`${home}#creatives`}>Creatives</a>
+        <a href={`${home}#tech`}>{t('nav.tech')}</a>
+        <a href={`${home}#stations`}>{t('foot.stations')}</a>
+      </nav>
+      <nav aria-label={t('foot.more')}>
+        <b>{t('foot.more')}</b>
+        <a href={getLocalizedPath('/projects', lang)}>{t('nav.projects')}</a>
+        <a href={getLocalizedPath('/cv', lang)}>{t('nav.cv')}</a>
+        <a href={getLocalizedPath('/blog', lang)}>{t('nav.blog')}</a>
+      </nav>
+      <nav aria-label={t('foot.profiles')}>
+        <b>{t('foot.profiles')}</b>
+        <a href="https://github.com/jira369" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/dacvu" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://substack.com/@dactales" target="_blank" rel="noopener noreferrer">Substack</a>
+      </nav>
+      <nav aria-label={t('foot.legal')}>
+        <b>{t('foot.legal')}</b>
+        <a href={getLocalizedPath('/impressum', lang)}>{t('foot.imprint')}</a>
+        <a href={getLocalizedPath('/datenschutz', lang)}>{t('foot.privacy')}</a>
+      </nav>
     </div>
   </div>
   <div class="foot__base">
-    <span>© {year} Dac Vu</span>
+    <span>© {year} Dac Vu, Bremen</span>
     <a class="btn btn--ghost" href="#main">{t('foot.up')}</a>
   </div>
 </footer>

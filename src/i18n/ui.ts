@@ -182,6 +182,7 @@ const de = {
   'foot.imprint': 'Impressum',
   'foot.privacy': 'Datenschutz',
   'foot.stations': 'Stationen',
+  'foot.sub': 'Head of Performance Marketing bei der rightmart Group. Direct Response, Tracking und AI-first.',
 
   // Unterseiten
   'projects.heading': 'Projekte',
@@ -199,6 +200,8 @@ const de = {
   'blog.readMore': 'Weiterlesen',
   'blog.back': 'Zurück zum Blog',
   'blog.empty': 'Noch keine Beiträge.',
+  'blog.soon': 'Hier erscheinen bald meine Beiträge. Bis dahin schreibe ich auf Substack über Performance Marketing, AI und Tools, die ich baue.',
+  'blog.cta': 'Auf Substack lesen',
 
   // Lebenslauf
   'cv.title': 'Lebenslauf',
@@ -399,6 +402,7 @@ const en: Dict = {
   'foot.imprint': 'Imprint',
   'foot.privacy': 'Privacy',
   'foot.stations': 'Stations',
+  'foot.sub': 'Head of Performance Marketing at rightmart Group. Direct response, tracking and AI-first.',
 
   'projects.heading': 'Projects',
   'projects.title': 'What I have built.',
@@ -415,6 +419,8 @@ const en: Dict = {
   'blog.readMore': 'Read more',
   'blog.back': 'Back to blog',
   'blog.empty': 'No posts yet.',
+  'blog.soon': 'My posts will appear here soon. Until then I write on Substack about performance marketing, AI and the tools I build.',
+  'blog.cta': 'Read on Substack',
 
   'cv.title': 'Resume',
   'cv.role': 'Head of Performance Marketing, rightmart Group.',
