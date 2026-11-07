@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from './Hero.astro';
-import Statement from './Statement.astro';
 import Creatives from './Creatives.astro';
 import DNA from './DNA.astro';
 import Case from './Case.astro';
@@ -18,7 +17,6 @@ const t = useTranslations(lang);
 
 <BaseLayout title={t('meta.title')} description={t('meta.description')}>
   <Hero lang={lang} />
-  <Statement lang={lang} />
   <Creatives lang={lang} />
   <DNA lang={lang} />
   <Case lang={lang} />

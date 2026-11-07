@@ -44,8 +44,6 @@ const de = {
   'pipe.l3': 'CRM gegen Interface-Leads',
   'pipe.l3v': 'Ampel',
 
-  // Statement
-  'statement': 'Direct Response mit Creative-Herkunft. *Ich baue* die Werkzeuge, mit denen ich steuere.',
 
   // Rechner
   'calc.q': 'Was kostet ein Lead?',
@@ -272,7 +270,6 @@ const en: Dict = {
   'pipe.l3': 'CRM vs. interface leads',
   'pipe.l3v': 'traffic light',
 
-  'statement': 'Direct response with a creative background. *I build* the tools I steer with.',
 
   'calc.q': 'What does a lead cost?',
   'calc.spend': 'Monthly spend',
