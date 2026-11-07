@@ -13,6 +13,7 @@ const map: Record<string, string> = {
   html: 'html5', css: 'css', astro: 'astro', instapy: 'instagram',
   'rightmart group': 'rightmart', rightmart: 'rightmart', '42digital gmbh': '42digital', '42digital': '42digital',
   'vitapio gmbh': 'vitapio.png', vitapio: 'vitapio.png',
+  github: 'github', substack: 'substack',
 };
 
 /** Pfad zum Logo für einen Namen, oder undefined, wenn es keins gibt. */
@@ -22,8 +23,16 @@ export function logoFor(name: string): string | undefined {
   return `/logos/${f.includes('.') ? f : `${f}.svg`}`;
 }
 
-/** Monogramm für Stationen ohne Logo (Hildebrand & Vu, Triagramm). */
-export function monogram(name: string): string {
-  const m: Record<string, string> = { 'hildebrand & vu gbr': 'HV', 'triagramm ug': 'TG' };
-  return m[name.trim().toLowerCase()] ?? name.slice(0, 2).toUpperCase();
+
+/** Rechtsform am Ende eines Namens, z. B. "GmbH". */
+const LEGAL = /\s+(GmbH|UG|GbR|AG)$/;
+
+/** Marke ohne Rechtsform plus die Rechtsform getrennt. Das Logo trägt den Namen, die Rechtsform steht klein daneben. */
+export function brand(title: string): { base: string; legal: string; logo?: string } {
+  const m = title.match(LEGAL);
+  const base = m ? title.slice(0, m.index) : title;
+  const logo = logoFor(title) ?? logoFor(base);
+  // Das rightmart-Logo enthält "group" bereits, dort entfällt der Zusatz
+  const includes = /^rightmart/i.test(title);
+  return { base, legal: includes ? '' : (m ? m[1] : ''), logo };
 }

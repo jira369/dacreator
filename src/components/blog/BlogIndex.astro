@@ -21,7 +21,14 @@ const posts = (await getCollection('blog')).filter((p) => p.id.startsWith(`${src
         <div class="grid gap-5">
           {posts.map((p) => <BlogCard title={p.data.title} description={p.data.description} date={p.data.date} slug={p.id.replace(`${src}/`, '')} tags={p.data.tags} />)}
         </div>
-      ) : <p class="text-text-muted">{t('blog.empty')}</p>}
+      ) : (
+        <div class="blog-soon" data-reveal>
+          <p class="text-text-muted text-lg">{t('blog.soon')}</p>
+          <a class="btn" href="https://substack.com/@dactales" target="_blank" rel="noopener noreferrer">
+            <img src="/logos/substack.svg" alt="" />{t('blog.cta')}
+          </a>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>

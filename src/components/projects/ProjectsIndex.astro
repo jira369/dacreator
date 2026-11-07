@@ -4,6 +4,7 @@ import ProjectCard from './ProjectCard';
 import { getCollection } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
 import { accent } from '../../lib/accent';
+import { brand } from '../../data/logos';
 import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
@@ -38,6 +39,8 @@ const groups = [
                 index={i}
                 meta={p.data.period}
                 role={p.data.role}
+                logo={p.data.kind === 'employer' ? brand(p.data.title).logo : undefined}
+                legal={p.data.kind === 'employer' ? brand(p.data.title).legal : undefined}
               />
             ))}
           </div>

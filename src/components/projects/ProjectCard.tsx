@@ -10,10 +10,12 @@ interface Props {
   index: number;
   meta?: string;
   role?: string;
+  logo?: string;
+  legal?: string;
 }
 
 // Karte aus der ersten Version der Seite, ohne Nummerierung, mit Zeitraum und Rolle.
-export default function ProjectCard({ title, description, tags, href, viewProject, index, meta, role }: Props) {
+export default function ProjectCard({ title, description, tags, href, viewProject, index, meta, role, logo, legal }: Props) {
   return (
     <motion.a
       href={href}
@@ -24,7 +26,16 @@ export default function ProjectCard({ title, description, tags, href, viewProjec
       className="group has-logo block p-7 sm:p-8 bg-surface rounded-2xl border border-border hover:border-accent/40 hover:bg-surface-hover transition-colors duration-300"
     >
       <div className="flex items-baseline justify-between gap-4 mb-2">
-        <h3 className="text-xl font-semibold tracking-tight group-hover:text-accent transition-colors">{title}</h3>
+        <h3 className="text-xl font-semibold tracking-tight group-hover:text-accent transition-colors">
+          {logo ? (
+            <span className="brand-line">
+              <img src={logo} alt={title} className="logo-img brand-logo" loading="lazy" />
+              {legal && <span className="legal-tag" aria-hidden="true">{legal}</span>}
+            </span>
+          ) : (
+            title
+          )}
+        </h3>
         {meta && <span className="text-sm text-text-muted whitespace-nowrap tabular-nums">{meta}</span>}
       </div>
       {role && <p className="text-accent-light text-sm mb-3">{role}</p>}

@@ -11,7 +11,7 @@ const P = (s: string) => `/${lang}/projects/${s}`;
   <div class="tiles">
     <h2 id="work-title" data-reveal set:html={accent(t('work.h'))} />
     <a class="tile t1" href={P('rightmart')} data-reveal>
-      <div class="tile__art"><div class="art-word" aria-hidden="true"><span>rightmart <span class="it">Group</span></span></div></div>
+      <div class="tile__art"><div class="art-logo" aria-hidden="true"><img src="/logos/rightmart.svg" alt="" loading="lazy" /></div></div>
       <div class="tile__cap"><span>{t('work.rightmart')}</span><span>{t('work.rightmartk')}</span></div>
     </a>
     <a class="tile t2" href={P('marketingcockpit')} data-reveal>
@@ -31,7 +31,18 @@ const P = (s: string) => `/${lang}/projects/${s}`;
       <div class="tile__cap"><span>{t('work.insta')}</span><span>{t('work.instak')}</span></div>
     </a>
     <a class="tile t5" href={`/${lang}/projects`} data-reveal>
-      <div class="tile__art"><div class="art-list" aria-hidden="true">{['rightmart Group', '42DIGITAL', 'Hildebrand & Vu', 'Triagramm', 'Vitapio', 'Performance Cockpit', 'UTM-Generator', 'Leben in Deutschland', 'InstaPy'].map((n) => <span>{n}</span>)}</div></div>
+      <div class="tile__art"><div class="art-all" aria-hidden="true">
+        <div>
+          <img class="logo-img" src="/logos/rightmart.svg" alt="" loading="lazy" />
+          <img class="logo-img" src="/logos/42digital.svg" alt="" loading="lazy" />
+          <span>Hildebrand &amp; Vu</span>
+          <span>Triagramm</span>
+          <img class="logo-img" src="/logos/vitapio.png" alt="" loading="lazy" />
+        </div>
+        <div>
+          {['Performance Cockpit', 'UTM-Generator', 'Leben in Deutschland', 'InstaPy'].map((n) => <span><img class="logo-img gh" src="/logos/github.svg" alt="" loading="lazy" />{n}</span>)}
+        </div>
+      </div></div>
       <div class="tile__cap"><span>{t('work.all')}</span><span>{t('work.allk')}</span></div>
     </a>
   </div>
