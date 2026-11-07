@@ -5,7 +5,6 @@ import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-import Mark from '../Mark.astro';
 const pts = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({ h: t(`tech.p${n}` as 'tech.p1'), d: t(`tech.p${n}d` as 'tech.p1d') }));
 ---
 <section class="section wrap" id="tech" aria-labelledby="tech-title">
@@ -17,7 +16,7 @@ const pts = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({ h: t(`tech.p${n}` as 'tech.p1
       <h2 id="tech-title" data-reveal set:html={accent(t('tech.h'))} />
       <p data-reveal>{t('tech.p')}</p>
       <ul class="points">
-        {pts.map((p) => <li data-reveal><h3><Mark class="wave" size={18} />{p.h}</h3><p>{p.d}</p></li>)}
+        {pts.map((p) => <li data-reveal><h3>{p.h}</h3><p>{p.d}</p></li>)}
       </ul>
     </div>
   </div>

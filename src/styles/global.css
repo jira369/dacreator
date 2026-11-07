@@ -245,18 +245,17 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   .dna--live .dna__label b { font-size: 0.9375rem; }
 }
 
-/* Features: photo in the motif shape + wave-marked points */
+/* Features: photo in the motif shape + dot-marked points */
 .feat { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; row-gap: 48px; align-items: start; }
 .feat__photo { grid-column: 1 / span 5; margin: 0 0 0 calc(-1 * var(--gutter)); height: 78svh; max-height: 760px; overflow: hidden; border-radius: 0 50% 50% 0 / 0 34% 34% 0; }
 .feat__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 18%; display: block; }
 .feat__body { grid-column: 7 / span 6; }
 .feat__body > p { margin-top: 18px; color: var(--muted); max-width: 46ch; }
 .points { margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; list-style: none; padding: 0; }
-.points h3 { display: flex; align-items: baseline; gap: 10px; font-size: 1.0625rem; letter-spacing: -0.01em; line-height: 1.3; }
+.points h3 { display: flex; align-items: center; gap: 0.75em; font-size: 1.0625rem; letter-spacing: -0.01em; line-height: 1.3; }
 .points p { margin-top: 6px; font-size: 1rem; color: var(--muted); }
-.wave { flex: none; width: 1.15em; height: 0.7em; }
-.points li:nth-child(odd) .wave { color: var(--sun); }
-.points li:nth-child(even) .wave { color: var(--apricot); }
+.points h3::before { content: ""; flex: none; width: 0.4em; height: 0.4em; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 0.2em rgba(236, 122, 69, 0.14), 0 0 0.7em 0.05em rgba(236, 122, 69, 0.55); transition: scale 0.35s var(--ease), box-shadow 0.35s; } /* taste-skill-ignore: brief: Dac wünscht einen dezent leuchtenden orangenen Punkt */
+.points li:hover h3::before { scale: 1.25; box-shadow: 0 0 0 0.25em rgba(236, 122, 69, 0.2), 0 0 0.9em 0.1em rgba(236, 122, 69, 0.75); } /* taste-skill-ignore: brief: Hover verstärkt das Glimmen */
 @media (max-width: 860px) {
   .feat__photo { grid-column: 1 / -1; width: 82vw; height: 60svh; }
   .feat__body { grid-column: 1 / -1; }
