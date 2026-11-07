@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHead from '../PageHead.astro';
+import { render } from 'astro:content';
+import { useTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale; project: any }
+const { lang, project } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(project);
+const priv = !project.data.github;
+---
+
+<BaseLayout title={`${project.data.title} | Dac Vu`} description={project.data.description}>
+  <article class="page wrap">
+    <div>
+      <PageHead title={project.data.title} lead={project.data.description} />
+    </div>
+    <p class="small" style="margin-top: 20px; max-width: 60ch">{project.data.tags.join(', ')}</p>
+    {(project.data.github || project.data.live) && (
+      <p style="margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap">
+        {project.data.github && <a class="btn btn--ink" href={project.data.github} target="_blank" rel="noopener noreferrer">GitHub</a>}
+        {project.data.live && <a class="btn" style="background: var(--red); color: #fff" href={project.data.live} target="_blank" rel="noopener noreferrer">Live</a>}
+      </p>
+    )}
+    <div class="prose-site prose-cols" style="margin-top: clamp(40px, 6vw, 80px)">
+      <Content />
+    </div>
+    <p style="margin-top: 64px"><a class="link-plain" href={`/${lang}/projects`}>{t('projects.back')}</a></p>
+  </article>
+</BaseLayout>

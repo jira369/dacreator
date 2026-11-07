@@ -343,3 +343,24 @@ a { text-underline-offset: 0.18em; }
 .prose-site strong { font-weight: 600; }
 
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Subpage lists and legal text */
+.page-head { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 20px; row-gap: 20px; align-items: end; }
+.page-head h1 { grid-column: 1 / span 8; max-width: none; }
+.page-head .page__lead { grid-column: 9 / span 4; margin: 0; max-width: none; }
+@media (max-width: 860px) { .page-head h1, .page-head .page__lead { grid-column: 1 / -1; } }
+.plist li { padding: 22px 0; }
+.plist__name { font-size: var(--step-lead) !important; }
+.plist li a:hover .plist__name { color: var(--red); }
+.legal > div { margin-top: 2.2em; }
+.legal h2 { font-size: var(--step-lead); font-weight: 500; margin: 0 0 0.5em; }
+.legal h3 { font-size: var(--step-body); font-weight: 500; margin: 1.4em 0 0.3em; }
+.legal ul { padding-left: 1.2em; }
+.legal li { margin: 0.4em 0; }
+.legal p { margin: 0.6em 0; }
+@media (min-width: 900px) {
+  .prose-cols { max-width: none; columns: 2; column-gap: clamp(40px, 6vw, 96px); font-size: var(--step-lead); line-height: 1.35; }
+  .prose-cols h2 { break-after: avoid; margin-top: 0; }
+  .prose-cols h2:not(:first-child) { margin-top: 1.6em; }
+  .prose-cols ul { break-inside: avoid; }
+}
