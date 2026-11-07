@@ -85,6 +85,7 @@ const de = {
   'cr.c2': 'Fakten-Motion',
   'cr.c3': 'Pain-Point-Animation',
   'cr.c4': 'Singendes Objekt',
+  'cr.c5': 'Glitch-Hook',
 
   // DNA
   'dna.h': 'Meine *DNA*.',
@@ -308,6 +309,7 @@ const en: Dict = {
   'cr.c2': 'Facts motion',
   'cr.c3': 'Pain point animation',
   'cr.c4': 'Singing object',
+  'cr.c5': 'Glitch hook',
 
   'dna.h': 'My *DNA*.',
   'dna.n1t': 'Direct response',
