@@ -490,4 +490,4 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 }
 .cv-role ul li:hover::before, .project-content li:hover::before { scale: 1.25; box-shadow: 0 0 0 0.25em rgba(236, 122, 69, 0.2), 0 0 0.9em 0.1em rgba(236, 122, 69, 0.75); } /* taste-skill-ignore: brief: Hover verstärkt das Glimmen */
 .cv-role ul li b, .cv-role ul li strong { color: var(--ink); font-weight: 500; }
-@media print { .cv-role ul li::before { background: #000; box-shadow: none; } }
+@media print { .cv-role ul li::before { background: #000; box-shadow: none; } } /* taste-skill-ignore: box-shadow: none entfernt nur das Glimmen im Druck */
