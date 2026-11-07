@@ -168,7 +168,7 @@ a { text-underline-offset: 0.18em; }
   .hero__head { display: block; padding-top: 88px; }
   .hero h1 { font-size: 9.4vw; }
   .hero__lead { font-size: 1.125rem; }
-  .hero__word { right: -4vw; bottom: -0.08em; font-size: 88vw; }
+  .hero__word { right: -6vw; bottom: -0.08em; font-size: 124vw; }
 }
 
 /* ---------- Marquee ---------- */
