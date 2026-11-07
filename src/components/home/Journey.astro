@@ -19,6 +19,7 @@ const edu = [1, 2].map((n) => [t(`journey.e${n}t` as 'journey.e1t'), t(`journey.
       <ul>
         {edu.map(([a, b, c]) => <li><span class="name">{a}</span><span class="kind">{b}</span><span class="tag">{c}</span></li>)}
       </ul>
+      <p style="margin-top:28px"><a class="btn btn--ink" href={`/${lang}/cv`}>{t('journey.cv')}</a></p>
     </div>
   </div>
 </section>

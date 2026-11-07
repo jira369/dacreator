@@ -6,12 +6,23 @@ gsap.registerPlugin(ScrollTrigger);
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /** Reveal, hero, scroll-linked wordmark. Safe to call on every page load. */
+/** Ankerlinks beim Laden: nach dem Aufbau der ScrollTrigger ohne Animation zum Ziel springen. */
+function jumpToHash(): void {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  ScrollTrigger.refresh();
+  requestAnimationFrame(() => el.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' }));
+}
+
 export function initMotion(): void {
   const root = document.documentElement;
   ScrollTrigger.getAll().forEach((t) => t.kill());
 
   if (reduced()) {
     root.classList.add('no-motion');
+    jumpToHash();
     return;
   }
 
@@ -62,6 +73,7 @@ export function initMotion(): void {
     });
 
     window.clearTimeout(fallback);
+    jumpToHash();
   } catch {
     root.classList.add('reveal-fallback');
   }

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+import { cvRoles } from '../../data/cv';
+import type { Locale } from '../../i18n/config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const roles = cvRoles[lang];
+const groups = [1, 2, 3, 4].map((n) => ({ id: n === 4 ? 'creative' : undefined, h: t(`cv.g${n}` as 'cv.g1'), items: t(`cv.l${n}` as 'cv.l1').split('|') }));
+const edu = [1, 2].map((n) => [t(`journey.e${n}t` as 'journey.e1t'), t(`journey.e${n}c` as 'journey.e1c'), t(`journey.e${n}p` as 'journey.e1p')]);
+---
+
+<BaseLayout title={`${t('cv.title')} | Dac Vu, ${t('hero.title1')} ${t('hero.title2')}`} description={t('cv.lead')}>
+  <article class="page wrap">
+    <header class="cv-hero">
+      <div class="cv-hero__text">
+        <h1 data-reveal>Dac Vu</h1>
+        <p class="cv-hero__role" data-reveal>{t('hero.title1')} {t('hero.title2')}, rightmart Group. {t('cv.lead')}</p>
+        <div class="cv-hero__actions no-print" data-reveal>
+          <button class="btn" type="button" data-print>{t('cv.print')}</button>
+          <a class="btn btn--ink" href={`/${lang}/#contact`}>{t('cv.contact')}</a>
+        </div>
+      </div>
+      <figure class="cv-hero__photo" data-reveal>
+        <img src="/images/dac-portrait.webp" width="1040" height="1333" alt={t('hero.photo')} decoding="async" />
+      </figure>
+    </header>
+
+    <section class="cv-block" aria-labelledby="cv-exp">
+      <h2 id="cv-exp" data-reveal>{t('cv.exp')}</h2>
+      <div class="cv-block__body">
+        {roles.map((r) => (
+          <div class={`cv-role ${r.now ? 'is-now' : ''}`} data-reveal>
+            <h3>{r.title}</h3>
+            <span class="cv-role__period">{r.period}</span>
+            <span class="cv-role__org">{r.org}</span>
+            <ul>{r.bullets.map((b) => <li>{b}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="cv-block" aria-labelledby="cv-skills">
+      <h2 id="cv-skills" data-reveal>{t('cv.skills')}</h2>
+      <div class="cv-block__body cv-skills">
+        {groups.map((g) => (
+          <div id={g.id} data-reveal>
+            <h3>{g.h}</h3>
+            <ul>{g.items.map((i) => <li>{i}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="cv-block" aria-labelledby="cv-edu">
+      <h2 id="cv-edu" data-reveal>{t('cv.edu')}</h2>
+      <div class="cv-block__body">
+        {edu.map(([a, b, c]) => (
+          <div class="cv-role" data-reveal>
+            <h3>{a}</h3>
+            <span class="cv-role__period">{c}</span>
+            <span class="cv-role__org">{b}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  </article>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
+    });
+  </script>
+</BaseLayout>

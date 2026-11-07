@@ -1,4 +1,4 @@
-import { useState, useMemo, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 
 interface Props {
   lang: string;
@@ -55,7 +55,9 @@ function generateCaptcha() {
 export default function ContactForm({ lang }: Props) {
   const labels = t[lang as keyof typeof t] || t.en;
 
-  const [captcha, setCaptcha] = useState(() => generateCaptcha());
+  // Zufallswerte erst im Browser, sonst weicht das Server-HTML ab (Hydration-Fehler)
+  const [captcha, setCaptcha] = useState({ a: 0, b: 0, answer: 0 });
+  useEffect(() => setCaptcha(generateCaptcha()), []);
   const [form, setForm] = useState({ name: '', email: '', message: '', captchaInput: '' });
   const [error, setError] = useState('');
   const [sent, setSent] = useState(false);

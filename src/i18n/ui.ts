@@ -22,7 +22,7 @@ const de = {
   'hero.word': '60',
   'hero.lead': 'Von niedrigem 7-stelligen Umsatz auf 60 Mio Jahresumsatz durch Performance Marketing.',
   'hero.cta': 'Kontakt aufnehmen',
-  'hero.cta2': 'Zum Case',
+  'hero.cta2': 'Meine DNA',
   'hero.name': 'Dac Vu',
 
   // Marquee
@@ -55,7 +55,7 @@ const de = {
   'case.s3t': 'Spend',
   'case.s3': 'Ca. 3 Mio Euro, gesteuert auf Effizienz.',
   'case.s4t': 'Return',
-  'case.s4': 'Über 40 Mio Euro Streitwert.',
+  'case.s4': 'Streitwert von über 40 Mio Euro.',
   'case.pic1': 'Börsen-Ticker, New York 1922: Zahlen in Echtzeit lesen ist älter als jedes Dashboard.',
   'case.pic2': 'Karikatur von 1901. Die Mechanik hinter Hypes ändert sich nicht.',
 
@@ -106,7 +106,7 @@ const de = {
   'journey.r1p': 'seit 10/2026',
   'journey.r2t': 'Head of Creative & Brand',
   'journey.r2c': 'rightmart Group',
-  'journey.r2p': '2026',
+  'journey.r2p': '04/2026 bis 09/2026',
   'journey.r3t': 'Teamleiter Social Media',
   'journey.r3c': 'rightmart Group',
   'journey.r3p': '2024 bis 2026',
@@ -162,6 +162,42 @@ const de = {
   'blog.readMore': 'Weiterlesen',
   'blog.minRead': 'Min. Lesezeit',
   'blog.back': 'Zurück zum Blog',
+
+  // DNA
+  'dna.h': 'Meine DNA',
+  'dna.sub': 'Sechs Themen, die alles antreiben. Knoten anklicken, Helix ziehen zum Drehen.',
+  'dna.n1t': 'Direct Response',
+  'dna.n1s': 'Leads, CPL, CPS',
+  'dna.n2t': 'AI-first',
+  'dna.n2s': 'Apps mit Claude gebaut',
+  'dna.n3t': 'Tracking und Daten',
+  'dna.n3s': 'Server-Side, GA4, Atlas',
+  'dna.n4t': 'Creative und Brand',
+  'dna.n4s': 'Creative Loop, Brand-Hoheit',
+  'dna.n5t': 'Führung',
+  'dna.n5s': 'Ziele statt Aufgaben',
+  'dna.n6t': 'Build',
+  'dna.n6s': 'Cockpit, UTM, Tools',
+
+  // Lebenslauf
+  'nav.cv': 'Lebenslauf',
+  'hero.photo': 'Dac Vu im schwarzen rightmart-Hoodie vor Bambuspflanzen',
+  'journey.cv': 'Vollständiger Lebenslauf',
+  'cv.title': 'Lebenslauf',
+  'cv.lead': 'Tech-savvy, AI-first, Direct Response. Der Weg dorthin, Station für Station.',
+  'cv.print': 'Als PDF speichern',
+  'cv.contact': 'Kontakt aufnehmen',
+  'cv.exp': 'Erfahrung',
+  'cv.skills': 'Fähigkeiten',
+  'cv.edu': 'Ausbildung',
+  'cv.g1': 'Performance',
+  'cv.l1': 'Performance Marketing|SEA|Paid Social|Influencer Marketing|CRO und Landingpages|Budgetsteuerung',
+  'cv.g2': 'Tech und AI',
+  'cv.l2': 'Server-Side-Tracking|GA4 und GTM|Attribution|Marketingdaten-Atlas|Apps mit Claude und AI-Tools|Technisches Verständnis',
+  'cv.g3': 'Führung',
+  'cv.l3': 'Personalführung|Projektmanagement|Produktmanagement|Prozessoptimierung|Unternehmerisches Denken',
+  'cv.g4': 'Creative und Brand',
+  'cv.l4': 'Branding|Creative Strategy|Social Media Marketing|Influencer Marketing|Organic Social',
 } as const;
 
 type Key = keyof typeof de;
@@ -187,7 +223,7 @@ const en: Dict = {
   'hero.word': '60',
   'hero.lead': 'From low seven-figure revenue to 60 million a year through performance marketing.',
   'hero.cta': 'Get in touch',
-  'hero.cta2': 'See the case',
+  'hero.cta2': 'My DNA',
   'hero.name': 'Dac Vu',
 
   'marquee.items': 'Direct response|AI-first|Server-side tracking|Attribution|CPL, CPS, CAC|Marketing data atlas|Creative loop|Channel mix',
@@ -265,7 +301,7 @@ const en: Dict = {
   'journey.r1p': 'since 10/2026',
   'journey.r2t': 'Head of Creative & Brand',
   'journey.r2c': 'rightmart Group',
-  'journey.r2p': '2026',
+  'journey.r2p': '04/2026 to 09/2026',
   'journey.r3t': 'Team Lead Social Media',
   'journey.r3c': 'rightmart Group',
   'journey.r3p': '2024 to 2026',
@@ -318,6 +354,40 @@ const en: Dict = {
   'blog.readMore': 'Read more',
   'blog.minRead': 'min read',
   'blog.back': 'Back to blog',
+
+  'dna.h': 'My DNA',
+  'dna.sub': 'Six themes that drive everything. Click a node, drag the helix to rotate.',
+  'dna.n1t': 'Direct response',
+  'dna.n1s': 'Leads, CPL, CPS',
+  'dna.n2t': 'AI-first',
+  'dna.n2s': 'Apps built with Claude',
+  'dna.n3t': 'Tracking and data',
+  'dna.n3s': 'Server-side, GA4, atlas',
+  'dna.n4t': 'Creative and brand',
+  'dna.n4s': 'Creative loop, brand authority',
+  'dna.n5t': 'Leadership',
+  'dna.n5s': 'Goals, not tasks',
+  'dna.n6t': 'Build',
+  'dna.n6s': 'Cockpit, UTM, tools',
+
+  'nav.cv': 'Resume',
+  'hero.photo': 'Dac Vu in a black rightmart hoodie in front of bamboo plants',
+  'journey.cv': 'Full resume',
+  'cv.title': 'Resume',
+  'cv.lead': 'Tech-savvy, AI-first, direct response. The way here, station by station.',
+  'cv.print': 'Save as PDF',
+  'cv.contact': 'Get in touch',
+  'cv.exp': 'Experience',
+  'cv.skills': 'Skills',
+  'cv.edu': 'Education',
+  'cv.g1': 'Performance',
+  'cv.l1': 'Performance marketing|SEA|Paid social|Influencer marketing|CRO and landing pages|Budget steering',
+  'cv.g2': 'Tech and AI',
+  'cv.l2': 'Server-side tracking|GA4 and GTM|Attribution|Marketing data atlas|Apps built with Claude and AI tools|Technical understanding',
+  'cv.g3': 'Leadership',
+  'cv.l3': 'People leadership|Project management|Product management|Process optimization|Entrepreneurial thinking',
+  'cv.g4': 'Creative and brand',
+  'cv.l4': 'Branding|Creative strategy|Social media marketing|Influencer marketing|Organic social',
 };
 
 // Vietnamesisch: Entwurf, bitte gegenlesen.
@@ -336,7 +406,7 @@ const vi: Dict = {
 
   'hero.lead': 'Từ doanh thu bảy chữ số thấp lên 60 triệu mỗi năm nhờ performance marketing.',
   'hero.cta': 'Liên hệ ngay',
-  'hero.cta2': 'Xem case',
+  'hero.cta2': 'DNA của tôi',
 
   'role.f1l': 'Từ',
   'role.f1v': '01.10.2026',
@@ -377,6 +447,11 @@ const vi: Dict = {
   'blog.readMore': 'Đọc thêm',
   'blog.minRead': 'phút đọc',
   'blog.back': 'Quay lại blog',
+  'dna.h': 'DNA của tôi',
+  'dna.sub': 'Sáu chủ đề thúc đẩy mọi thứ. Bấm vào nút, kéo để xoay.',
+  'nav.cv': 'Hồ sơ',
+  'cv.title': 'Hồ sơ',
+  'journey.cv': 'Hồ sơ đầy đủ',
 };
 
 export const ui = { de, en, vi } as const;

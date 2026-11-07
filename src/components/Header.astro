@@ -3,7 +3,7 @@ import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils
 import { locales, localeNames } from '../i18n/config';
 import { switchLocale } from '../i18n/utils';
 
-interface Props { tone?: 'paper' | 'red' }
+interface Props { tone?: 'paper' | 'sun' }
 const { tone = 'paper' } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,14 +13,14 @@ const links = [
   { label: t('nav.role'), href: `${home}#role` },
   { label: t('nav.case'), href: `${home}#case` },
   { label: t('nav.tech'), href: `${home}#tech` },
+  { label: t('nav.cv'), href: getLocalizedPath('/cv', lang) },
   { label: t('nav.projects'), href: getLocalizedPath('/projects', lang) },
-  { label: t('nav.blog'), href: getLocalizedPath('/blog', lang) },
   { label: t('nav.contact'), href: `${home}#contact` },
 ];
 const others = locales.filter((l) => l !== lang);
 ---
 
-<header class="site-header" data-site-header style={tone === 'red' ? '--header-ink:#fff' : undefined}>
+<header class="site-header" data-site-header style={tone === 'sun' ? '--header-ink:var(--on-sun)' : undefined}>
   <a class="brand" href={home}>Dac Vu</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-btn data-open={t('nav.close')} data-closed={t('nav.menu')}>{t('nav.menu')}</button>
   <nav id="site-nav" aria-label="Main">

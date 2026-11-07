@@ -72,3 +72,11 @@ Dac hat Variante 2 gewählt, weil sie jung und klar wirkt und die Zahlen für si
 - Exakte Akzentfarbe und Schriftpaar (Impeccable und Taste entscheiden).
 - Beschreibungstexte der Repo-Cards aus READMEs ableiten. sea-cockpit: Dac liefert einen Satz.
 - Kurze EN- und VI-Texte werden aus dem DE-Text abgeleitet. VI als Entwurf markiert.
+
+## Addendum 2026-11-07: Sunset, DNA, Lebenslauf
+Entscheidungen von Dac nach dem ersten Bau:
+- **Palette Sunset Dusk:** Sonnenuntergang-Orange #E0693B als Hauptfarbe, Zweitfarbe Dusk-Aubergine #2A1B2F, Akzent Aprikot-Rosé #F4A58A, Text-Akzent auf Papier #A8431C. Auf Orange steht Dusk-Text (Kontrast 4,9:1), nie Weiß.
+- **Eigenes Foto** im Hero und auf der Lebenslauf-Seite. Weitere Fotos folgen von Dac.
+- **Meine DNA:** interaktive Doppelhelix (Canvas 2D, pseudo-3D, Drag zum Drehen) mit sechs Knoten als echte Links: Direct Response (#case), AI-first (#work), Tracking und Daten (Projekt marketingcockpit), Creative und Brand (Lebenslauf), Führung (#role), Build (Projekte). Ohne JS eine Linkliste. Reduced Motion: statisch.
+- **Lebenslauf-Unterseite** /de/cv, /en/cv, /vi/cv mit Druckstil für PDF. Ohne Adresse, Telefon, Geburtsdatum. Head of Creative & Brand: 04/2026 bis 09/2026.
+- Look: SaaS-Anmutung, tech-savvy betont.

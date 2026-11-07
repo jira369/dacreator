@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from './Hero.astro';
 import Marquee from './Marquee.astro';
+import DNA from './DNA.astro';
 import Role from './Role.astro';
 import Case from './Case.astro';
 import Tech from './Tech.astro';
@@ -15,9 +16,10 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<BaseLayout title={t('meta.title')} description={t('meta.description')} tone="red">
+<BaseLayout title={t('meta.title')} description={t('meta.description')} tone="sun">
   <Hero lang={lang} />
   <Marquee lang={lang} />
+  <DNA lang={lang} />
   <Role lang={lang} />
   <Case lang={lang} />
   <Tech lang={lang} />
