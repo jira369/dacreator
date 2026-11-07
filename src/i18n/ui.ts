@@ -74,6 +74,18 @@ const de = {
   'case.s4': 'Return',
   'case.s4d': 'über 40 Mio',
 
+  // Creatives
+  'cr.h': 'Creatives, die wirklich *konvertieren*.',
+  'cr.p': 'Eine Auswahl der besten Creatives meines Teams. Jedes startet mit einer Hypothese und wird im Creative Loop iteriert.',
+  'cr.prev': 'Vorheriges Creative',
+  'cr.next': 'Nächstes Creative',
+  'cr.sound': 'Ton an',
+  'cr.mute': 'Ton aus',
+  'cr.c1': 'Epic Motion Remake',
+  'cr.c2': 'Fakten-Motion',
+  'cr.c3': 'Pain-Point-Animation',
+  'cr.c4': 'Singendes Objekt',
+
   // DNA
   'dna.h': 'Meine *DNA*.',
   'dna.n1t': 'Direct Response',
@@ -285,6 +297,17 @@ const en: Dict = {
   'case.s3d': 'for efficiency',
   'case.s4': 'Return',
   'case.s4d': 'over 40M',
+
+  'cr.h': 'Creatives that actually *convert*.',
+  'cr.p': 'A selection of the best creatives my team made. Each one starts with a hypothesis and is iterated in the creative loop.',
+  'cr.prev': 'Previous creative',
+  'cr.next': 'Next creative',
+  'cr.sound': 'Sound on',
+  'cr.mute': 'Sound off',
+  'cr.c1': 'Epic motion remake',
+  'cr.c2': 'Facts motion',
+  'cr.c3': 'Pain point animation',
+  'cr.c4': 'Singing object',
 
   'dna.h': 'My *DNA*.',
   'dna.n1t': 'Direct response',

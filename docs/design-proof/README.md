@@ -60,3 +60,7 @@ Top three problems:
 - Von den Websites der Anbieter: Taboola, Criteo, RTB House, Tisoomi, Looker Studio (gstatic), rightmart, 42DIGITAL.
 - Vitapio: Logo von Dac geliefert. Hildebrand & Vu und Triagramm: Monogramme HV und TG (kein Logo vorhanden).
 - Seitenlogo: Dacs Signatur (`public/images/signature.png`), freigestellt als Maske `signature-mask.webp`, hell im Header, groß in Orange im Footer.
+- rightmart: offizielles rightmart-Group-Logo von Dac, Dunkelgrün #002825 für den dunklen Grund auf #F0EEF2 umgefärbt, Koralle bleibt.
+
+## Creatives-Carousel
+Vier Creatives des Teams, auf 540×960 H.264 komprimiert (zusammen 11 MB, `preload="none"`, nur das mittlere spielt stumm im Loop, Ton per Button). Taste-Inspector danach: 0 FAIL, die Warnung "no-real-pictures" ist verschwunden.
