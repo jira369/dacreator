@@ -89,6 +89,13 @@ const de = {
   'dna.n6t': 'Build',
   'dna.n6s': 'Cockpit, UTM-Generator, SEA-Cockpit.',
   'dna.hint': 'Ziehen zum Drehen',
+  'dna.n1k': '60 Mio Jahresumsatz',
+  'dna.n2k': 'Apps mit Claude',
+  'dna.n3k': 'Server-Side, GA4',
+  'dna.n4k': 'Brand-Hoheit',
+  'dna.n5k': '2 direkt, 5 indirekt',
+  'dna.n6k': 'Cockpit, UTM, SEA',
+  'dna.sub': 'Sechs Themen, die alles antreiben. Knoten anklicken, Helix ziehen zum Drehen.',
 
   // Tech
   'tech.h': 'Tracking ist *Infrastruktur*.',
@@ -293,6 +300,13 @@ const en: Dict = {
   'dna.n6t': 'Build',
   'dna.n6s': 'Cockpit, UTM generator, SEA cockpit.',
   'dna.hint': 'Drag to rotate',
+  'dna.n1k': '60M a year',
+  'dna.n2k': 'Apps built with Claude',
+  'dna.n3k': 'Server-side, GA4',
+  'dna.n4k': 'Brand authority',
+  'dna.n5k': '2 direct, 5 indirect',
+  'dna.n6k': 'Cockpit, UTM, SEA',
+  'dna.sub': 'Six themes that drive everything. Click a node, drag the helix to rotate.',
 
   'tech.h': 'Tracking is *infrastructure*.',
   'tech.p': 'I own the full tracking and marketing tech stack of rightmart Group. I build the tools myself, with Claude and other AI tools.',

@@ -1,6 +1,6 @@
 ---
 import { useTranslations } from '../../i18n/utils';
-import { accent, plain } from '../../lib/accent';
+import { accent } from '../../lib/accent';
 import type { Locale } from '../../i18n/config';
 interface Props { lang: Locale }
 const { lang } = Astro.props;
@@ -12,18 +12,31 @@ const nodes = [
   { k: 4, href: `/${lang}/cv#creative` },
   { k: 5, href: `/${lang}/projects/rightmart` },
   { k: 6, href: `/${lang}/projects` },
-].map((n) => ({ ...n, title: t(`dna.n${n.k}t` as 'dna.n1t'), fact: t(`dna.n${n.k}s` as 'dna.n1s') }));
+].map((n) => ({
+  ...n,
+  title: t(`dna.n${n.k}t` as 'dna.n1t'),
+  short: t(`dna.n${n.k}k` as 'dna.n1k'),
+  long: t(`dna.n${n.k}s` as 'dna.n1s'),
+}));
 ---
-<section class="section wrap" id="dna" aria-labelledby="dna-title">
-  <div class="dna" data-dna>
-    <div class="dna__stage" aria-hidden="true"><canvas></canvas></div>
-    <div class="dna__list">
-      <h2 id="dna-title" data-reveal set:html={accent(t('dna.h'))} />
-      <ul data-reveal>
-        {nodes.map((n, i) => <li><a href={n.href} data-i={i} data-fact={n.fact} class={i === 0 ? 'is-active' : undefined}>{n.title}</a></li>)}
-      </ul>
-    </div>
-    <p class="dna__fact" aria-live="polite" data-reveal><b data-fact-title>{nodes[0].title}</b><span data-fact-text>{nodes[0].fact}</span></p>
+
+<section class="section wrap" id="dna" aria-labelledby="dna-title" data-dna>
+  <div class="dna__head">
+    <h2 id="dna-title" data-reveal set:html={accent(t('dna.h'))} />
+    <p data-reveal>{t('dna.sub')}</p>
+  </div>
+  <div class="dna__stage" data-dna-stage>
+    <canvas aria-hidden="true"></canvas>
+    <ul class="dna__nodes">
+      {nodes.map((n, i) => (
+        <li>
+          <a class={`dna__node ${i % 2 ? 'is-alt' : ''}`} href={n.href}>
+            <span class="dna__dot" aria-hidden="true"></span>
+            <span class="dna__label"><b>{n.title}</b><i>{n.short}</i><em>{n.long}</em></span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
 
@@ -31,103 +44,107 @@ const nodes = [
   function initDna() {
     const root = document.querySelector<HTMLElement>('[data-dna]');
     if (!root || root.dataset.ready) return;
-    const stage = root.querySelector<HTMLElement>('.dna__stage')!;
+    const stage = root.querySelector<HTMLElement>('[data-dna-stage]')!;
     const canvas = stage.querySelector('canvas')!;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     root.dataset.ready = '1';
-    const links = Array.from(root.querySelectorAll<HTMLAnchorElement>('.dna__list a'));
-    const fTitle = root.querySelector('[data-fact-title]')!;
-    const fText = root.querySelector('[data-fact-text]')!;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const SUN = '236,122,69', APR = '246,179,148', INK = '242,238,234';
-    const T = [0.1, 0.26, 0.42, 0.58, 0.74, 0.9];
-    let W = 0, H = 0, dpr = 1, rot = 0, vel = reduced ? 0 : 0.28, active = 0, hover = false, drag = false, lastX = 0, moved = 0, visible = true, last = 0, idle = 0;
-    const pts: { x: number; y: number }[] = [];
+    root.classList.add('dna--live');
 
+    const items = Array.from(root.querySelectorAll<HTMLAnchorElement>('.dna__node'));
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SUN = '236,122,69', APR = '246,179,148', INK = '240,238,242';
+    const T = [0.1, 0.26, 0.42, 0.58, 0.74, 0.9];
+    let W = 0, H = 0, R = 0, dpr = 1, rot = 0.4, vel = reduced ? 0 : 0.26;
+    let active = 0, hold = false, drag = false, lastX = 0, moved = 0, visible = true, last = 0, idle = 0;
+
+    // Bühne an den Viewport anpassen: Radius und Windungen hängen von Breite und Höhe ab
     function size() {
       const r = stage.getBoundingClientRect();
       W = r.width; H = r.height; dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = W * dpr; canvas.height = H * dpr; draw();
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      R = Math.max(70, Math.min(W * (W < 640 ? 0.2 : 0.15), 210));
+      draw();
     }
-    const cx = () => (W > 860 ? W * 0.6 : W * 0.5);
+    const turns = () => (H / Math.max(R, 1) > 4.2 ? 2.4 : 1.8);
+    const pad = () => H * 0.07;
+    const Y = (t: number) => pad() + t * (H - pad() * 2);
+    const ang = (t: number, o: number) => rot + t * Math.PI * 2 * turns() + o;
+
     function draw() {
+      const X = W / 2;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx!.globalCompositeOperation = 'source-over';
       ctx!.clearRect(0, 0, W, H);
-      const R = Math.min(W * (W > 860 ? 0.14 : 0.28), 200), pad = H * 0.08, X = cx();
-      const Y = (t: number) => pad + t * (H - pad * 2);
-      const ang = (t: number, o: number) => rot + t * Math.PI * 2 * 2.2 + o;
-      // Sprossen
-      for (let t = 0.02; t < 0.99; t += 0.028) {
-        const a = ang(t, 0), z = Math.sin(a);
-        ctx!.strokeStyle = `rgba(${INK},${0.05 + 0.1 * Math.abs(z)})`; ctx!.lineWidth = 1;
+      for (let t = 0.02; t < 0.99; t += 0.026) {
+        const a = ang(t, 0), z = Math.abs(Math.sin(a));
+        ctx!.strokeStyle = `rgba(${INK},${0.05 + 0.1 * z})`; ctx!.lineWidth = 1;
         ctx!.beginPath(); ctx!.moveTo(X + R * Math.cos(a), Y(t)); ctx!.lineTo(X - R * Math.cos(a), Y(t)); ctx!.stroke();
       }
-      // Stränge als leuchtende Bänder
-      ctx!.globalCompositeOperation = 'lighter';
+      ctx!.globalCompositeOperation = 'lighter'; ctx!.lineCap = 'round';
       for (const [o, col] of [[0, SUN], [Math.PI, APR]] as const) {
-        for (const [lw, al] of [[10, 0.06], [4, 0.22], [1.6, 0.9]]) {
-          ctx!.lineWidth = lw; ctx!.lineCap = 'round';
+        for (const [lw, al] of [[12, 0.05], [5, 0.18], [1.8, 0.95]]) {
+          ctx!.lineWidth = lw;
           for (let t = 0; t < 1; t += 0.004) {
             const a = ang(t, o), z = (Math.sin(a) + 1) / 2;
-            ctx!.strokeStyle = `rgba(${col},${al * (0.25 + 0.75 * z)})`;
+            ctx!.strokeStyle = `rgba(${col},${al * (0.2 + 0.8 * z)})`;
             ctx!.beginPath(); ctx!.moveTo(X + R * Math.cos(a), Y(t)); ctx!.lineTo(X + R * Math.cos(ang(t + 0.004, o)), Y(t + 0.004)); ctx!.stroke();
           }
         }
       }
       ctx!.globalCompositeOperation = 'source-over';
-      // Knoten
-      pts.length = 0;
-      T.forEach((t, i) => {
-        const o = i % 2 ? Math.PI : 0, a = ang(t, o), z = (Math.sin(a) + 1) / 2;
-        const x = X + R * Math.cos(a), y = Y(t), on = i === active;
-        pts.push({ x, y });
-        ctx!.fillStyle = on ? `rgb(${SUN})` : `rgba(${INK},${0.35 + 0.65 * z})`;
-        ctx!.beginPath(); ctx!.arc(x, y, on ? 9 : 5 + 2 * z, 0, 6.283); ctx!.fill();
-        if (on) { ctx!.strokeStyle = `rgba(${SUN},.35)`; ctx!.lineWidth = 2; ctx!.beginPath(); ctx!.arc(x, y, 17, 0, 6.283); ctx!.stroke(); }
+      items.forEach((el, i) => {
+        const o = i % 2 ? Math.PI : 0, a = ang(T[i], o), z = (Math.sin(a) + 1) / 2;
+        const x = X + R * Math.cos(a), y = Y(T[i]), on = i === active;
+        const lw = (el.querySelector('.dna__label') as HTMLElement).offsetWidth + 30;
+        const right = x >= X ? W - x > lw : x < lw;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+        el.style.opacity = String(on ? 1 : 0.55 + 0.45 * z);
+        el.style.zIndex = String(on ? 20 : Math.round(z * 10) + 1);
+        el.classList.toggle('is-right', right);
+        el.classList.toggle('is-left', !right);
+        el.classList.toggle('is-on', on);
+        if (on) {
+          ctx!.strokeStyle = `rgba(${SUN},.4)`; ctx!.lineWidth = 2;
+          ctx!.beginPath(); ctx!.arc(x, y, 20, 0, 6.283); ctx!.stroke();
+        }
       });
     }
-    function setActive(i: number) {
-      active = i;
-      links.forEach((a, j) => a.classList.toggle('is-active', j === i));
-      fTitle.textContent = links[i].textContent; fText.textContent = links[i].dataset.fact || '';
-      draw();
-    }
+
+    const setActive = (i: number) => { active = i; draw(); };
     function frame(now: number) {
       const dt = Math.min((now - last) / 1000, 0.05); last = now;
       if (visible && !drag) {
-        rot += vel * dt; vel += ((reduced ? 0 : 0.28) - vel) * Math.min(dt * 2, 1);
-        if (!hover) { idle += dt; if (idle > 2.6) { idle = 0; setActive((active + 1) % links.length); } }
+        if (!hold) {
+          rot += vel * dt; vel += ((reduced ? 0 : 0.26) - vel) * Math.min(dt * 2, 1);
+          idle += dt; if (idle > 2.8) { idle = 0; active = (active + 1) % items.length; }
+        }
         draw();
       }
       requestAnimationFrame(frame);
     }
-    links.forEach((a, i) => {
-      a.addEventListener('pointerenter', () => { hover = true; setActive(i); });
-      a.addEventListener('pointerleave', () => { hover = false; idle = 0; });
-      a.addEventListener('focus', () => { hover = true; setActive(i); });
-      a.addEventListener('blur', () => { hover = false; });
+
+    items.forEach((el, i) => {
+      const on = () => { hold = true; idle = 0; setActive(i); };
+      const off = () => { hold = false; idle = 0; };
+      el.addEventListener('pointerenter', on);
+      el.addEventListener('pointerleave', off);
+      el.addEventListener('focus', on);
+      el.addEventListener('blur', off);
     });
     stage.addEventListener('pointerdown', (e) => { drag = true; moved = 0; lastX = e.clientX; });
     stage.addEventListener('pointermove', (e) => {
-      const r = stage.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
-      const hit = pts.findIndex((p) => Math.hypot(p.x - px, p.y - py) < 22);
-      stage.style.cursor = hit >= 0 ? 'pointer' : '';
-      if (hit >= 0 && !drag) { hover = true; if (hit !== active) setActive(hit); } else if (!drag) hover = false;
       if (!drag) return;
-      const dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx); rot += dx * 0.009; vel = dx * 0.4; draw();
+      const dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx);
+      // Erst beim echten Ziehen einfangen, sonst erreicht ein Klick den Link nicht
+      if (moved > 4 && !stage.hasPointerCapture?.(e.pointerId)) stage.setPointerCapture?.(e.pointerId);
+      rot += dx * 0.009; vel = dx * 0.4; draw();
     });
-    const end = (e: PointerEvent) => {
-      if (drag && moved < 6) {
-        const r = stage.getBoundingClientRect();
-        const hit = pts.findIndex((p) => Math.hypot(p.x - (e.clientX - r.left), p.y - (e.clientY - r.top)) < 22);
-        if (hit >= 0) links[hit].click();
-      }
-      drag = false;
-    };
+    const end = () => { drag = false; };
     stage.addEventListener('pointerup', end);
-    stage.addEventListener('pointercancel', () => { drag = false; });
+    stage.addEventListener('pointercancel', end);
+    stage.addEventListener('click', (e) => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } moved = 0; }, true);
+
     new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(stage);
     new ResizeObserver(size).observe(stage);
     size();
