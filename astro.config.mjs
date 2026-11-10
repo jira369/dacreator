@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [
     react(),
     mdx(),
-    sitemap(),
+    sitemap({ filter: (u) => u !== 'https://dacreator.dev/', i18n: { defaultLocale: 'de', locales: { de: 'de-DE', en: 'en-US', vi: 'vi-VN' } } }),
   ],
   vite: {
     plugins: [tailwindcss()],
