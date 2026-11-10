@@ -276,7 +276,7 @@ export default function RightmartShowcase({ lang }: Props) {
         {/* Toggle */}
         <button
           onClick={() => setShowChannels(!showChannels)}
-          className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent-light transition-colors"
+          className="inline-flex items-center gap-2 min-h-11 text-sm text-accent hover:text-accent-light transition-colors"
         >
           {showChannels ? labels.hideChannels : labels.viewChannels}
           <svg
