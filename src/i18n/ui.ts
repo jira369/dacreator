@@ -15,7 +15,7 @@ const de = {
 
   // Meta
   'meta.title': 'Dac Vu | Head of Performance Marketing',
-  'meta.description': 'Dac Vu ist Head of Performance Marketing bei der rightmart Group. AI-first, Direct Response, Tracking und eigene Tools. Von niedrigem 7-stelligen Umsatz auf 60 Mio Jahresumsatz.',
+  'meta.description': 'Dac Vu, Head of Performance Marketing bei rightmart. AI-first, Direct Response, Tracking und eigene Tools. Von niedrigem 7-stelligen Umsatz auf 60 Mio.',
 
   // Hero
   'hero.title': 'Marketing, das sich *selbst* misst.',
@@ -244,7 +244,7 @@ const en: Dict = {
   'nav.skip': 'Skip to content',
 
   'meta.title': 'Dac Vu | Head of Performance Marketing',
-  'meta.description': 'Dac Vu is Head of Performance Marketing at rightmart Group. AI-first, direct response, tracking and self-built tools. From low seven-figure revenue to 60 million a year.',
+  'meta.description': 'Dac Vu, Head of Performance Marketing at rightmart. AI-first, direct response, tracking and self-built tools. From low seven-figure revenue to 60 million.',
 
   'hero.title': 'Marketing that *measures* itself.',
   'hero.lead': 'I am **Dac Vu**, Head of Performance Marketing at rightmart Group. From low seven-figure revenue to 60 million a year through performance marketing.',

@@ -15,7 +15,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<BaseLayout title={t('meta.title')} description={t('meta.description')}>
+<BaseLayout title={t('meta.title')} description={t('meta.description')} kind="home">
   <Hero lang={lang} />
   <Creatives lang={lang} />
   <DNA lang={lang} />
